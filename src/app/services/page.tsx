@@ -1,134 +1,78 @@
-import * as React from "react"
-import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
-import { cva } from "class-variance-authority"
-import { ChevronDown } from "lucide-react"
+import type { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, BriefcaseBusiness, LayoutGrid, SearchCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { cn } from "@/lib/utils"
+export const metadata: Metadata = {
+  title: 'Our Services - Nitya Marketing Navigator',
+  description: 'Explore the comprehensive B2B marketing services offered by Nitya Marketing Management, designed to empower SMEs & MSMEs.',
+};
 
-const NavigationMenu = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative z-10 flex max-w-max flex-1 items-center justify-center",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <NavigationMenuViewport />
-  </NavigationMenuPrimitive.Root>
-))
-NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
+const serviceCategories = [
+    {
+        icon: BriefcaseBusiness,
+        title: "Strategic Marketing",
+        description: "Develop foundational strategies including market research, competitive analysis, and brand positioning.",
+        link: "/insights", // Link to a relevant page, e.g., Insights or About
+        linkText: "View Our Approach"
+    },
+    {
+        icon: LayoutGrid,
+        title: "Digital Marketing Suite",
+        description: "Comprehensive online solutions: SEO, Social Media, PPC, ORM, Video Production, and Design Thinking.",
+        link: "/digital-marketing/seo", // Link to the first digital marketing service
+        linkText: "Explore Digital Services"
+    },
+     {
+        icon: SearchCheck, // Placeholder icon
+        title: "Technology & Development",
+        description: "Implement MarTech, build websites and mobile apps, ensure maintenance and reliable hosting.",
+        link: "/marketing-technologies", // Link to the first tech service
+        linkText: "Discover Tech Solutions"
+    }
+]
 
-const NavigationMenuList = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.List
-    ref={ref}
-    className={cn(
-      "group flex flex-1 list-none items-center justify-center space-x-1",
-      className
-    )}
-    {...props}
-  />
-))
-NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
-const NavigationMenuItem = NavigationMenuPrimitive.Item
-
-const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-)
-
-const NavigationMenuTrigger = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Trigger
-    ref={ref}
-    className={cn(navigationMenuTriggerStyle(), "group", className)}
-    {...props}
-  >
-    {children}{" "}
-    <ChevronDown
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
-      aria-hidden="true"
-    />
-  </NavigationMenuPrimitive.Trigger>
-))
-NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
-
-const NavigationMenuContent = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Content
-    ref={ref}
-    className={cn(
-      "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
-      className
-    )}
-    {...props}
-  />
-))
-NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
-
-const NavigationMenuLink = NavigationMenuPrimitive.Link
-
-const NavigationMenuViewport = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
->(({ className, ...props }, ref) => (
-  <div className={cn("absolute left-0 top-full flex justify-center")}>
-    <NavigationMenuPrimitive.Viewport
-      className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  </div>
-))
-NavigationMenuViewport.displayName =
-  NavigationMenuPrimitive.Viewport.displayName
-
-const NavigationMenuIndicator = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Indicator
-    ref={ref}
-    className={cn(
-      "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in",
-      className
-    )}
-    {...props}
-  >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
-  </NavigationMenuPrimitive.Indicator>
-))
-NavigationMenuIndicator.displayName =
-  NavigationMenuPrimitive.Indicator.displayName
-
-export {
-  navigationMenuTriggerStyle,
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  NavigationMenuIndicator,
-  NavigationMenuViewport,
+export default function ServicesPage() {
+  return (
+    <section id="services-overview" className="py-16 md:py-24 bg-background">
+      <div className="container max-w-7xl space-y-12">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary">Our Comprehensive B2B Services</h1>
+          <p className="text-lg text-muted-foreground">
+            Tailored solutions designed to drive growth for SMEs & MSMEs. From strategy to execution, we're your dedicated marketing partner.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+            {serviceCategories.map((category, index) => (
+                 <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                    <CardHeader>
+                         <div className="flex flex-col items-center text-center">
+                             <span className="p-3 bg-accent/10 rounded-full text-accent mb-3">
+                                 <category.icon className="w-8 h-8" />
+                             </span>
+                             <CardTitle>{category.title}</CardTitle>
+                         </div>
+                     </CardHeader>
+                     <CardContent className="flex-grow text-center">
+                         <CardDescription>{category.description}</CardDescription>
+                     </CardContent>
+                     <div className="p-6 pt-0 text-center">
+                         <Link href={category.link}>
+                             <Button variant="link">{category.linkText} <ArrowRight className="ml-1 h-4 w-4" /></Button>
+                         </Link>
+                     </div>
+                 </Card>
+            ))}
+        </div>
+         <div className="text-center mt-12">
+             <p className="text-muted-foreground mb-4">Ready to discuss your specific needs?</p>
+             <Link href="/contact">
+                 <Button size="lg">Get a Free Consultation</Button>
+             </Link>
+          </div>
+      </div>
+    </section>
+  );
 }
-```
-
-  </change>
-  <change>
-    <file>src/app/services/page.tsx</file>
-    <description>Delete old services page as services are now integrated into the header navigation with individual pages.</description>
