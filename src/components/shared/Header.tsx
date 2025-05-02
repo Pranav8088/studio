@@ -1,6 +1,7 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet'; // Added SheetClose
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet'; // Added SheetHeader, SheetTitle
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,23 +11,25 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Menu, BriefcaseBusiness, Laptop, Smartphone, Wrench, Server } from 'lucide-react'; // Added more icons
+import { Menu, BriefcaseBusiness, LayoutGrid, SearchCheck, Cog, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server } from 'lucide-react'; // Added Cog, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart
 import { cn } from "@/lib/utils";
 import React from 'react';
 
+
 // Digital Marketing Dropdown Items
 const digitalMarketingItems = [
-  { title: "SEO", href: "/digital-marketing/seo", description: "Improve search engine rankings." },
-  { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", description: "Engage audiences on social platforms." },
-  { title: "Design Thinking", href: "/digital-marketing/design-thinking", description: "User-centric design solutions." },
-  { title: "Video Production", href: "/digital-marketing/video-production", description: "Compelling video content creation." },
-  { title: "ORM", href: "/digital-marketing/orm", description: "Manage your online reputation." },
-  { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted advertising campaigns." },
+  { title: "SEO", href: "/digital-marketing/seo", description: "Improve search engine rankings.", icon: Search },
+  { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", description: "Engage audiences on social platforms.", icon: Megaphone },
+  { title: "Design Thinking", href: "/digital-marketing/design-thinking", description: "User-centric design solutions.", icon: Lightbulb },
+  { title: "Video Production", href: "/digital-marketing/video-production", description: "Compelling video content creation.", icon: Film },
+  { title: "ORM", href: "/digital-marketing/orm", description: "Manage your online reputation.", icon: ShieldCheck },
+  { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted advertising campaigns.", icon: BarChart },
 ];
 
-// Web Development Dropdown Items
-const webDevelopmentItems = [
-    { title: "Web Development", href: "/web-development", description: "Custom website design and build.", icon: Laptop },
+// Technology & Development Dropdown Items
+const techDevelopmentItems = [
+    { title: "Marketing Technologies", href: "/marketing-technologies", description: "Implement MarTech stack.", icon: Cog },
+    { title: "Web Development", href: "/web-development", description: "Custom website design & build.", icon: Laptop },
     { title: "Mobile App Development", href: "/mobile-app", description: "Native & cross-platform apps.", icon: Smartphone },
     { title: "Website Maintenance", href: "/website-maintenance", description: "Updates, security, and backups.", icon: Wrench },
     { title: "Hosting Support", href: "/hosting-support", description: "Reliable hosting and support.", icon: Server },
@@ -40,8 +43,7 @@ const mainNavItems = [
    { label: 'Why Us', href: '/why-us' },
    { label: 'Insights', href: '/insights' },
    // Digital Marketing Dropdown Placeholder
-   { label: 'Marketing Technologies', href: '/marketing-technologies' },
-   // Web Development Dropdown Placeholder
+   // Technology & Development Dropdown Placeholder
    { label: 'FAQs', href: '/faq' },
 ];
 
@@ -80,6 +82,7 @@ const Header = () => {
                       key={component.title}
                       title={component.title}
                       href={component.href}
+                      icon={component.icon} // Pass icon here
                     >
                       {component.description}
                     </ListItem>
@@ -88,20 +91,13 @@ const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-             <NavigationMenuItem> {/* Marketing Technologies Link */}
-                <Link href={mainNavItems[4].href} legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        {mainNavItems[4].label}
-                    </NavigationMenuLink>
-                </Link>
-             </NavigationMenuItem>
 
-             {/* Web Development Dropdown */}
+             {/* Technology & Development Dropdown */}
              <NavigationMenuItem>
-                 <NavigationMenuTrigger>Development</NavigationMenuTrigger>
+                 <NavigationMenuTrigger>Technology & Development</NavigationMenuTrigger>
                  <NavigationMenuContent>
                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                         {webDevelopmentItems.map((item) => (
+                         {techDevelopmentItems.map((item) => (
                              <ListItem
                                 key={item.title}
                                 title={item.title}
@@ -117,9 +113,9 @@ const Header = () => {
 
 
              <NavigationMenuItem> {/* FAQs Link */}
-                <Link href={mainNavItems[5].href} legacyBehavior passHref>
+                <Link href={mainNavItems[4].href} legacyBehavior passHref>
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        {mainNavItems[5].label}
+                        {mainNavItems[4].label}
                     </NavigationMenuLink>
                 </Link>
              </NavigationMenuItem>
@@ -145,14 +141,19 @@ const Header = () => {
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs overflow-y-auto">
-              <nav className="grid gap-4 text-lg font-medium mt-6">
-                 <SheetClose asChild>
+            <SheetContent side="right" className="w-full max-w-xs overflow-y-auto p-0">
+              {/* Add SheetHeader and SheetTitle */}
+              <SheetHeader className="p-6 pb-0">
+                <SheetTitle>
                    <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mb-4">
                       <BriefcaseBusiness className="h-6 w-6 text-accent" />
                       <span>Nitya Marketing</span>
                     </Link>
-                  </SheetClose>
+                </SheetTitle>
+                 {/* Optional: Add SheetDescription if needed */}
+                 {/* <SheetDescription>Navigate our services.</SheetDescription> */}
+              </SheetHeader>
+              <nav className="grid gap-4 text-lg font-medium p-6">
 
                 {/* Main Links */}
                 {mainNavItems.slice(0, 4).map((item) => (
@@ -162,8 +163,8 @@ const Header = () => {
                 ))}
 
                  {/* Digital Marketing Section */}
-                 <div className="border-l border-border/60 pl-4">
-                    <p className="font-semibold text-muted-foreground text-base mb-2 mt-2">Digital Marketing</p>
+                 <div className="border-l border-border/60 pl-4 mt-2">
+                    <p className="font-semibold text-muted-foreground text-base mb-2">Digital Marketing</p>
                     {digitalMarketingItems.map((item) => (
                        <SheetClose asChild key={item.title}>
                           <Link href={item.href} className="block text-muted-foreground hover:text-accent py-1 text-base">{item.title}</Link>
@@ -171,16 +172,10 @@ const Header = () => {
                     ))}
                  </div>
 
-                  {/* Marketing Technologies */}
-                  <SheetClose asChild key={mainNavItems[4].label}>
-                      <Link href={mainNavItems[4].href} className="transition-colors hover:text-accent py-1">{mainNavItems[4].label}</Link>
-                  </SheetClose>
-
-
-                 {/* Web Development Section */}
-                 <div className="border-l border-border/60 pl-4">
-                    <p className="font-semibold text-muted-foreground text-base mb-2 mt-2">Development</p>
-                    {webDevelopmentItems.map((item) => (
+                 {/* Technology & Development Section */}
+                 <div className="border-l border-border/60 pl-4 mt-2">
+                    <p className="font-semibold text-muted-foreground text-base mb-2">Technology & Development</p>
+                    {techDevelopmentItems.map((item) => (
                        <SheetClose asChild key={item.title}>
                           <Link href={item.href} className="block text-muted-foreground hover:text-accent py-1 text-base">{item.title}</Link>
                        </SheetClose>
@@ -189,8 +184,8 @@ const Header = () => {
 
 
                  {/* FAQs */}
-                 <SheetClose asChild key={mainNavItems[5].label}>
-                   <Link href={mainNavItems[5].href} className="transition-colors hover:text-accent py-1">{mainNavItems[5].label}</Link>
+                 <SheetClose asChild key={mainNavItems[4].label}>
+                   <Link href={mainNavItems[4].href} className="transition-colors hover:text-accent py-1 mt-2">{mainNavItems[4].label}</Link>
                  </SheetClose>
 
                 <SheetClose asChild>
