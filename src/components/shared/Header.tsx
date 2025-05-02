@@ -5,12 +5,12 @@ import { Menu, BriefcaseBusiness } from 'lucide-react';
 
 const Header = () => {
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Why Us', href: '#why-us' },
-    { label: 'Insights', href: '#insights' },
-    { label: 'FAQs', href: '#faq' },
+    { label: 'Home', href: '/' }, // Updated href
+    { label: 'About', href: '/about' }, // Updated href
+    { label: 'Services', href: '/services' }, // Updated href
+    { label: 'Why Us', href: '/why-us' }, // Updated href
+    { label: 'Insights', href: '/insights' }, // Updated href
+    { label: 'FAQs', href: '/faq' }, // Updated href
   ];
 
   return (
@@ -32,9 +32,9 @@ const Header = () => {
               {item.label}
             </Link>
           ))}
-           <Button asChild size="sm">
-            <Link href="#contact">Get Consultation</Link>
-          </Button>
+           <Link href="/contact">
+             <Button size="sm">Get Consultation</Button>
+           </Link>
         </nav>
 
         {/* Mobile Navigation */}
@@ -61,9 +61,9 @@ const Header = () => {
                     {item.label}
                   </Link>
                 ))}
-                <Button asChild className="mt-4">
-                  <Link href="#contact">Get Consultation</Link>
-                </Button>
+                <Link href="/contact">
+                   <Button className="mt-4 w-full">Get Consultation</Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
