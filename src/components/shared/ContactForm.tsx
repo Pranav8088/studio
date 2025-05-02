@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Added CardHeader and CardTitle
 import { Send } from 'lucide-react';
 
 const formSchema = z.object({
@@ -82,10 +83,15 @@ export default function ContactForm() {
 
   return (
     <Card className="shadow-lg border border-border/50 animate-fade-in">
+        {/* Optional: Add a header */}
+        {/* <CardHeader>
+          <CardTitle className="text-2xl text-center md:text-left">Send us a Message</CardTitle>
+        </CardHeader> */}
         <CardContent className="p-6 md:p-8">
             <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Use grid for name and email fields for responsiveness */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
                 <FormField
                     control={form.control}
                     name="name"
@@ -135,7 +141,7 @@ export default function ContactForm() {
                         <FormControl>
                         <Textarea
                             placeholder="Tell us how we can help your business grow..."
-                            className="min-h-[120px]"
+                            className="min-h-[120px] resize-y" // Allow vertical resize
                             {...field}
                         />
                         </FormControl>
@@ -143,7 +149,8 @@ export default function ContactForm() {
                     </FormItem>
                     )}
                 />
-                <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="w-full md:w-auto">
+                {/* Make button full width on small screens, auto on medium+ */}
+                <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="w-full sm:w-auto">
                     {form.formState.isSubmitting ? "Submitting..." : "Send Inquiry"}
                     {!form.formState.isSubmitting && <Send className="ml-2 h-4 w-4" />}
                 </Button>

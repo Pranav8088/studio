@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, TrendingUp, Lightbulb, Search, Handshake, BarChart, Building2, CalendarCheck, MessageCircleQuestion, Megaphone } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -25,20 +26,24 @@ const insightsData = [
 export default function InsightsPage() {
   return (
       <section id="insights" className="py-16 md:py-24 bg-gradient-to-b from-secondary to-background">
-          <div className="container max-w-7xl space-y-12">
+          {/* Added responsive padding */}
+          <div className="container max-w-7xl space-y-12 px-4 md:px-6">
               <div className="text-center max-w-3xl mx-auto space-y-4">
-                  <h1 className="text-3xl md:text-4xl font-bold text-primary">Why SMEs & MSMEs Need Dedicated Marketing Expertise</h1>
-                  <p className="text-lg text-muted-foreground">
+                   {/* Responsive text sizes */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Why SMEs & MSMEs Need Dedicated Marketing Expertise</h1>
+                  <p className="text-lg md:text-xl text-muted-foreground">
                       In today’s competitive landscape, strategic marketing isn't a luxury—it's essential for survival and growth. Discover why dedicated expertise is crucial.
                   </p>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+               {/* Responsive grid layout */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {insightsData.map((insight, index) => (
                       <Card key={index} className="hover:border-accent transition-colors duration-300 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                           <CardHeader>
-                              <CardTitle className="flex items-center gap-3 text-lg">
+                               {/* Responsive Title and Icon */}
+                              <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
                                   <span className="p-1.5 bg-primary/10 rounded-full text-primary">
-                                    <insight.icon className="w-5 h-5" />
+                                    <insight.icon className="w-5 h-5 md:w-6 md:h-6" />
                                   </span>
                                   {insight.title}
                               </CardTitle>
@@ -53,5 +58,4 @@ export default function InsightsPage() {
       </section>
   );
 }
-
-    
+      

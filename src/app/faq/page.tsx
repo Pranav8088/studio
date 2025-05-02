@@ -1,3 +1,4 @@
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Send } from 'lucide-react';
@@ -26,23 +27,26 @@ const faqs = [
 export default function FaqPage() {
   return (
      <section id="faq" className="py-16 md:py-24 bg-background">
-        <div className="container max-w-4xl space-y-12">
+         {/* Added responsive padding */}
+        <div className="container max-w-4xl space-y-12 px-4 md:px-6">
            <div className="text-center space-y-4">
-             <h1 className="text-3xl md:text-4xl font-bold text-primary">Frequently Asked Questions</h1>
-             <p className="text-lg text-muted-foreground">
+              {/* Responsive text sizes */}
+             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Frequently Asked Questions</h1>
+             <p className="text-lg md:text-xl text-muted-foreground">
                 Addressing your common concerns about B2B marketing and how we can help.
              </p>
            </div>
+           {/* Ensure accordion items are readable on small screens */}
            <Accordion type="single" collapsible className="w-full">
              {faqs.map((faq) => (
-               <AccordionItem key={faq.value} value={faq.value} className="border-b border-border/60">
-                 <AccordionTrigger className="text-left hover:text-accent font-medium text-base py-4">
+               <AccordionItem key={faq.value} value={faq.value} className="border-b border-border/60 last:border-b-0">
+                 <AccordionTrigger className="text-left hover:text-accent font-medium text-base md:text-lg py-4 px-1 sm:px-2 text-primary hover:no-underline">
                    {faq.question}
                  </AccordionTrigger>
-                 <AccordionContent className="text-muted-foreground pb-4 pt-0 px-1">
+                 <AccordionContent className="text-muted-foreground pb-4 pt-0 px-2 sm:px-4 text-sm md:text-base">
                     {faq.answer}
                    <Link href="/contact">
-                     <Button variant="link" size="sm" className="p-0 h-auto mt-2 text-accent">
+                     <Button variant="link" size="sm" className="p-0 h-auto mt-2 text-accent hover:underline">
                        Get Solution <Send className="w-3 h-3 ml-1" />
                      </Button>
                    </Link>
@@ -54,3 +58,4 @@ export default function FaqPage() {
       </section>
   );
 }
+      

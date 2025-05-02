@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Inter } from 'next/font/google'; // Using Inter instead of Geist
 import './globals.css';
@@ -19,8 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} font-sans bg-background text-foreground flex flex-col min-h-screen`}>
+      {/* Apply font variable to body */}
+      <body className={`${inter.variable} font-sans bg-background text-foreground flex flex-col min-h-screen antialiased`}>
         <Header />
+        {/* Ensure main content area grows to fill space */}
         <main className="flex-grow">
           {children}
         </main>
