@@ -130,5 +130,4 @@ export {
 
   </change>
   <change>
-    <file>src/app/services/page.tsx</file>
-    <description>Delete old services page as services are now integrated into the header navigation with individual pages.</description>
+    <file>src/app/services/page.tsx
