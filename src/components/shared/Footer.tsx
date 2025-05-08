@@ -15,8 +15,10 @@ const Footer = () => {
         {/* Make links wrap nicely on smaller screens */}
         <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
            <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-           {/* Removed services link as it's now integrated */}
-           {/* <Link href="/services" className="hover:text-primary transition-colors">Services</Link> */}
+           <Link href="/why-us" className="hover:text-primary transition-colors">Why Us</Link>
+           <Link href="/insights" className="hover:text-primary transition-colors">Insights</Link>
+           {/* Link to main services page */}
+           <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
            <Link href="/faq" className="hover:text-primary transition-colors">FAQs</Link>
            {/* Add links to privacy policy, terms etc. if needed */}
