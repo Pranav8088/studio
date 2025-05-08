@@ -1,115 +1,76 @@
 
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, BriefcaseBusiness, LayoutGrid, SearchCheck, Cog, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart } from 'lucide-react';
+import { ArrowRight, LayoutGrid, Cog, Laptop, BriefcaseBusiness } from 'lucide-react'; // Adjusted icons
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Our Services - Nitya Marketing Navigator',
   description: 'Explore the comprehensive B2B marketing services offered by Nitya Marketing Management, designed to empower SMEs & MSMEs.',
 };
 
-// Group services logically based on Header structure
-const serviceGroups = [
+// High-level service categories matching the header structure
+const serviceCategories = [
   {
-    categoryTitle: "Digital Marketing Suite",
-    categoryIcon: LayoutGrid,
-    categoryDescription: "Comprehensive online solutions to boost your digital presence.",
-    services: [
-      { title: "SEO", href: "/digital-marketing/seo", description: "Improve search engine rankings.", icon: Search },
-      { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", description: "Engage audiences on social platforms.", icon: Megaphone },
-      { title: "Design Thinking", href: "/digital-marketing/design-thinking", description: "User-centric design solutions.", icon: Lightbulb },
-      { title: "Video Production", href: "/digital-marketing/video-production", description: "Compelling video content creation.", icon: Film },
-      { title: "ORM", href: "/digital-marketing/orm", description: "Manage your online reputation.", icon: ShieldCheck },
-      { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted advertising campaigns.", icon: BarChart },
-    ]
+    title: "Digital Marketing Suite",
+    description: "Comprehensive online solutions to boost your digital presence, from SEO and social media to content and advertising.",
+    icon: LayoutGrid,
+    link: "/digital-marketing/seo" // Link to the first service in the dropdown or a general category page if created
   },
   {
-    categoryTitle: "Marketing Technologies",
-    categoryIcon: Cog, // Using Cog for MarTech overall category
-    categoryDescription: "Leverage technology for marketing efficiency.",
-     services: [
-      { title: "Platform Selection & Consultation", href: "/marketing-technologies", description: "Choose the right tech stack.", icon: Settings },
-      { title: "Marketing Automation Setup", href: "/marketing-technologies", description: "Implement automation workflows.", icon: Zap },
-      { title: "CRM Integration & Optimization", href: "/marketing-technologies", description: "Connect CRM for sales alignment.", icon: DatabaseZap },
-      { title: "Analytics & Data Integration", href: "/marketing-technologies", description: "Setup tracking and reporting.", icon: AreaChart },
-    ]
+    title: "Marketing Technologies",
+    description: "Leverage technology for marketing efficiency, including platform selection, automation, CRM integration, and analytics.",
+    icon: Cog,
+    link: "/marketing-technologies"
   },
    {
-    categoryTitle: "Web & Mobile Solutions",
-    categoryIcon: Laptop, // Using Laptop for Web/Mobile overall category
-    categoryDescription: "Develop and maintain your online platforms.",
-     services: [
-        // Web Dev
-        { title: "Custom Web Development", href: "/web-development", description: "Unique, professional websites.", icon: Laptop },
-        { title: "Responsive Design", href: "/web-development", description: "Optimal viewing on all devices.", icon: Palette },
-        { title: "E-commerce Solutions", href: "/web-development", description: "Secure B2B online stores.", icon: ShoppingCart },
-        { title: "CMS Integration", href: "/web-development", description: "Easy content management.", icon: Code },
-        // Mobile App
-        { title: "Native & Cross-Platform Apps", href: "/mobile-app", description: "Engaging mobile applications.", icon: Smartphone },
-        // Maintenance
-        { title: "Website Maintenance", href: "/website-maintenance", description: "Security, updates, and backups.", icon: Wrench },
-        // Hosting
-        { title: "Hosting Support", href: "/hosting-support", description: "Reliable and secure hosting.", icon: Server },
-    ]
+    title: "Web & Mobile Solutions",
+    description: "Develop and maintain your crucial online platforms, including custom websites, e-commerce, mobile apps, maintenance, and hosting.",
+    icon: Laptop,
+    link: "/web-development" // Link to the main web development page
   }
 ]
 
 
 export default function ServicesPage() {
   return (
-    <section id="services-overview" className="py-16 md:py-24 bg-background">
+    <section id="services-overview" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
       <div className="container max-w-7xl space-y-16 px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Our Comprehensive B2B Services</h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Tailored solutions designed to drive growth for SMEs & MSMEs. From strategy to execution, we're your dedicated marketing partner.
+        <div className="text-center max-w-3xl mx-auto space-y-4 animate-fade-in-up">
+           <span className="p-3 bg-primary/10 rounded-full text-primary inline-block mb-4">
+               <BriefcaseBusiness className="w-10 h-10" /> {/* Larger Icon */}
+           </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Our Comprehensive B2B Services</h1>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Tailored solutions designed to drive growth for SMEs & MSMEs. From strategy to execution across digital, technology, and web platforms, we're your dedicated marketing partner.
           </p>
         </div>
 
-         {serviceGroups.map((group, groupIndex) => (
-            <div key={groupIndex} className="space-y-8 animate-fade-in-up" style={{ animationDelay: `${groupIndex * 150}ms` }}>
-                 <div className="flex flex-col md:flex-row items-center gap-4 border-b pb-4 mb-8 border-border/60">
-                    <span className="p-3 bg-primary/10 rounded-full text-primary shrink-0">
-                         <group.categoryIcon className="w-8 h-8" />
-                     </span>
-                    <div>
-                        <h2 className="text-2xl md:text-3xl font-semibold text-primary text-center md:text-left">{group.categoryTitle}</h2>
-                        <p className="text-muted-foreground mt-1 text-center md:text-left">{group.categoryDescription}</p>
-                    </div>
-                 </div>
-
-                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                     {group.services.map((service, serviceIndex) => (
-                         <Card key={serviceIndex} className="flex flex-col hover:shadow-lg hover:border-accent transition-all duration-300">
-                            <CardHeader className="flex flex-row items-center gap-3 pb-3">
-                                 <span className="p-1.5 bg-accent/10 rounded-full text-accent">
-                                     <service.icon className="w-5 h-5" />
-                                 </span>
-                                 <CardTitle className="text-lg">{service.title}</CardTitle>
-                             </CardHeader>
-                             <CardContent className="flex-grow">
-                                 <CardDescription>{service.description}</CardDescription>
-                             </CardContent>
-                             <div className="p-6 pt-2">
-                                 <Link href={service.href}>
-                                     <Button variant="link" size="sm" className="p-0 h-auto text-accent hover:underline">
-                                         Learn More <ArrowRight className="ml-1 h-3 w-3" />
-                                     </Button>
-                                 </Link>
-                             </div>
-                         </Card>
-                     ))}
-                 </div>
-            </div>
-        ))}
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {serviceCategories.map((category, index) => (
+              <div key={index} className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md border border-border/60 hover:shadow-lg hover:border-accent transition-all duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
+                <span className="p-4 bg-accent/10 rounded-full text-accent mb-5">
+                  <category.icon className="w-8 h-8" />
+                </span>
+                <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3">{category.title}</h2>
+                <p className="text-muted-foreground flex-grow mb-5">{category.description}</p>
+                <Link href={category.link}>
+                  <Button variant="outline" size="sm">
+                    Explore Solutions <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            ))}
+        </div>
 
 
-         <div className="text-center mt-16 pt-8 border-t border-border/60">
-             <p className="text-lg text-muted-foreground mb-4">Ready to discuss your specific needs?</p>
+         <div className="text-center mt-16 pt-12 border-t border-border/60 animate-fade-in-up delay-500">
+             <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">Ready to Elevate Your Marketing?</h2>
+             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                 Let's discuss your specific business challenges and goals. We'll tailor a strategy to achieve the results you need.
+             </p>
              <Link href="/contact">
-                 <Button size="lg">Get a Free Consultation</Button>
+                 <Button size="lg">Get Your Free Consultation</Button>
              </Link>
           </div>
       </div>

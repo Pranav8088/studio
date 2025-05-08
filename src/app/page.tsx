@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Target, TrendingUp, CheckCircle, Award, BrainCircuit, Users, BookOpen, CalendarDays } from 'lucide-react';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'; // Added CardFooter import
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+// Removed Autoplay import as it wasn't being used and causes build errors if 'embla-carousel-autoplay' is not installed
+// import Autoplay from 'embla-carousel-autoplay';
 
 // Placeholder blog data
 const blogPosts = [
@@ -48,6 +50,7 @@ export default function Home() {
               Your dedicated partner empowering SMEs & MSMEs. We bridge the gap between ambition and achievement through expert marketing strategies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+              {/* Updated link to Services Overview Page */}
               <Link href="/services">
                 <Button size="lg">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
               </Link>
@@ -68,40 +71,45 @@ export default function Home() {
           </div>
           {/* Image Carousel */}
           <div className="hidden md:flex justify-center items-center animate-fade-in-right">
-            <Carousel className="w-full max-w-md lg:max-w-lg" opts={{ loop: true, align: "start" }} plugins={[
-              // Autoplay({ delay: 4000, stopOnInteraction: true }) // Optional Autoplay
-            ]}>
+             <Carousel
+                className="w-full max-w-md lg:max-w-lg"
+                opts={{ loop: true, align: "start" }}
+                // Removed Autoplay plugin configuration
+             >
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4">
                   <Image
                     src="https://picsum.photos/600/500?random=1"
-                    alt="Digital Marketing Strategy Session"
+                    alt="Digital Marketing Strategy Session Team Discussing Growth" // More descriptive alt text
                     data-ai-hint="digital marketing strategy"
                     width={600}
                     height={500}
                     priority // Prioritize loading first hero image
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
                     className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
                   />
                 </CarouselItem>
                  <CarouselItem className="pl-4">
                   <Image
                     src="https://picsum.photos/600/500?random=2"
-                    alt="Team Collaboration on Project"
+                    alt="Diverse Team Collaborating on a Project Board" // More descriptive alt text
                     data-ai-hint="team collaboration"
                     width={600}
                     height={500}
                     loading="lazy" // Lazy load subsequent images
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
                     className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
                   />
                 </CarouselItem>
                  <CarouselItem className="pl-4">
                   <Image
                     src="https://picsum.photos/600/500?random=3"
-                    alt="Business Growth Analytics"
+                    alt="Business Growth Analytics Dashboard with Charts" // More descriptive alt text
                     data-ai-hint="business analytics chart"
                     width={600}
                     height={500}
                     loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
                     className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
                   />
                 </CarouselItem>
@@ -119,11 +127,12 @@ export default function Home() {
                 <div className="animate-fade-in-left order-last lg:order-first">
                     <Image
                         src="https://picsum.photos/550/450?random=4"
-                        alt="Nitya Marketing Team Discussion"
+                        alt="Nitya Marketing Team in a Productive Discussion" // More descriptive alt text
                         data-ai-hint="team meeting discussion"
                         width={550}
                         height={450}
                         loading="lazy" // Lazy load this image
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 550px" // Added sizes attribute
                         className="rounded-lg shadow-md object-cover w-full aspect-[11/9]"
                     />
                 </div>
@@ -197,7 +206,7 @@ export default function Home() {
              ))}
            </div>
             <div className="mt-16">
-             <Link href="/services" className="inline-block">
+             <Link href="/services" className="inline-block"> {/* Link to Services Overview */}
                <Button size="lg" variant="outline">View All Services</Button>
              </Link>
             </div>
@@ -218,11 +227,12 @@ export default function Home() {
                             <div className="aspect-video w-full overflow-hidden relative">
                                <Image
                                     src={`https://picsum.photos/400/225?random=${post.id+5}`} // Random placeholder
-                                    alt={`Blog post illustration for ${post.title}`}
+                                    alt={`Illustration for blog post titled: ${post.title}`} // More specific alt text
                                     data-ai-hint="marketing article illustration"
                                     width={400}
                                     height={225}
                                     loading="lazy"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" // Added sizes attribute
                                     className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>

@@ -1,4 +1,4 @@
-# **App Name**: Nitya Marketing Navigator
+# **App Name**: Nitya Marketing Management
 
 ## Core Features:
 

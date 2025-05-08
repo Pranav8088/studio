@@ -12,7 +12,10 @@ const Footer = () => {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mb-2 hover:opacity-90 transition-opacity">
               <BriefcaseBusiness className="h-6 w-6 text-accent" />
-              <span>Nitya Marketing</span>
+              {/* Show full name on larger screens */}
+               <span className="hidden lg:inline">Nitya Marketing Navigator</span>
+               {/* Show shorter name on smaller screens */}
+               <span className="lg:hidden">Nitya Marketing</span>
             </Link>
             <p className="text-sm leading-relaxed">
               Your dedicated B2B growth partner, empowering SMEs & MSMEs to achieve their marketing goals.
@@ -31,6 +34,7 @@ const Footer = () => {
               <li><Link href="/why-us" className="hover:text-primary transition-colors duration-200">Why Choose Us</Link></li>
               <li><Link href="/insights" className="hover:text-primary transition-colors duration-200">Insights</Link></li>
               <li><Link href="/faq" className="hover:text-primary transition-colors duration-200">FAQs</Link></li>
+              <li><Link href="/contact" className="hover:text-primary transition-colors duration-200">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -43,9 +47,7 @@ const Footer = () => {
               <li><Link href="/web-development" className="hover:text-primary transition-colors duration-200">Web Development</Link></li>
               <li><Link href="/marketing-technologies" className="hover:text-primary transition-colors duration-200">Marketing Technologies</Link></li>
               <li><Link href="/digital-marketing/google-ads" className="hover:text-primary transition-colors duration-200">Google Ads</Link></li>
-               {/* Add more key service links if needed */}
-              {/* Consider linking to the main services page if it exists */}
-              {/* <li><Link href="/services" className="hover:text-primary transition-colors font-medium">View All Services</Link></li> */}
+              <li><Link href="/services" className="hover:text-primary transition-colors font-medium pt-1 inline-block">View All Services</Link></li>
             </ul>
           </div>
 
@@ -63,18 +65,20 @@ const Footer = () => {
                </li>
                 <li className="flex items-center gap-3">
                  <Mail className="w-4 h-4 shrink-0 text-accent" />
-                 <a href="mailto:info@nityamarketing.com" className="hover:text-primary transition-colors duration-200 break-all">info@nityamarketing.com</a> {/* Placeholder Email */}
+                 {/* Make email clickable and break long string */}
+                 <a href="mailto:info@nityamarketing.com" className="hover:text-primary transition-colors duration-200 break-all">info@nityamarketing.com</a>
                </li>
             </ul>
             {/* Social Icons */}
             <div className="flex space-x-4 pt-4">
-               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+               {/* Add actual links later */}
+               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-muted-foreground hover:text-primary transition-colors duration-200">
                  <Linkedin className="w-5 h-5" />
                </a>
-               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-muted-foreground hover:text-primary transition-colors duration-200">
-                 <Twitter className="w-5 h-5" /> {/* Or use an X icon if preferred */}
+               <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                 <Twitter className="w-5 h-5" />
                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook Page" className="text-muted-foreground hover:text-primary transition-colors duration-200">
                  <Facebook className="w-5 h-5" />
                </a>
                {/* Add more social links as needed */}
