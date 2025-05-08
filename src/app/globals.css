@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Light Theme (Kept as is, adjust if needed based on Copper/Yellow/Black) */
+    /* Light Theme (Adjusted for better contrast with Copper/Yellow) */
     --background: 0 0% 100%; /* White */
     --foreground: 220 20% 10%; /* Very Dark Blue/Black */
 
@@ -31,7 +31,7 @@
 
     --border: 220 20% 88%;
     --input: 220 20% 88%;
-    --ring: 55 100% 55%; /* Yellow */
+    --ring: 30 70% 48%; /* Copper Gold for focus ring */
 
     --chart-1: 30 70% 48%; /* Copper Gold */
     --chart-2: 55 100% 55%; /* Yellow */
@@ -43,40 +43,40 @@
   }
 
   .dark {
-    /* Dark Theme - Adjusted for darker Navy Blue */
-    --background: 220 40% 12%; /* Darker Navy Blue */
+    /* Dark Theme - Enhanced Navy Blue, Copper/Yellow accents */
+    --background: 220 40% 10%; /* Slightly darker Navy Blue */
     --foreground: 0 0% 95%; /* Near White */
 
-    --card: 220 40% 17%; /* Slightly lighter Dark Navy */
+    --card: 220 40% 15%; /* Slightly lighter Dark Navy */
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 40% 17%; /* Popover same as card */
+    --popover: 220 40% 15%; /* Popover same as card */
     --popover-foreground: 0 0% 95%;
 
-    --primary: 30 70% 48%; /* Copper Gold - Stays the same */
-    --primary-foreground: 0 0% 8%; /* Black - Stays the same */
+    --primary: 30 70% 55%; /* Brighter Copper Gold for primary actions */
+    --primary-foreground: 0 0% 8%; /* Black text on Copper Gold */
 
-    --secondary: 220 40% 22%; /* Mid-tone Navy for secondary backgrounds */
-    --secondary-foreground: 55 100% 55%; /* Yellow - Stays the same */
+    --secondary: 220 40% 20%; /* Mid-tone Navy for secondary backgrounds */
+    --secondary-foreground: 55 100% 60%; /* Brighter Yellow for secondary text */
 
-    --muted: 220 30% 25%; /* Muted Dark Navy */
-    --muted-foreground: 220 15% 65%; /* Light Gray/Blue */
+    --muted: 220 30% 22%; /* Muted Dark Navy - slightly lighter */
+    --muted-foreground: 220 15% 60%; /* Lighter Gray/Blue for muted text */
 
-    --accent: 55 100% 55%; /* Yellow - Stays the same */
-    --accent-foreground: 0 0% 8%; /* Black - Stays the same */
+    --accent: 55 100% 60%; /* Brighter Yellow */
+    --accent-foreground: 0 0% 8%; /* Black text on Yellow */
 
-    --destructive: 0 70% 50%; /* Adjusted Destructive Red */
+    --destructive: 0 70% 55%; /* Adjusted Destructive Red */
     --destructive-foreground: 0 0% 95%;
 
-    --border: 220 40% 25%; /* Border color matching secondary bg */
-    --input: 220 40% 25%; /* Input background same as border */
-    --ring: 55 100% 55%; /* Yellow - Stays the same for focus rings */
+    --border: 220 40% 25%; /* Border color */
+    --input: 220 40% 25%; /* Input background */
+    --ring: 55 100% 60%; /* Yellow for focus rings */
 
-    --chart-1: 30 70% 48%; /* Primary - Copper Gold */
-    --chart-2: 55 100% 55%; /* Accent - Yellow */
-    --chart-3: 220 15% 65%; /* Muted Foreground */
-    --chart-4: 30 70% 60%; /* Lighter Copper Gold */
-    --chart-5: 55 100% 70%; /* Lighter Yellow */
+    --chart-1: 30 70% 55%; /* Primary - Brighter Copper Gold */
+    --chart-2: 55 100% 60%; /* Accent - Brighter Yellow */
+    --chart-3: 220 15% 60%; /* Muted Foreground */
+    --chart-4: 30 70% 70%; /* Lighter Copper Gold */
+    --chart-5: 55 100% 75%; /* Lighter Yellow */
   }
 }
 
@@ -88,17 +88,23 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+   /* More consistent heading sizes */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-semibold tracking-tight text-foreground; /* Ensure headings use foreground color */
   }
-  h1 { @apply text-4xl lg:text-5xl; }
-  h2 { @apply text-3xl lg:text-4xl; }
-  h3 { @apply text-2xl lg:text-3xl; }
-  h4 { @apply text-xl lg:text-2xl; }
-  p { @apply leading-7; }
+  h1 { @apply text-3xl sm:text-4xl lg:text-5xl; }
+  h2 { @apply text-2xl sm:text-3xl lg:text-4xl; }
+  h3 { @apply text-xl sm:text-2xl lg:text-3xl; }
+  h4 { @apply text-lg sm:text-xl lg:text-2xl; }
+  p { @apply leading-7 text-base md:text-lg; } /* Standardize paragraph size */
+
+   /* Improve focus visibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
 }
 
-/* Additional base styles for responsiveness and fade-in */
+/* Animation utilities remain the same */
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;

@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Settings, Zap, AreaChart, DatabaseZap } from 'lucide-react'; // Changed icons
+import { Settings, Zap, AreaChart, DatabaseZap, ArrowRight } from 'lucide-react'; // Added ArrowRight
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -11,49 +11,47 @@ export const metadata: Metadata = {
 };
 
 const martechFeatures = [
-  { icon: Settings, title: "Platform Selection & Consultation", description: "Identify the right marketing technology stack for your specific needs." },
-  { icon: Zap, title: "Marketing Automation Setup", description: "Implement platforms like HubSpot, Mailchimp, etc., for automated workflows." },
-  { icon: DatabaseZap, title: "CRM Integration & Optimization", description: "Connect and optimize CRM systems (Salesforce, Zoho) for better sales alignment." }, // Changed icon
-  { icon: AreaChart, title: "Analytics & Data Integration", description: "Set up tracking and reporting tools (Google Analytics) for data-driven decisions." }, // Changed icon
+  { icon: Settings, title: "Platform Selection & Consultation", description: "Identify and evaluate the optimal marketing technology stack tailored to your specific business needs, budget, and goals." },
+  { icon: Zap, title: "Marketing Automation Setup", description: "Implement and configure platforms like HubSpot, Mailchimp, etc., for automated workflows, lead nurturing, and email campaigns." },
+  { icon: DatabaseZap, title: "CRM Integration & Optimization", description: "Seamlessly connect and optimize CRM systems (e.g., Salesforce, Zoho) for better sales and marketing alignment and data flow." },
+  { icon: AreaChart, title: "Analytics & Data Integration", description: "Set up robust tracking and reporting tools (Google Analytics, Tag Manager) for comprehensive data collection and actionable insights." },
 ];
 
 export default function MarketingTechnologiesPage() {
   return (
-    <section id="martech-service" className="py-16 md:py-24 bg-secondary">
-      {/* Added responsive padding */}
-      <div className="container max-w-7xl space-y-12 px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          {/* Responsive text sizes */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Marketing Technologies</h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Leverage the power of technology to enhance your marketing efficiency and effectiveness. We help SMEs and MSMEs select, implement, and integrate the right marketing tools.
+    <section id="martech-service" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
+      <div className="container max-w-7xl space-y-16 px-4 md:px-6"> {/* Increased spacing */}
+        <div className="text-center max-w-3xl mx-auto space-y-4 animate-fade-in-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Marketing Technologies</h1>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Leverage the power of technology to supercharge your marketing efficiency, effectiveness, and measurability. We help SMEs and MSMEs select, implement, integrate, and optimize the right marketing tools for success.
           </p>
         </div>
-         {/* Responsive grid layout */}
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {martechFeatures.map((feature, index) => (
-            <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+             <Card key={index} className="flex flex-col group hover:border-accent transition-colors duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
               <CardHeader className="flex-shrink-0">
-                 <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-                  <span className="p-2 bg-accent/10 rounded-full text-accent mb-2 sm:mb-0">
-                     <feature.icon className="w-7 h-7" />
+                 <div className="flex flex-col items-center text-center gap-3">
+                   <span className="p-4 bg-accent/10 rounded-full text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300 mb-2">
+                     <feature.icon className="w-8 h-8" />
                   </span>
-                  <CardTitle className="text-lg md:text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg md:text-xl text-foreground">{feature.title}</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="flex-grow text-center sm:text-left">
+              <CardContent className="flex-grow text-center">
                 <CardDescription>{feature.description}</CardDescription>
               </CardContent>
             </Card>
           ))}
         </div>
-         <div className="text-center mt-12">
+
+         <div className="text-center mt-12 animate-fade-in-up delay-500">
              <Link href="/contact">
-                 <Button size="lg">Optimize Your MarTech Stack</Button>
+                 <Button size="lg">Optimize Your MarTech Stack <ArrowRight className="ml-2 h-5 w-5" /></Button>
              </Link>
           </div>
       </div>
     </section>
   );
 }
-      

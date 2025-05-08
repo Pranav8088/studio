@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Video, Clapperboard, Film, Sparkles } from 'lucide-react';
+import { Video, Clapperboard, Film, Sparkles, ArrowRight } from 'lucide-react'; // Added ArrowRight
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -11,49 +11,47 @@ export const metadata: Metadata = {
 };
 
 const videoFeatures = [
-  { icon: Clapperboard, title: "Concept Development & Scripting", description: "Craft engaging narratives and professional scripts for your videos." },
-  { icon: Film, title: "Filming & Production", description: "High-quality video shooting with professional equipment and crew." },
-  { icon: Sparkles, title: "Post-Production & Editing", description: "Editing, motion graphics, sound design, and color correction services." },
-  { icon: Video, title: "Video Strategy & Distribution", description: "Develop strategies to maximize video reach and impact across platforms." },
+  { icon: Clapperboard, title: "Concept Development & Scripting", description: "Craft engaging narratives, develop creative concepts, and write professional scripts tailored to your message and audience." },
+  { icon: Film, title: "Professional Filming & Production", description: "High-quality video shooting utilizing professional-grade equipment, lighting, sound, and experienced crew members." },
+  { icon: Sparkles, title: "Post-Production & Editing", description: "Comprehensive editing, color grading, motion graphics, sound design, and visual effects to create polished final videos." },
+  { icon: Video, title: "Video Strategy & Distribution", description: "Develop effective strategies to maximize video reach, engagement, and impact across relevant platforms and marketing channels." },
 ];
 
 export default function VideoProductionPage() {
   return (
-    <section id="video-production-service" className="py-16 md:py-24 bg-gradient-to-b from-background to-secondary">
-      {/* Added responsive padding */}
-      <div className="container max-w-7xl space-y-12 px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          {/* Responsive text sizes */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Video Production</h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Harness the power of video to tell your brand story, showcase products, and connect with your B2B audience. We offer end-to-end video production services for SMEs and MSMEs.
+    <section id="video-production-service" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
+      <div className="container max-w-7xl space-y-16 px-4 md:px-6"> {/* Increased spacing */}
+        <div className="text-center max-w-3xl mx-auto space-y-4 animate-fade-in-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Video Production</h1>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Harness the power of video to tell your brand story, showcase products, demonstrate expertise, and connect with your B2B audience on a deeper level. We offer end-to-end video production services for SMEs and MSMEs.
           </p>
         </div>
-         {/* Responsive grid layout */}
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {videoFeatures.map((feature, index) => (
-            <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+             <Card key={index} className="flex flex-col group hover:border-primary transition-colors duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
               <CardHeader className="flex-shrink-0">
-                <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-                  <span className="p-2 bg-primary/10 rounded-full text-primary mb-2 sm:mb-0">
-                     <feature.icon className="w-7 h-7" />
+                 <div className="flex flex-col items-center text-center gap-3">
+                   <span className="p-4 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-2">
+                     <feature.icon className="w-8 h-8" />
                   </span>
-                  <CardTitle className="text-lg md:text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg md:text-xl text-foreground">{feature.title}</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="flex-grow text-center sm:text-left">
+              <CardContent className="flex-grow text-center">
                 <CardDescription>{feature.description}</CardDescription>
               </CardContent>
             </Card>
           ))}
         </div>
-         <div className="text-center mt-12">
+
+         <div className="text-center mt-12 animate-fade-in-up delay-500">
              <Link href="/contact">
-                 <Button size="lg">Start Your Video Project</Button>
+                 <Button size="lg">Start Your Video Project <ArrowRight className="ml-2 h-5 w-5" /></Button>
              </Link>
           </div>
       </div>
     </section>
   );
 }
-      

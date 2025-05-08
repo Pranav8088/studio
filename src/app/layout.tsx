@@ -20,16 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Add 'dark' class to default to dark mode
+    // Explicitly set dark mode as default, ensure smooth scroll
     <html lang="en" className={cn("scroll-smooth dark", inter.variable)}>
-      {/* Apply font variable to body */}
+      {/* Apply font variable and base styles to body */}
       <body className={cn(
           "font-sans bg-background text-foreground flex flex-col min-h-screen antialiased"
-          // inter.variable // Removed redundant font variable application here
         )}>
         <Header />
         {/* Ensure main content area grows to fill space */}
-        <main className="flex-grow">
+        <main className="flex-grow pt-16"> {/* Add padding-top equal to header height */}
           {children}
         </main>
         <Footer />
