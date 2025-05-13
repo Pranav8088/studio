@@ -6,14 +6,13 @@ import AnimatedCounter from '@/components/shared/AnimatedCounter';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-// Removed Autoplay import as it wasn't being used and causes build errors if 'embla-carousel-autoplay' is not installed
-// import Autoplay from 'embla-carousel-autoplay';
+import Autoplay from 'embla-carousel-autoplay';
 
 // Placeholder blog data
 const blogPosts = [
-  { id: 1, title: "The Ultimate Guide to B2B SEO", excerpt: "Unlock organic growth with these essential SEO strategies tailored for B2B businesses.", date: "2024-08-15", link: "/blog/b2b-seo-guide" },
-  { id: 2, title: "Why Your SME Needs a Marketing Technology Stack", excerpt: "Streamline your marketing efforts and drive efficiency with the right MarTech tools.", date: "2024-08-10", link: "/blog/sme-martech-stack" },
-  { id: 3, title: "Building a High-Converting B2B Website", excerpt: "Key elements and design principles for a website that turns visitors into leads.", date: "2024-08-05", link: "/blog/high-converting-b2b-website" },
+  { id: 1, title: "The Ultimate Guide to B2B SEO", excerpt: "Unlock organic growth with these essential SEO strategies tailored for B2B businesses.", date: "2024-08-15", link: "/digital-marketing/seo" }, // Example: Link to actual SEO page
+  { id: 2, title: "Why Your SME Needs a Marketing Technology Stack", excerpt: "Streamline your marketing efforts and drive efficiency with the right MarTech tools.", date: "2024-08-10", link: "/marketing-technologies" }, // Example: Link to MarTech page
+  { id: 3, title: "Building a High-Converting B2B Website", excerpt: "Key elements and design principles for a website that turns visitors into leads.", date: "2024-08-05", link: "/web-development" }, // Example: Link to Web Dev page
 ];
 
 // Placeholder values data (subset from About page)
@@ -31,95 +30,79 @@ const featuredServices = [
   { title: "Marketing Technologies", description: "Implement and optimize your MarTech stack.", icon: BrainCircuit, link: "/marketing-technologies" },
 ];
 
+const heroImages = [
+  { src: "https://picsum.photos/1920/1080?random=1", alt: "Digital Marketing Strategy Session Team Discussing Growth", aiHint: "digital marketing strategy" },
+  { src: "https://picsum.photos/1920/1080?random=2", alt: "Diverse Team Collaborating on a Project Board", aiHint: "team collaboration" },
+  { src: "https://picsum.photos/1920/1080?random=3", alt: "Business Growth Analytics Dashboard with Charts", aiHint: "business analytics chart" },
+];
+
+
 export default function Home() {
   return (
     <div className="flex flex-col">
 
-      {/* Hero Section */}
-      <section id="home" className="relative pt-24 pb-16 md:pt-36 md:pb-24 lg:pt-48 lg:pb-32 bg-gradient-to-b from-background via-secondary/30 to-background flex items-center overflow-hidden min-h-[85vh] md:min-h-[90vh]">
-        {/* Subtle background elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl opacity-30 dark:opacity-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl opacity-30 dark:opacity-20 translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+      {/* Hero Section - Full-width Banner Slider */}
+      <section id="home" className="relative flex items-center justify-center text-center overflow-hidden min-h-[85vh] md:min-h-[90vh] group">
+        <Carousel
+          className="absolute inset-0 w-full h-full"
+          opts={{ loop: true, align: "start" }}
+          plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+        >
+          <CarouselContent className="h-full">
+            {heroImages.map((image, index) => (
+              <CarouselItem key={index} className="h-full relative">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  layout="fill"
+                  objectFit="cover"
+                  className="brightness-[0.6] group-hover:brightness-[0.7] transition-all duration-500 ease-in-out transform group-hover:scale-105" // Darken image for text contrast, subtle zoom on hover
+                  priority={index === 0}
+                  sizes="100vw"
+                  data-ai-hint={image.aiHint}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* Optional: Custom styled Previous/Next buttons for full-screen banner */}
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
+        </Carousel>
 
-        <div className="container max-w-7xl grid md:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 px-4 md:px-6">
-          <div className="space-y-6 animate-fade-in-up text-center md:text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight !leading-tight"> {/* Use !leading-tight for emphasis */}
+        {/* Overlay for text contrast if needed, but brightness on image might be enough */}
+        {/* <div className="absolute inset-0 bg-black/20"></div>  */}
+
+        {/* Text content overlaid */}
+        <div className="container max-w-4xl relative z-10 px-4 md:px-6 text-white py-10 md:py-0">
+          <div className="space-y-6 animate-fade-in-up">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-white drop-shadow-md">
               Navigate Your B2B Growth with <span className="text-accent">Nitya Marketing</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto md:mx-0">
+            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto drop-shadow-sm">
               Your dedicated partner empowering SMEs & MSMEs. We bridge the gap between ambition and achievement through expert marketing strategies.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
-              {/* Updated link to Services Overview Page */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
               <Link href="/services">
-                <Button size="lg">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline">Request Consultation</Button>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Request Consultation</Button>
               </Link>
             </div>
-            <div className="pt-8 grid grid-cols-2 gap-4 text-center max-w-sm mx-auto md:mx-0">
-              <div className="p-4 rounded-lg bg-card/50">
+            <div className="pt-8 grid grid-cols-2 gap-4 text-center max-w-sm mx-auto">
+              <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={10} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-muted-foreground mt-1">Years Experience</p>
+                <p className="text-sm text-gray-300 mt-1">Years Experience</p>
               </div>
-              <div className="p-4 rounded-lg bg-card/50">
+              <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={1000} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-muted-foreground mt-1">Categories Served</p>
+                <p className="text-sm text-gray-300 mt-1">Categories Served</p>
               </div>
             </div>
-          </div>
-          {/* Image Carousel */}
-          <div className="hidden md:flex justify-center items-center animate-fade-in-right">
-             <Carousel
-                className="w-full max-w-md lg:max-w-lg"
-                opts={{ loop: true, align: "start" }}
-                // Removed Autoplay plugin configuration
-             >
-              <CarouselContent className="-ml-4">
-                <CarouselItem className="pl-4">
-                  <Image
-                    src="https://picsum.photos/600/500?random=1"
-                    alt="Digital Marketing Strategy Session Team Discussing Growth" // More descriptive alt text
-                    data-ai-hint="digital marketing strategy"
-                    width={600}
-                    height={500}
-                    priority // Prioritize loading first hero image
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
-                    className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
-                  />
-                </CarouselItem>
-                 <CarouselItem className="pl-4">
-                  <Image
-                    src="https://picsum.photos/600/500?random=2"
-                    alt="Diverse Team Collaborating on a Project Board" // More descriptive alt text
-                    data-ai-hint="team collaboration"
-                    width={600}
-                    height={500}
-                    loading="lazy" // Lazy load subsequent images
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
-                    className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
-                  />
-                </CarouselItem>
-                 <CarouselItem className="pl-4">
-                  <Image
-                    src="https://picsum.photos/600/500?random=3"
-                    alt="Business Growth Analytics Dashboard with Charts" // More descriptive alt text
-                    data-ai-hint="business analytics chart"
-                    width={600}
-                    height={500}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px" // Added sizes attribute
-                    className="rounded-xl shadow-lg object-cover w-full aspect-[6/5]"
-                  />
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/70 hover:bg-background" />
-              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/70 hover:bg-background" />
-            </Carousel>
           </div>
         </div>
       </section>
+
 
        {/* About Us Snippet */}
         <section id="about-snippet" className="py-16 md:py-24 bg-background">
@@ -127,13 +110,13 @@ export default function Home() {
                 <div className="animate-fade-in-left order-last lg:order-first">
                     <Image
                         src="https://picsum.photos/550/450?random=4"
-                        alt="Nitya Marketing Team in a Productive Discussion" // More descriptive alt text
+                        alt="Nitya Marketing Team in a Productive Discussion"
                         data-ai-hint="team meeting discussion"
                         width={550}
                         height={450}
-                        loading="lazy" // Lazy load this image
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 550px" // Added sizes attribute
-                        className="rounded-lg shadow-md object-cover w-full aspect-[11/9]"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 550px"
+                        className="rounded-lg shadow-xl object-cover w-full aspect-[11/9] hover:scale-105 transition-transform duration-300"
                     />
                 </div>
                 <div className="space-y-6 animate-fade-in-right text-center lg:text-left">
@@ -146,7 +129,7 @@ export default function Home() {
                     </p>
                     <div className="pt-2">
                       <Link href="/about">
-                          <Button variant="outline">Learn More About Us <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                          <Button variant="outline" className="hover:bg-accent/10 hover:text-accent-foreground transition-colors duration-300">Learn More About Us <ArrowRight className="ml-2 h-4 w-4" /></Button>
                       </Link>
                     </div>
                 </div>
@@ -160,9 +143,9 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-bold text-primary mb-12">Our Core Values</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-4xl mx-auto">
                     {coreValues.map((value, index) => (
-                         <div key={index} className="flex flex-col items-center space-y-3 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                           <div className="p-3 bg-background rounded-full shadow">
-                             <span className="p-2 bg-accent/10 rounded-full text-accent inline-block">
+                         <div key={index} className="flex flex-col items-center space-y-3 animate-fade-in-up transform hover:scale-110 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
+                           <div className="p-3 bg-background rounded-full shadow-lg">
+                             <span className="p-3 bg-accent/10 rounded-full text-accent inline-block">
                                <value.icon className="w-7 h-7 md:w-8 md:h-8" />
                              </span>
                            </div>
@@ -170,9 +153,9 @@ export default function Home() {
                          </div>
                     ))}
                 </div>
-                 <div className="mt-12">
-                   <Link href="/about#values" className="inline-block"> {/* Link to specific section if possible or just /about */}
-                      <Button>Discover Our Guiding Principles</Button>
+                 <div className="mt-16">
+                   <Link href="/about#values" className="inline-block">
+                      <Button className="shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">Discover Our Guiding Principles</Button>
                    </Link>
                   </div>
             </div>
@@ -187,7 +170,7 @@ export default function Home() {
            </p>
            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
              {featuredServices.map((service, index) => (
-                 <Card key={index} className="flex flex-col text-left group overflow-hidden animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
+                 <Card key={index} className="flex flex-col text-left group overflow-hidden animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-primary transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 150}ms` }}>
                    <CardHeader className="flex flex-row items-center gap-4 pb-4">
                         <span className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                            <service.icon className="w-6 h-6" />
@@ -199,15 +182,15 @@ export default function Home() {
                     </CardContent>
                     <CardFooter className="pt-4">
                          <Link href={service.link}>
-                           <Button variant="link" className="p-0 h-auto text-accent group-hover:underline">View Service <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /></Button>
+                           <Button variant="link" className="p-0 h-auto text-accent group-hover:underline font-semibold">View Service <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /></Button>
                          </Link>
                      </CardFooter>
                  </Card>
              ))}
            </div>
             <div className="mt-16">
-             <Link href="/services" className="inline-block"> {/* Link to Services Overview */}
-               <Button size="lg" variant="outline">View All Services</Button>
+             <Link href="/services" className="inline-block">
+               <Button size="lg" variant="outline" className="hover:bg-primary/10 hover:text-primary transition-colors duration-300 shadow-md hover:shadow-lg transform hover:scale-105">View All Services</Button>
              </Link>
             </div>
          </div>
@@ -222,20 +205,19 @@ export default function Home() {
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {blogPosts.map((post, index) => (
-                         <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                            {/* Placeholder image for blog post */}
+                         <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
                             <div className="aspect-video w-full overflow-hidden relative">
                                <Image
-                                    src={`https://picsum.photos/400/225?random=${post.id+5}`} // Random placeholder
-                                    alt={`Illustration for blog post titled: ${post.title}`} // More specific alt text
+                                    src={`https://picsum.photos/400/225?random=${post.id+5}`}
+                                    alt={`Illustration for blog post titled: ${post.title}`}
                                     data-ai-hint="marketing article illustration"
                                     width={400}
                                     height={225}
                                     loading="lazy"
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" // Added sizes attribute
-                                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
                            </div>
                             <CardHeader>
                                 <CardTitle className="text-lg lg:text-xl leading-tight group-hover:text-accent transition-colors">{post.title}</CardTitle>
@@ -248,13 +230,13 @@ export default function Home() {
                             </CardContent>
                             <CardFooter className="pt-4">
                                 <Link href={post.link}>
-                                    <Button variant="link" className="p-0 h-auto text-accent group-hover:underline">Read More <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /></Button>
+                                    <Button variant="link" className="p-0 h-auto text-accent group-hover:underline font-semibold">Read More <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /></Button>
                                 </Link>
                             </CardFooter>
                          </Card>
                     ))}
                 </div>
-                 {/* Add a link to a main blog page if it exists */}
+                 {/* Add a link to a main blog page if it exists - Currently no blog page exists */}
                  {/* <div className="text-center mt-16">
                      <Link href="/blog">
                          <Button size="lg" variant="outline">Visit Our Blog</Button>
