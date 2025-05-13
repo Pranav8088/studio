@@ -2,12 +2,13 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Target, TrendingUp, CheckCircle, Award, BrainCircuit, Users, BookOpen, CalendarDays } from 'lucide-react';
+import { ArrowRight, Target, TrendingUp, CheckCircle, Award, BrainCircuit, Users, CalendarDays } from 'lucide-react';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import React from 'react';
 
 // Placeholder blog data
 const blogPosts = [
@@ -39,6 +40,10 @@ const heroImages = [
 
 
 export default function Home() {
+  const autoplayPlugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  );
+
   return (
     <div className="flex flex-col">
 
@@ -47,7 +52,9 @@ export default function Home() {
         <Carousel
           className="absolute inset-0 w-full h-full"
           opts={{ loop: true, align: "start" }}
-          plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+          plugins={[autoplayPlugin.current]}
+          onMouseEnter={autoplayPlugin.current.stop}
+          onMouseLeave={autoplayPlugin.current.reset}
         >
           <CarouselContent className="h-full">
             {heroImages.map((image, index) => (
@@ -55,7 +62,7 @@ export default function Home() {
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  layout="fill"
+                  fill // Use fill instead of layout="fill"
                   objectFit="cover"
                   className="brightness-[0.6] group-hover:brightness-[0.7] transition-all duration-500 ease-in-out transform group-hover:scale-105" // Darken image for text contrast, subtle zoom on hover
                   priority={index === 0}
@@ -70,16 +77,13 @@ export default function Home() {
           <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
         </Carousel>
 
-        {/* Overlay for text contrast if needed, but brightness on image might be enough */}
-        {/* <div className="absolute inset-0 bg-black/20"></div>  */}
-
         {/* Text content overlaid */}
-        <div className="container max-w-4xl relative z-10 px-4 md:px-6 text-white py-10 md:py-0">
+        <div className="container max-w-4xl relative z-10 px-4 md:px-6 text-white py-10 md:py-0"> {/* Ensure text is white for contrast */}
           <div className="space-y-6 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-white drop-shadow-md">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-white drop-shadow-md"> {/* Ensure h1 is white */}
               Navigate Your B2B Growth with <span className="text-accent">Nitya Marketing</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto drop-shadow-sm">
+            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto drop-shadow-sm"> {/* Lighter text for sub-headline */}
               Your dedicated partner empowering SMEs & MSMEs. We bridge the gap between ambition and achievement through expert marketing strategies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
@@ -139,18 +143,18 @@ export default function Home() {
 
 
         {/* Our Values Snippet */}
-        <section id="values-snippet" className="py-16 md:py-24 bg-secondary">
+        <section id="values-snippet" className="py-16 md:py-24 bg-secondary/10"> {/* Lighter secondary for white theme */}
             <div className="container max-w-7xl text-center px-4 md:px-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary mb-12">Our Core Values</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-4xl mx-auto">
                     {coreValues.map((value, index) => (
                          <div key={index} className="flex flex-col items-center space-y-3 animate-fade-in-up transform hover:scale-110 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
-                           <div className="p-3 bg-background rounded-full shadow-lg">
+                           <div className="p-3 bg-background rounded-full shadow-lg"> {/* Icon bg remains white or light */}
                              <span className="p-3 bg-accent/10 rounded-full text-accent inline-block">
                                <value.icon className="w-7 h-7 md:w-8 md:h-8" />
                              </span>
                            </div>
-                           <h4 className="font-semibold text-base md:text-lg mt-2">{value.title}</h4>
+                           <h4 className="font-semibold text-base md:text-lg mt-2 text-foreground">{value.title}</h4> {/* Ensure text is foreground */}
                          </div>
                     ))}
                 </div>
@@ -198,7 +202,7 @@ export default function Home() {
        </section>
 
         {/* Blog Posts Snippet */}
-        <section id="blog-snippet" className="py-16 md:py-24 bg-secondary">
+        <section id="blog-snippet" className="py-16 md:py-24 bg-secondary/10"> {/* Lighter secondary for white theme */}
             <div className="container max-w-7xl px-4 md:px-6">
                 <div className="text-center mb-12">
                      <h2 className="text-3xl md:text-4xl font-bold text-primary">Latest Insights</h2>

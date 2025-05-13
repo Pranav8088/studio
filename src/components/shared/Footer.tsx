@@ -5,7 +5,7 @@ import { BriefcaseBusiness, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } f
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-muted text-muted-foreground py-12 mt-16 border-t border-border/40">
+    <footer className="bg-secondary/10 text-muted-foreground py-12 mt-16 border-t border-border/40"> {/* Changed bg to secondary/10 */}
       <div className="container max-w-7xl px-4 md:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
           {/* Column 1: About Company */}

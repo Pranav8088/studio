@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +11,9 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Menu, BriefcaseBusiness, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart } from 'lucide-react';
+import {
+  Menu, BriefcaseBusiness, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Layers, TabletSmartphone, Settings2, Activity, DatabaseBackup, Gauge, ShieldAlert, LifeBuoy // Added missing icons
+} from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
 
@@ -26,37 +28,47 @@ const digitalMarketingItems = [
   { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted advertising campaigns.", icon: BarChart },
 ];
 
-// Marketing Technologies Dropdown Items
-const marketingTechnologiesItems = [
-  { title: "Platform Selection", href: "/marketing-technologies", description: "Choose the right tech stack.", icon: Settings },
-  { title: "Marketing Automation", href: "/marketing-technologies", description: "Implement automation workflows.", icon: Zap },
-  { title: "CRM Integration", href: "/marketing-technologies", description: "Connect CRM for sales alignment.", icon: DatabaseZap },
-  { title: "Analytics & Data", href: "/marketing-technologies", description: "Setup tracking and reporting.", icon: AreaChart },
-];
+// Marketing Technologies Link (No Dropdown - this is a direct link now)
+// const marketingTechnologiesItems = [ ... ]; // Removed as it's a direct link
 
-// Web/Mobile/Maintenance/Hosting Dropdown Items
-const webSolutionsItems = [
-    // Web Dev
+// Web Solutions Dropdown (Combined Web Dev, Mobile App, Maintenance, Hosting)
+const webDevelopmentSubItems = [
     { title: "Custom Web Development", href: "/web-development", description: "Unique, professional websites.", icon: Laptop },
     { title: "Responsive Design", href: "/web-development", description: "Optimal viewing on all devices.", icon: Palette },
     { title: "E-commerce Solutions", href: "/web-development", description: "Secure B2B online stores.", icon: ShoppingCart },
     { title: "CMS Integration", href: "/web-development", description: "Easy content management.", icon: Code },
-     // Mobile App
-    { title: "Mobile App Development", href: "/mobile-app", description: "Engaging mobile applications.", icon: Smartphone },
-    // Maintenance
-    { title: "Website Maintenance", href: "/website-maintenance", description: "Security, updates, and backups.", icon: Wrench },
-    // Hosting
-    { title: "Hosting Support", href: "/hosting-support", description: "Reliable and secure hosting.", icon: Server },
 ];
 
+const mobileAppSubItems = [
+    { title: "Native iOS & Android", href: "/mobile-app", description: "Platform-specific mobile apps.", icon: Smartphone },
+    { title: "Cross-Platform Apps", href: "/mobile-app", description: "Cost-effective multi-platform apps.", icon: TabletSmartphone },
+    { title: "Mobile UI/UX Design", href: "/mobile-app", description: "Intuitive mobile interfaces.", icon: Layers },
+    { title: "App Maintenance", href: "/mobile-app", description: "Ongoing support & updates.", icon: Settings2 },
+];
 
-// Main Navigation Items (excluding dropdowns handled separately)
+const websiteMaintenanceSubItems = [
+    { title: "Security Updates", href: "/website-maintenance", description: "Proactive security patching.", icon: ShieldCheck },
+    { title: "Software Management", href: "/website-maintenance", description: "CMS, theme, plugin updates.", icon: Wrench },
+    { title: "Regular Backups", href: "/website-maintenance", description: "Automated data backups.", icon: DatabaseBackup },
+    { title: "Performance Checks", href: "/website-maintenance", description: "Optimize site speed.", icon: Activity },
+];
+
+const hostingSupportSubItems = [
+    { title: "Reliable Hosting", href: "/hosting-support", description: "Secure & scalable hosting.", icon: Server },
+    { title: "Performance Tuning", href: "/hosting-support", description: "Fast loading times.", icon: Gauge },
+    { title: "Security Measures", href: "/hosting-support", description: "SSL, firewalls, monitoring.", icon: ShieldAlert },
+    { title: "Technical Support", href: "/hosting-support", description: "Expert hosting assistance.", icon: LifeBuoy },
+];
+
+// Main Navigation Items
 const mainNavItems = [
    { label: 'Home', href: '/' },
    { label: 'About', href: '/about' },
    { label: 'Why Us', href: '/why-us' },
    { label: 'Insights', href: '/insights' },
-   // Dropdown Placeholders handled below
+   // Digital Marketing (Dropdown)
+   // Marketing Technologies (Direct Link)
+   // Web Solutions (Dropdown)
    { label: 'FAQs', href: '/faq' },
 ];
 
@@ -68,15 +80,14 @@ const Header = () => {
       <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mr-4 shrink-0 hover:opacity-90 transition-opacity">
           <BriefcaseBusiness className="h-6 w-6 text-accent" />
-          {/* Show full name on medium screens and up, short name on small screens */}
           <span className="hidden sm:inline">Nitya Marketing Navigator</span>
           <span className="sm:hidden">Nitya</span>
         </Link>
 
-        {/* Desktop Navigation - Hidden below lg breakpoint */}
+        {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:flex flex-1 justify-center">
           <NavigationMenuList>
-            {mainNavItems.slice(0, 4).map((item) => ( // Home, About, Why Us, Insights
+            {mainNavItems.slice(0, 4).map((item) => (
               <NavigationMenuItem key={item.label}>
                 <Link href={item.href} legacyBehavior passHref>
                   <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
@@ -86,7 +97,6 @@ const Header = () => {
               </NavigationMenuItem>
             ))}
 
-             {/* Digital Marketing Dropdown */}
              <NavigationMenuItem>
               <NavigationMenuTrigger className="text-sm">Digital Marketing</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -105,57 +115,68 @@ const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-             {/* Marketing Technologies Dropdown */}
              <NavigationMenuItem>
-                 <NavigationMenuTrigger className="text-sm">MarTech</NavigationMenuTrigger>
-                 <NavigationMenuContent>
-                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                         {marketingTechnologiesItems.map((item) => (
-                             <ListItem
-                                key={item.title}
-                                title={item.title}
-                                href={item.href}
-                                icon={item.icon}
-                             >
-                                {item.description}
-                             </ListItem>
-                         ))}
-                     </ul>
-                 </NavigationMenuContent>
+                <Link href="/marketing-technologies" legacyBehavior passHref>
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                        Marketing Technologies
+                    </NavigationMenuLink>
+                </Link>
              </NavigationMenuItem>
 
-             {/* Web Development Dropdown (Combined) */}
              <NavigationMenuItem>
                  <NavigationMenuTrigger className="text-sm">Web Solutions</NavigationMenuTrigger>
                  <NavigationMenuContent>
-                    <ul className="grid w-[450px] gap-3 p-4 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
-                       {webSolutionsItems.map((item) => (
-                           <ListItem
-                             key={item.title}
-                             title={item.title}
-                             href={item.href}
-                             icon={item.icon}
-                           >
-                             {item.description}
-                           </ListItem>
-                       ))}
-                     </ul>
+                    <div className="grid w-[600px] gap-x-4 p-4 md:w-[700px] lg:w-[800px] grid-cols-2">
+                        <div>
+                            <h3 className="text-sm font-medium text-primary px-3 pb-2">Web Development</h3>
+                            <ul className="space-y-1">
+                               {webDevelopmentSubItems.map((item) => (
+                                   <ListItem key={item.title} title={item.title} href={item.href} icon={item.icon} className="hover:bg-accent/10">
+                                     {item.description}
+                                   </ListItem>
+                               ))}
+                            </ul>
+                             <h3 className="text-sm font-medium text-primary px-3 pt-4 pb-2">Mobile App Development</h3>
+                             <ul className="space-y-1">
+                               {mobileAppSubItems.map((item) => (
+                                   <ListItem key={item.title} title={item.title} href={item.href} icon={item.icon} className="hover:bg-accent/10">
+                                     {item.description}
+                                   </ListItem>
+                               ))}
+                            </ul>
+                        </div>
+                        <div>
+                             <h3 className="text-sm font-medium text-primary px-3 pb-2">Website Maintenance</h3>
+                             <ul className="space-y-1">
+                               {websiteMaintenanceSubItems.map((item) => (
+                                   <ListItem key={item.title} title={item.title} href={item.href} icon={item.icon} className="hover:bg-accent/10">
+                                     {item.description}
+                                   </ListItem>
+                               ))}
+                            </ul>
+                            <h3 className="text-sm font-medium text-primary px-3 pt-4 pb-2">Hosting Support</h3>
+                             <ul className="space-y-1">
+                               {hostingSupportSubItems.map((item) => (
+                                   <ListItem key={item.title} title={item.title} href={item.href} icon={item.icon} className="hover:bg-accent/10">
+                                     {item.description}
+                                   </ListItem>
+                               ))}
+                            </ul>
+                        </div>
+                    </div>
                  </NavigationMenuContent>
              </NavigationMenuItem>
 
-
-             <NavigationMenuItem> {/* FAQs Link */}
+             <NavigationMenuItem>
                 <Link href={mainNavItems[4].href} legacyBehavior passHref>
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
                         {mainNavItems[4].label}
                     </NavigationMenuLink>
                 </Link>
              </NavigationMenuItem>
-
           </NavigationMenuList>
         </NavigationMenu>
 
-         {/* Right side items (Contact Button) - Always visible but moves */}
          <div className="hidden lg:flex ml-auto shrink-0">
              <Link href="/contact" legacyBehavior passHref>
                   <Button size="sm" className={cn("bg-primary text-primary-foreground hover:bg-primary/90", navigationMenuTriggerStyle())}>
@@ -164,8 +185,7 @@ const Header = () => {
                </Link>
           </div>
 
-
-        {/* Mobile Navigation Trigger - Hidden on lg and up */}
+        {/* Mobile Navigation Trigger */}
         <div className="lg:hidden flex items-center ml-auto">
           <Sheet>
             <SheetTrigger asChild>
@@ -173,78 +193,103 @@ const Header = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm overflow-y-auto p-0 flex flex-col">
-              <SheetHeader className="p-4 pb-2 border-b">
-                 <SheetTitle className="mb-0">
+            <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm p-0 flex flex-col">
+               <SheetHeader className="p-4 pb-2 border-b">
+                 <SheetTitle>
                    <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary">
                       <BriefcaseBusiness className="h-5 w-5 text-accent" />
                       <span>Nitya Marketing</span>
                     </Link>
-                </SheetTitle>
-                 <SheetDescription className="text-xs">Navigate our services and expertise.</SheetDescription>
+                 </SheetTitle>
               </SheetHeader>
-              <nav className="flex-grow overflow-y-auto p-4 grid gap-1 text-sm font-medium">
+              <div className="flex-grow overflow-y-auto">
+                <nav className="p-4 grid gap-1 text-sm font-medium">
+                  {mainNavItems.map((item) => (
+                     <SheetClose asChild key={item.label}>
+                       <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
+                         {item.label}
+                       </Link>
+                     </SheetClose>
+                  ))}
 
-                {/* Main Links */}
-                {mainNavItems.map((item) => (
-                   <SheetClose asChild key={item.label}>
-                     <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
-                       {item.label}
-                     </Link>
-                   </SheetClose>
-                ))}
+                   <div className="my-2 border-t border-border/40"></div>
 
-                 {/* Separator */}
-                 <div className="my-2 border-t border-border/40"></div>
+                   <div className="py-1">
+                      <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Digital Marketing</h4>
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                          {digitalMarketingItems.map((item) => (
+                             <SheetClose asChild key={item.title}>
+                                <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
+                                    <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
+                                    <span>{item.title}</span>
+                                </Link>
+                             </SheetClose>
+                          ))}
+                      </div>
+                   </div>
 
-                 {/* Digital Marketing Section */}
-                 <div className="py-1">
-                    <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Digital Marketing</h4>
-                    <div className="grid grid-flow-row auto-rows-max text-sm">
-                        {digitalMarketingItems.map((item) => (
-                           <SheetClose asChild key={item.title}>
-                              <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
-                                  <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
-                                  <span>{item.title}</span>
-                              </Link>
-                           </SheetClose>
-                        ))}
-                    </div>
-                 </div>
+                    <SheetClose asChild>
+                        <Link href="/marketing-technologies" className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
+                            Marketing Technologies
+                        </Link>
+                    </SheetClose>
+                     <div className="my-2 border-t border-border/40"></div>
 
-                  {/* Marketing Technologies Section */}
-                 <div className="py-1">
-                    <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Marketing Technologies</h4>
-                    <div className="grid grid-flow-row auto-rows-max text-sm">
-                        {marketingTechnologiesItems.map((item) => (
-                           <SheetClose asChild key={item.title}>
-                              <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
-                                   <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
-                                  <span>{item.title}</span>
-                              </Link>
-                           </SheetClose>
-                        ))}
-                    </div>
-                 </div>
-
-                  {/* Web Solutions Section */}
-                 <div className="py-1">
-                    <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Web Solutions</h4>
-                    <div className="grid grid-flow-row auto-rows-max text-sm">
-                        {webSolutionsItems.map((item) => (
-                           <SheetClose asChild key={item.title}>
-                              <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
-                                   <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
-                                  <span>{item.title}</span>
-                              </Link>
-                           </SheetClose>
-                        ))}
-                    </div>
-                 </div>
-
-              </nav>
-              {/* Footer section in Sheet for Contact Button */}
-               <div className="mt-auto p-4 border-t border-border/40">
+                   <div className="py-1">
+                      <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Web Development</h4>
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                          {webDevelopmentSubItems.map((item) => (
+                             <SheetClose asChild key={item.title}>
+                                <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
+                                     <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
+                                    <span>{item.title}</span>
+                                </Link>
+                             </SheetClose>
+                          ))}
+                      </div>
+                   </div>
+                   <div className="py-1">
+                      <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Mobile App Development</h4>
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                          {mobileAppSubItems.map((item) => (
+                             <SheetClose asChild key={item.title}>
+                                <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
+                                     <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
+                                    <span>{item.title}</span>
+                                </Link>
+                             </SheetClose>
+                          ))}
+                      </div>
+                   </div>
+                   <div className="py-1">
+                      <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Website Maintenance</h4>
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                          {websiteMaintenanceSubItems.map((item) => (
+                             <SheetClose asChild key={item.title}>
+                                <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
+                                     <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
+                                    <span>{item.title}</span>
+                                </Link>
+                             </SheetClose>
+                          ))}
+                      </div>
+                   </div>
+                   <div className="py-1">
+                      <h4 className="mb-1 rounded-md px-3 py-1 text-xs font-semibold text-primary/80 uppercase tracking-wider">Hosting Support</h4>
+                      <div className="grid grid-flow-row auto-rows-max text-sm">
+                          {hostingSupportSubItems.map((item) => (
+                             <SheetClose asChild key={item.title}>
+                                <Link href={item.href} className="flex w-full items-center gap-2 rounded-md py-1.5 pl-5 pr-3 text-muted-foreground hover:text-primary hover:bg-muted/50">
+                                     <item.icon className="h-3.5 w-3.5 text-accent flex-shrink-0"/>
+                                    <span>{item.title}</span>
+                                </Link>
+                             </SheetClose>
+                          ))}
+                      </div>
+                   </div>
+                </nav>
+              </div>
+               <div className="p-4 border-t border-border/40 mt-auto">
                  <SheetClose asChild>
                    <Link href="/contact" className="w-full">
                       <Button size="sm" className="w-full">Get Consultation</Button>
@@ -259,7 +304,6 @@ const Header = () => {
   );
 };
 
-// Helper component for NavigationMenu dropdown items
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a"> & { icon?: React.ElementType }
@@ -279,7 +323,7 @@ const ListItem = React.forwardRef<
               {Icon && <Icon className="h-4 w-4 text-primary group-hover:text-accent-foreground flex-shrink-0" />}
               <div className="text-sm font-medium leading-none text-foreground group-hover:text-accent-foreground">{title}</div>
             </div>
-          <p className={cn("line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-accent-foreground", Icon ? "pl-6" : "")}> {/* Indent description if icon exists */}
+          <p className={cn("line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-accent-foreground", Icon ? "pl-6" : "")}>
             {children}
           </p>
         </a>

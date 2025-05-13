@@ -23,7 +23,7 @@ const whyChooseUsPoints = [
 
 export default function WhyUsPage() {
   return (
-    <section id="why-us" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
+    <section id="why-us" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/10"> {/* Adjusted gradient */}
       <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
           {/* Text Content */}
           <div className="space-y-8 animate-fade-in-left text-center lg:text-left">
@@ -55,13 +55,13 @@ export default function WhyUsPage() {
            {/* Image */}
            <div className="flex justify-center items-center animate-fade-in-right order-first lg:order-last">
              <Image
-                 src="https://picsum.photos/550/650?random=10" // Changed image slightly
+                 src="https://picsum.photos/500/600?random=10" 
                  alt="Business Growth and Partnership"
                  data-ai-hint="business growth partnership success"
-                 width={500} // Adjusted size slightly
+                 width={500} 
                  height={600}
-                 className="rounded-xl shadow-lg object-cover w-full max-w-md lg:max-w-lg aspect-[5/6]" // Adjusted aspect ratio
-                 priority // Prioritize loading this image
+                 className="rounded-xl shadow-lg object-cover w-full max-w-md lg:max-w-lg aspect-[5/6]" 
+                 priority 
               />
           </div>
       </div>

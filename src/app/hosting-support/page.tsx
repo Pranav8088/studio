@@ -19,7 +19,7 @@ const hostingFeatures = [
 
 export default function HostingSupportPage() {
   return (
-    <section id="hosting-service" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
+    <section id="hosting-service" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/10"> {/* Adjusted gradient */}
       <div className="container max-w-7xl space-y-16 px-4 md:px-6"> {/* Increased spacing */}
         <div className="text-center max-w-3xl mx-auto space-y-4 animate-fade-in-up">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Hosting & Support</h1>

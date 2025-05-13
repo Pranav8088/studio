@@ -26,7 +26,7 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-     <section id="faq" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/50">
+     <section id="faq" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-secondary/10"> {/* Adjusted gradient */}
         <div className="container max-w-4xl space-y-16 px-4 md:px-6"> {/* Increased spacing */}
            <div className="text-center space-y-4 animate-fade-in-up">
              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Frequently Asked Questions</h1>
