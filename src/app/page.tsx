@@ -1,3 +1,4 @@
+
 'use client'; // Add this directive to make the component a Client Component
 
 import Image from 'next/image';
@@ -63,7 +64,7 @@ export default function Home() {
                   src={image.src}
                   alt={image.alt}
                   fill // Use fill instead of layout="fill"
-                  objectFit="cover"
+                  style={{ objectFit: "cover" }} // Updated objectFit
                   className="brightness-[0.6] group-hover:brightness-[0.7] transition-all duration-500 ease-in-out transform group-hover:scale-105" // Darken image for text contrast, subtle zoom on hover
                   priority={index === 0}
                   sizes="100vw"
@@ -78,12 +79,12 @@ export default function Home() {
         </Carousel>
 
         {/* Text content overlaid */}
-        <div className="container max-w-4xl relative z-10 px-4 md:px-6 text-white py-10 md:py-0"> {/* Ensure text is white for contrast */}
+        <div className="container max-w-4xl relative z-10 px-4 md:px-6 py-10 md:py-0">
           <div className="space-y-6 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-white drop-shadow-md"> {/* Ensure h1 is white */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-foreground drop-shadow-md">
               Navigate Your B2B Growth with <span className="text-accent">Nitya Marketing</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto drop-shadow-sm"> {/* Lighter text for sub-headline */}
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto drop-shadow-sm">
               Your dedicated partner empowering SMEs & MSMEs. We bridge the gap between ambition and achievement through expert marketing strategies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
@@ -91,17 +92,17 @@ export default function Home() {
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Request Consultation</Button>
+                <Button size="lg" variant="outline" className="border-foreground text-foreground hover:bg-foreground/10 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Request Consultation</Button>
               </Link>
             </div>
             <div className="pt-8 grid grid-cols-2 gap-4 text-center max-w-sm mx-auto">
               <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={10} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-gray-300 mt-1">Years Experience</p>
+                <p className="text-sm text-foreground/80 mt-1">Years Experience</p>
               </div>
               <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={1000} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-gray-300 mt-1">Categories Served</p>
+                <p className="text-sm text-foreground/80 mt-1">Categories Served</p>
               </div>
             </div>
           </div>
