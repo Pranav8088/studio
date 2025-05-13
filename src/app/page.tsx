@@ -1,3 +1,4 @@
+'use client'; // Add this directive to make the component a Client Component
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -10,9 +11,9 @@ import Autoplay from 'embla-carousel-autoplay';
 
 // Placeholder blog data
 const blogPosts = [
-  { id: 1, title: "The Ultimate Guide to B2B SEO", excerpt: "Unlock organic growth with these essential SEO strategies tailored for B2B businesses.", date: "2024-08-15", link: "/digital-marketing/seo" }, // Example: Link to actual SEO page
-  { id: 2, title: "Why Your SME Needs a Marketing Technology Stack", excerpt: "Streamline your marketing efforts and drive efficiency with the right MarTech tools.", date: "2024-08-10", link: "/marketing-technologies" }, // Example: Link to MarTech page
-  { id: 3, title: "Building a High-Converting B2B Website", excerpt: "Key elements and design principles for a website that turns visitors into leads.", date: "2024-08-05", link: "/web-development" }, // Example: Link to Web Dev page
+  { id: 1, title: "The Ultimate Guide to B2B SEO", excerpt: "Unlock organic growth with these essential SEO strategies tailored for B2B businesses.", date: "2024-08-15", link: "/digital-marketing/seo" },
+  { id: 2, title: "Why Your SME Needs a Marketing Technology Stack", excerpt: "Streamline your marketing efforts and drive efficiency with the right MarTech tools.", date: "2024-08-10", link: "/marketing-technologies" },
+  { id: 3, title: "Building a High-Converting B2B Website", excerpt: "Key elements and design principles for a website that turns visitors into leads.", date: "2024-08-05", link: "/web-development" },
 ];
 
 // Placeholder values data (subset from About page)
