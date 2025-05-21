@@ -1,4 +1,5 @@
 
+
 'use client'; // Add this directive to make the component a Client Component
 
 import Image from 'next/image';
@@ -41,9 +42,9 @@ const featuredServices = [
 ];
 
 const heroImages = [
-  { src: "https://picsum.photos/1920/1080?random=1", alt: "Digital Marketing Strategy Session Team Discussing Growth", aiHint: "digital marketing strategy" },
-  { src: "https://picsum.photos/1920/1080?random=2", alt: "Diverse Team Collaborating on a Project Board", aiHint: "team collaboration" },
-  { src: "https://picsum.photos/1920/1080?random=3", alt: "Business Growth Analytics Dashboard with Charts", aiHint: "business analytics chart" },
+  { src: "https://placehold.co/1920x1080.png", alt: "Digital Marketing Strategy Session Team Discussing Growth", aiHint: "digital marketing strategy" },
+  { src: "https://placehold.co/1920x1080.png", alt: "Diverse Team Collaborating on a Project Board", aiHint: "team collaboration" },
+  { src: "https://placehold.co/1920x1080.png", alt: "Business Growth Analytics Dashboard with Charts", aiHint: "business analytics chart" },
 ];
 
 
@@ -86,14 +87,14 @@ export default function Home() {
 
         <div className="container max-w-4xl relative z-10 px-4 md:px-6 py-10 md:py-0">
           <div className="space-y-6 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-background drop-shadow-md"> {/* Changed text to background for dark image */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight !leading-tight text-background drop-shadow-md"> 
               Navigate Your B2B Growth with <span className="text-accent">Nitya Marketing</span>
             </h1>
-            <p className="text-lg md:text-xl text-background/90 max-w-xl mx-auto drop-shadow-sm"> {/* Changed text to background for dark image */}
+            <p className="text-lg md:text-xl text-background/90 max-w-xl mx-auto drop-shadow-sm"> 
               Your dedicated partner empowering SMEs & MSMEs. We bridge the gap between ambition and achievement through expert marketing strategies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Link href="/contact"> {/* Changed link to /contact as per hierarchy*/}
+              <Link href="/contact"> 
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
               </Link>
               <Link href="/contact">
@@ -103,11 +104,11 @@ export default function Home() {
             <div className="pt-8 grid grid-cols-2 gap-4 text-center max-w-sm mx-auto">
               <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={10} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-background/80 mt-1">Years Experience</p> {/* Changed text to background for dark image */}
+                <p className="text-sm text-background/80 mt-1">Years Experience</p> 
               </div>
               <div className="p-4 rounded-lg bg-black/40 backdrop-blur-sm shadow-md">
                 <AnimatedCounter end={1000} suffix="+" className="text-3xl sm:text-4xl font-bold text-accent" />
-                <p className="text-sm text-background/80 mt-1">Categories Served</p> {/* Changed text to background for dark image */}
+                <p className="text-sm text-background/80 mt-1">Categories Served</p> 
               </div>
             </div>
           </div>
@@ -120,11 +121,11 @@ export default function Home() {
             <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
                 <div className="animate-fade-in-left order-last lg:order-first">
                     <Image
-                        src="https://picsum.photos/550/450?random=4"
-                        alt="Nitya Marketing Team in a Productive Discussion"
-                        data-ai-hint="team meeting discussion"
+                        src="https://storage.googleapis.com/project-ai-codemod/61149c75-8a74-42a2-bfef-7681d590c860.png"
+                        alt="Nitya Marketing team discussing market analysis, lead generation, and sales conversion strategies on a digital board."
+                        data-ai-hint="team meeting marketing"
                         width={550}
-                        height={450}
+                        height={480} /* Adjusted height slightly to better match new image aspect ratio while keeping width */
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 550px"
                         className="rounded-lg shadow-xl object-cover w-full aspect-[11/9] hover:scale-105 transition-transform duration-300"
@@ -265,3 +266,4 @@ export default function Home() {
     </div>
   );
 }
+
