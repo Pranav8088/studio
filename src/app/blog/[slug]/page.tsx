@@ -3,7 +3,7 @@ import { blogPostsData, type BlogPost } from '@/lib/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CalendarDays, UserCircle, Tag, ArrowLeft } from 'lucide-react';
+import { CalendarDays, UserCircle, Tag, ArrowLeft, ArrowRight } from 'lucide-react'; // Added ArrowRight
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
@@ -133,3 +133,4 @@ export default function BlogPostPage({ params }: Props) {
     </article>
   );
 }
+
