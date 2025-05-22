@@ -17,7 +17,24 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      // Removed the duplicate picsum entry
+      {
+        protocol: 'https',
+        hostname: 'placehold.co', // Added placehold.co
+        port: '',
+        pathname: '/**',
+      },
+      { // Added Unsplash for blog post images, assuming they might come from there
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      { // Added for the specific image on the home page about section
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        port: '',
+        pathname: '/project-ai-codemod/**',
+      }
     ],
   },
 };
