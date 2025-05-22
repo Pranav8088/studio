@@ -30,7 +30,7 @@ type FormData = z.infer<typeof formSchema>;
 
 // Dummy server action function (replace with actual implementation)
 async function submitInquiry(data: FormData): Promise<{ success: boolean; message: string }> {
-  console.log('Submitting inquiry:', data);
+  // Removed console.log('Submitting inquiry:', data);
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1500)); // Slightly longer delay
 
@@ -76,7 +76,7 @@ export default function ContactForm() {
         });
       }
     } catch (error) {
-       console.error("Contact form submission error:", error); // Log the actual error
+       // Removed console.error("Contact form submission error:", error); 
        toast({
           title: "Error",
           description: "An unexpected error occurred. Please try again later or contact us directly.",
