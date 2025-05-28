@@ -36,8 +36,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 1200, 
-          height: 630, 
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -103,7 +103,7 @@ export default function BlogPostPage({ params, searchParams }: BlogPostPageProps
               alt={`Cover image for ${post.title}`}
               data-ai-hint={post.imageAiHint}
               width={1200}
-              height={675} 
+              height={675}
               className="object-cover w-full h-full"
               priority
             />
