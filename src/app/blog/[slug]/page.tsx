@@ -32,8 +32,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 1200, 
-          height: 630, 
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -71,9 +71,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </Link>
 
           <Badge variant="outline" className="text-accent border-accent/80 py-1 px-3 text-sm font-medium">{post.category}</Badge>
-          
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary tracking-tight leading-tight">{post.title}</h1>
-          
+
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <CalendarDays className="h-4 w-4 text-accent" />
