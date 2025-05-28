@@ -1,15 +1,17 @@
 
-import { blogPostsData, type BlogPost } from '@/lib/blog-data';
+import { blogPostsData } from '@/lib/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CalendarDays, UserCircle, Tag, ArrowLeft, ArrowRight } from 'lucide-react'; // Added ArrowRight
+import { CalendarDays, UserCircle, Tag, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
 
+// Define Props for the page component and generateMetadata
 type Props = {
   params: { slug: string };
+  // searchParams: { [key: string]: string | string[] | undefined }; // Include if you use searchParams
 };
 
 export async function generateMetadata(
@@ -20,13 +22,13 @@ export async function generateMetadata(
 
   if (!post) {
     return {
-      title: 'Post Not Found - Nitya Marketing Navigator',
+      title: 'Post Not Found - Nitya Marketing Management',
       description: 'The blog post you are looking for could not be found.',
     };
   }
 
   return {
-    title: `${post.title} - Nitya Marketing Navigator`,
+    title: `${post.title} - Nitya Marketing Management`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -34,8 +36,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 800,
-          height: 450,
+          width: 1200, // Adjusted width for common OG image size
+          height: 630, // Adjusted height for common OG image size
           alt: post.title,
         },
       ],
@@ -89,7 +91,7 @@ export default function BlogPostPage({ params }: Props) {
         </header>
 
         {post.imageUrl && (
-          <div className="mb-12 aspect-video w-full overflow-hidden rounded-lg shadow-xl animate-fade-in-up delay-100">
+          <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-lg shadow-xl animate-fade-in-up delay-100"> {/* Adjusted aspect ratio to 16/9 */}
             <Image
               src={post.imageUrl}
               alt={`Cover image for ${post.title}`}
@@ -103,7 +105,7 @@ export default function BlogPostPage({ params }: Props) {
         )}
 
         <div
-          className="prose prose-lg lg:prose-xl max-w-none text-foreground prose-headings:text-primary prose-h2:text-2xl prose-h2:md:text-3xl prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-secondary prose-strong:text-foreground prose-a:text-accent prose-a:font-semibold hover:prose-a:underline prose-ul:list-disc prose-ul:pl-6 prose-ol:list-decimal prose-ol:pl-6 prose-li:marker:text-accent prose-blockquote:border-accent prose-blockquote:text-muted-foreground animate-fade-in-up delay-200"
+          className="prose prose-lg lg:prose-xl max-w-none text-foreground prose-headings:text-primary prose-h2:text-2xl prose-h2:md:text-3xl prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-secondary-foreground prose-strong:text-foreground prose-a:text-accent prose-a:font-semibold hover:prose-a:underline prose-ul:list-disc prose-ul:pl-6 prose-ol:list-decimal prose-ol:pl-6 prose-li:marker:text-accent prose-blockquote:border-accent prose-blockquote:text-muted-foreground animate-fade-in-up delay-200"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
@@ -133,4 +135,3 @@ export default function BlogPostPage({ params }: Props) {
     </article>
   );
 }
-
