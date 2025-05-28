@@ -8,13 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-// Define Props for the page component and generateMetadata
-type Props = {
-  params: { slug: string };
-};
+// Removed any 'type Props' alias and direct PageProps import from 'next'
 
 export async function generateMetadata(
-  { params }: Props,
+  { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = blogPostsData.find((p) => p.slug === params.slug);
@@ -35,8 +32,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 1200,
-          height: 630,
+          width: 1200, 
+          height: 630, 
           alt: post.title,
         },
       ],
@@ -54,7 +51,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: Props) {
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = blogPostsData.find((p) => p.slug === slug);
 
