@@ -8,13 +8,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-// Explicit interface for props passed to generateMetadata
+// Interface for props passed to generateMetadata
 interface GenerateMetadataProps {
   params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata(
-  { params }: GenerateMetadataProps,
+  { params, searchParams }: GenerateMetadataProps, // Added searchParams
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = blogPostsData.find((p) => p.slug === params.slug);
@@ -54,12 +55,13 @@ export async function generateStaticParams() {
   }));
 }
 
-// Explicit interface for props passed to the page component
+// Interface for props passed to the page component
 interface BlogPostPageProps {
   params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default function BlogPostPage({ params, searchParams }: BlogPostPageProps) { // Added searchParams
   const { slug } = params;
   const post = blogPostsData.find((p) => p.slug === slug);
 
