@@ -19,7 +19,7 @@ const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
   title: post.title,
   excerpt: post.excerpt,
   date: post.date,
-  link: `/blog/${post.slug}`, // Use slug for link
+  link: "#", // Changed link to # as detail pages are removed
   imageUrl: post.imageUrl,
   imageAiHint: post.imageAiHint,
   category: post.category,
@@ -65,18 +65,22 @@ export default function Home() {
               loop: true,
               align: "start",
             }}
+            plugins={[autoplayPlugin.current]}
+            onMouseEnter={autoplayPlugin.current.stop}
+            onMouseLeave={autoplayPlugin.current.reset}
           >
             <CarouselContent>
               {heroImages.map((image, index) => (
-                <CarouselItem key={index} className="relative w-full h-full">
-                  <div className="relative w-full h-[85vh]">
+                <CarouselItem key={index} className="h-full relative">
+                  <div className="relative w-full h-[85vh] md:h-[90vh]">
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={1920}
-                      height={1080}
+                      data-ai-hint={image.aiHint}
+                      fill 
                       priority={index === 0}
                       className="w-full h-full object-cover brightness-[0.6]"
+                      sizes="100vw"
                     />
                   </div>
                 </CarouselItem>
@@ -100,7 +104,7 @@ export default function Home() {
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-foreground text-foreground hover:bg-foreground/10 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Request Consultation</Button>
+                <Button size="lg" variant="outline" className="border-background text-background hover:bg-background/10 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Request Consultation</Button>
               </Link>
             </div>
             <div className="pt-8 grid grid-cols-2 gap-4 text-center max-w-sm mx-auto">
@@ -189,7 +193,7 @@ export default function Home() {
                         <span className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                            <service.icon className="w-6 h-6" />
                          </span>
-                         <CardTitle className="text-xl">{service.title}</CardTitle>
+                         <CardTitle className="text-xl text-foreground">{service.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow">
                        <CardDescription>{service.description}</CardDescription>
@@ -202,7 +206,6 @@ export default function Home() {
                  </Card>
              ))}
            </div>
-            {/* Removed "View All Services" button as per latest request to align with header navigation */}
          </div>
        </section>
 
@@ -214,9 +217,9 @@ export default function Home() {
                      <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Stay updated with B2B marketing trends, strategies, and tips relevant for SMEs & MSMEs.</p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {homePageBlogPosts.map((post, index) => ( // Use homePageBlogPosts
+                    {homePageBlogPosts.map((post, index) => ( 
                          <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
-                            <Link href={post.link} className="block aspect-video w-full overflow-hidden relative">
+                            <a href={post.link} className="block aspect-video w-full overflow-hidden relative"> {/* Changed Link to a for # */}
                                <Image
                                     src={post.imageUrl}
                                     alt={`Illustration for blog post titled: ${post.title}`}
@@ -228,7 +231,7 @@ export default function Home() {
                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
-                           </Link>
+                           </a>
                             <CardHeader className="pb-3">
                                 <CardDescription className="text-xs text-muted-foreground mb-1">
                                   <span className="inline-flex items-center gap-1.5">
@@ -240,32 +243,23 @@ export default function Home() {
                                   </span>
                                 </CardDescription>
                                 <CardTitle className="text-lg lg:text-xl leading-tight group-hover:text-accent transition-colors">
-                                  <Link href={post.link}>{post.title}</Link>
+                                  <a href={post.link}>{post.title}</a> {/* Changed Link to a for # */}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="flex-grow pt-0 pb-4">
                                 <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
                             </CardContent>
                             <CardFooter className="pt-2 pb-5">
-                                <Link href={post.link}>
+                                <a href={post.link}> {/* Changed Link to a for # */}
                                     <Button variant="link" className="p-0 h-auto text-accent group-hover:underline font-semibold text-sm">Read More <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /></Button>
-                                </Link>
+                                </a>
                             </CardFooter>
                          </Card>
                     ))}
                 </div>
-                 <div className="text-center mt-16">
-                     <Link href="/blog">
-                         <Button size="lg" variant="outline" className="hover:bg-primary/10 hover:text-primary transition-colors duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
-                            View All Insights
-                         </Button>
-                     </Link>
-                 </div>
+                 {/* "View All Insights" button removed as /blog page is removed */}
             </div>
         </section>
-
-
     </div>
   );
 }
-
