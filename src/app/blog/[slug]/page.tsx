@@ -11,7 +11,6 @@ import type { Metadata, ResolvingMetadata } from 'next';
 // Define Props for the page component and generateMetadata
 type Props = {
   params: { slug: string };
-  // searchParams: { [key: string]: string | string[] | undefined }; // Include if you use searchParams
 };
 
 export async function generateMetadata(
@@ -36,8 +35,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 1200, // Adjusted width for common OG image size
-          height: 630, // Adjusted height for common OG image size
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -91,7 +90,7 @@ export default function BlogPostPage({ params }: Props) {
         </header>
 
         {post.imageUrl && (
-          <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-lg shadow-xl animate-fade-in-up delay-100"> {/* Adjusted aspect ratio to 16/9 */}
+          <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-lg shadow-xl animate-fade-in-up delay-100">
             <Image
               src={post.imageUrl}
               alt={`Cover image for ${post.title}`}
