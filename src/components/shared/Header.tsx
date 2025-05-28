@@ -1,3 +1,4 @@
+'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -80,7 +81,7 @@ const Header = () => {
       <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mr-4 shrink-0 hover:opacity-90 transition-opacity">
           <BriefcaseBusiness className="h-6 w-6 text-accent" />
-          <span className="hidden sm:inline">Nitya Marketing Navigator</span>
+          <span className="hidden sm:inline">Nitya Marketing Management</span>
           <span className="sm:hidden">Nitya</span>
         </Link>
 

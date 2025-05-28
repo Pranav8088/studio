@@ -1,3 +1,4 @@
+'use client';
 
 import Link from 'next/link';
 import { BriefcaseBusiness, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react'; // Added icons
@@ -13,7 +14,7 @@ const Footer = () => {
             <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mb-2 hover:opacity-90 transition-opacity">
               <BriefcaseBusiness className="h-6 w-6 text-accent" />
               {/* Show full name on larger screens */}
-               <span className="hidden lg:inline">Nitya Marketing Navigator</span>
+               <span className="hidden lg:inline">Nitya Marketing Management</span>
                {/* Show shorter name on smaller screens */}
                <span className="lg:hidden">Nitya Marketing</span>
             </Link>

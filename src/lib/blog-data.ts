@@ -23,7 +23,7 @@ export const blogPostsData: BlogPost[] = [
     excerpt: "Unlock organic growth with these essential SEO strategies tailored for B2B businesses. Drive qualified leads and boost your online presence.",
     date: "2024-08-15",
     author: "Nitya Marketing Experts",
-    imageUrl: "https://picsum.photos/800/450?random=11",
+    imageUrl: "/images/latest-insights-home-page/li-the-ultimate-guide-to-b2b-seo.jpg",
     imageAiHint: "seo strategy",
     category: "SEO",
     content: `
@@ -67,7 +67,7 @@ export const blogPostsData: BlogPost[] = [
     excerpt: "Streamline your marketing efforts, improve efficiency, and gain better insights with the right MarTech tools. Learn how to build your stack for success.",
     date: "2024-08-10",
     author: "Nitya Marketing Experts",
-    imageUrl: "https://picsum.photos/800/450?random=12",
+    imageUrl: "/images/latest-insights-home-page/li-why-your-sme.jpg",
     imageAiHint: "marketing technology",
     category: "Marketing Technology",
     content: `
@@ -100,7 +100,7 @@ export const blogPostsData: BlogPost[] = [
     excerpt: "Your website is your digital storefront and a critical lead generation tool. Discover the key elements and design principles for a B2B website that turns visitors into qualified leads.",
     date: "2024-08-05",
     author: "Nitya Marketing Experts",
-    imageUrl: "https://picsum.photos/800/450?random=13",
+    imageUrl: "/images/latest-insights-home-page/li-building-a-high-converting-b2b-website.jpg",
     imageAiHint: "website design",
     category: "Web Development",
     content: `
@@ -134,7 +134,7 @@ export const blogPostsData: BlogPost[] = [
     excerpt: "Video is one of the most engaging mediums available. Learn how to effectively leverage video content to connect with your B2B audience, showcase expertise, and drive conversions.",
     date: "2024-07-28",
     author: "Nitya Marketing Experts",
-    imageUrl: "https://picsum.photos/800/450?random=14",
+    imageUrl: "/images/featured services home pages/Featured Services Web Development.jpg",
     imageAiHint: "video marketing",
     category: "Video Production",
     content: `

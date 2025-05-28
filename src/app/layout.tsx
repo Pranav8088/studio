@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Nitya Marketing Navigator - Your B2B Growth Partner',
+  title: 'Nitya Marketing Management - Your B2B Growth Partner',
   description: 'Empowering SMEs & MSMEs with expert B2B marketing strategies for brand building, sales driving, and market presence establishment.',
 };
 
@@ -20,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("scroll-smooth", inter.variable)}>
+    <html lang="en" className={cn("scroll-smooth", inter.variable)} suppressHydrationWarning>
       <body className={cn(
           "font-sans bg-background text-foreground flex flex-col min-h-screen antialiased"
-        )}>
+        )} suppressHydrationWarning>
         <Header />
         {/* pt-16 ensures content isn't hidden behind the fixed header */}
         <main className="flex-grow pt-16"> 

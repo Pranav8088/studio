@@ -42,9 +42,9 @@ const featuredServices = [
 ];
 
 const heroImages = [
-  { src: "https://placehold.co/1920x1080.png", alt: "Digital Marketing Strategy Session Team Discussing Growth", aiHint: "digital marketing strategy" },
-  { src: "https://placehold.co/1920x1080.png", alt: "Diverse Team Collaborating on a Project Board", aiHint: "team collaboration" },
-  { src: "https://placehold.co/1920x1080.png", alt: "Business Growth Analytics Dashboard with Charts", aiHint: "business analytics chart" },
+  { src: "/images/home-page-banner/home-page-banner-1.jpg", alt: "Digital Marketing Strategy Session Team Discussing Growth", aiHint: "digital marketing strategy" },
+  { src: "/images/home-page-banner/home-page-banner-2.jpg", alt: "Diverse Team Collaborating on a Project Board", aiHint: "team collaboration" },
+  { src: "/images/home-page-banner/home-page-banner-3.jpg", alt: "Business Growth Analytics Dashboard with Charts", aiHint: "business analytics chart" },
 ];
 
 
@@ -58,32 +58,34 @@ export default function Home() {
 
       {/* Hero Section - Full-width Banner Slider */}
       <section id="home" className="relative flex items-center justify-center text-center overflow-hidden min-h-[85vh] md:min-h-[90vh] group">
-        <Carousel
-          className="absolute inset-0 w-full h-full"
-          opts={{ loop: true, align: "start" }}
-          plugins={[autoplayPlugin.current]}
-          onMouseEnter={autoplayPlugin.current.stop}
-          onMouseLeave={autoplayPlugin.current.reset}
-        >
-          <CarouselContent className="h-full">
-            {heroImages.map((image, index) => (
-              <CarouselItem key={index} className="h-full relative">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill 
-                  style={{ objectFit: "cover" }} 
-                  className="brightness-[0.6] group-hover:brightness-[0.7] transition-all duration-500 ease-in-out transform group-hover:scale-105" 
-                  priority={index === 0}
-                  sizes="100vw"
-                  data-ai-hint={image.aiHint}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
-          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
-        </Carousel>
+        <div className="absolute inset-0 w-full h-full bg-black">
+          <Carousel
+            className="w-full h-full"
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+          >
+            <CarouselContent>
+              {heroImages.map((image, index) => (
+                <CarouselItem key={index} className="relative w-full h-full">
+                  <div className="relative w-full h-[85vh]">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={1920}
+                      height={1080}
+                      priority={index === 0}
+                      className="w-full h-full object-cover brightness-[0.6]"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100" />
+          </Carousel>
+        </div>
 
         <div className="container max-w-4xl relative z-10 px-4 md:px-6 py-10 md:py-0">
           <div className="space-y-6 animate-fade-in-up">
@@ -121,18 +123,18 @@ export default function Home() {
             <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
                 <div className="animate-fade-in-left order-last lg:order-first">
                     <Image
-                        src="https://storage.googleapis.com/project-ai-codemod/61149c75-8a74-42a2-bfef-7681d590c860.png"
+                        src="/images/home-page-about-us/about-us.jpg"
                         alt="Nitya Marketing team discussing market analysis, lead generation, and sales conversion strategies on a digital board."
                         data-ai-hint="team meeting marketing"
                         width={550}
-                        height={480} /* Adjusted height slightly to better match new image aspect ratio while keeping width */
+                        height={480}
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 550px"
                         className="rounded-lg shadow-xl object-cover w-full aspect-[11/9] hover:scale-105 transition-transform duration-300"
                     />
                 </div>
                 <div className="space-y-6 animate-fade-in-right text-center lg:text-left">
-                    <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Navigator</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Management</h2>
                     <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0">
                         For over a decade, Nitya Marketing Management has been the dedicated B2B growth partner for SMEs and MSMEs. We're more than consultants; we integrate with your team to provide tailored, high-impact marketing strategies focused on building brand value, generating quality leads, and achieving measurable growth.
                     </p>
