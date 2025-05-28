@@ -4,32 +4,32 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // Set to false to catch all TypeScript errors during build
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false, // Set to false to catch all ESLint errors during build
   },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'picsum.photos', // Keep existing picsum.photos
+        hostname: 'picsum.photos',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'placehold.co', // Added placehold.co
+        hostname: 'placehold.co',
         port: '',
         pathname: '/**',
       },
-      { // Added Unsplash for blog post images, assuming they might come from there
+      {
         protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',
       },
-      { // Added for the specific image on the home page about section
+      {
         protocol: 'https',
         hostname: 'storage.googleapis.com',
         port: '',
