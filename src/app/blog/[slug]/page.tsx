@@ -8,14 +8,20 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-// Interface for generateMetadata props
+// Explicitly define props for generateMetadata, including searchParams
 interface GenerateMetadataProps {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
+// Explicitly define props for the page component, including searchParams
+interface BlogPostPageProps {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 export async function generateMetadata(
-  { params, searchParams }: GenerateMetadataProps,
+  { params, searchParams }: GenerateMetadataProps, // Use defined interface
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = blogPostsData.find((p) => p.slug === params.slug);
@@ -36,8 +42,8 @@ export async function generateMetadata(
       images: [
         {
           url: post.imageUrl,
-          width: 1200,
-          height: 630,
+          width: 1200, // Standard OG image width
+          height: 630, // Standard OG image height
           alt: post.title,
         },
       ],
@@ -55,8 +61,8 @@ export async function generateStaticParams() {
   }));
 }
 
-// Using 'any' for BlogPostPage props as a temporary workaround for urgent deployment
-export default function BlogPostPage({ params }: any) {
+// Use defined interface for the page component props
+export default function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = params;
   const post = blogPostsData.find((p) => p.slug === slug);
 
