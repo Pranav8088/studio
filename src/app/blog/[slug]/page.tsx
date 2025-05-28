@@ -8,8 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-// Removed any 'type Props' alias and direct PageProps import from 'next'
-
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
