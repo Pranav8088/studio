@@ -1,7 +1,8 @@
+
 'use client';
 
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -13,7 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
-  Menu, BriefcaseBusiness, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Layers, TabletSmartphone, Settings2, Activity, DatabaseBackup, Gauge, ShieldAlert, LifeBuoy // Added missing icons
+  Menu, BriefcaseBusiness, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Layers, TabletSmartphone, Settings2, Activity, DatabaseBackup, Gauge, ShieldAlert, LifeBuoy, ChevronDown // Added ChevronDown for consistency
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
@@ -29,36 +30,33 @@ const digitalMarketingItems = [
   { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted advertising campaigns.", icon: BarChart },
 ];
 
-// Marketing Technologies Link (No Dropdown - this is a direct link now)
-// const marketingTechnologiesItems = [ ... ]; // Removed as it's a direct link
-
 // Web Solutions Dropdown (Combined Web Dev, Mobile App, Maintenance, Hosting)
 const webDevelopmentSubItems = [
     { title: "Custom Web Development", href: "/web-development", description: "Unique, professional websites.", icon: Laptop },
-    { title: "Responsive Design", href: "/web-development", description: "Optimal viewing on all devices.", icon: Palette },
-    { title: "E-commerce Solutions", href: "/web-development", description: "Secure B2B online stores.", icon: ShoppingCart },
-    { title: "CMS Integration", href: "/web-development", description: "Easy content management.", icon: Code },
+    { title: "Responsive Design", href: "/web-development#responsive-design", description: "Optimal viewing on all devices.", icon: Palette }, // Example anchor link
+    { title: "E-commerce Solutions", href: "/web-development#ecommerce", description: "Secure B2B online stores.", icon: ShoppingCart },
+    { title: "CMS Integration", href: "/web-development#cms", description: "Easy content management.", icon: Code },
 ];
 
 const mobileAppSubItems = [
     { title: "Native iOS & Android", href: "/mobile-app", description: "Platform-specific mobile apps.", icon: Smartphone },
-    { title: "Cross-Platform Apps", href: "/mobile-app", description: "Cost-effective multi-platform apps.", icon: TabletSmartphone },
-    { title: "Mobile UI/UX Design", href: "/mobile-app", description: "Intuitive mobile interfaces.", icon: Layers },
-    { title: "App Maintenance", href: "/mobile-app", description: "Ongoing support & updates.", icon: Settings2 },
+    { title: "Cross-Platform Apps", href: "/mobile-app#cross-platform", description: "Cost-effective multi-platform apps.", icon: TabletSmartphone },
+    { title: "Mobile UI/UX Design", href: "/mobile-app#ui-ux", description: "Intuitive mobile interfaces.", icon: Layers },
+    { title: "App Maintenance", href: "/mobile-app#maintenance", description: "Ongoing support & updates.", icon: Settings2 },
 ];
 
 const websiteMaintenanceSubItems = [
     { title: "Security Updates", href: "/website-maintenance", description: "Proactive security patching.", icon: ShieldCheck },
-    { title: "Software Management", href: "/website-maintenance", description: "CMS, theme, plugin updates.", icon: Wrench },
-    { title: "Regular Backups", href: "/website-maintenance", description: "Automated data backups.", icon: DatabaseBackup },
-    { title: "Performance Checks", href: "/website-maintenance", description: "Optimize site speed.", icon: Activity },
+    { title: "Software Management", href: "/website-maintenance#software", description: "CMS, theme, plugin updates.", icon: Wrench },
+    { title: "Regular Backups", href: "/website-maintenance#backups", description: "Automated data backups.", icon: DatabaseBackup },
+    { title: "Performance Checks", href: "/website-maintenance#performance", description: "Optimize site speed.", icon: Activity },
 ];
 
 const hostingSupportSubItems = [
     { title: "Reliable Hosting", href: "/hosting-support", description: "Secure & scalable hosting.", icon: Server },
-    { title: "Performance Tuning", href: "/hosting-support", description: "Fast loading times.", icon: Gauge },
-    { title: "Security Measures", href: "/hosting-support", description: "SSL, firewalls, monitoring.", icon: ShieldAlert },
-    { title: "Technical Support", href: "/hosting-support", description: "Expert hosting assistance.", icon: LifeBuoy },
+    { title: "Performance Tuning", href: "/hosting-support#performance", description: "Fast loading times.", icon: Gauge },
+    { title: "Security Measures", href: "/hosting-support#security", description: "SSL, firewalls, monitoring.", icon: ShieldAlert },
+    { title: "Technical Support", href: "/hosting-support#support", description: "Expert hosting assistance.", icon: LifeBuoy },
 ];
 
 // Main Navigation Items
@@ -67,9 +65,6 @@ const mainNavItems = [
    { label: 'About', href: '/about' },
    { label: 'Why Us', href: '/why-us' },
    { label: 'Insights', href: '/insights' },
-   // Digital Marketing (Dropdown)
-   // Marketing Technologies (Direct Link)
-   // Web Solutions (Dropdown)
    { label: 'FAQs', href: '/faq' },
 ];
 
@@ -90,16 +85,16 @@ const Header = () => {
           <NavigationMenuList>
             {mainNavItems.slice(0, 4).map((item) => (
               <NavigationMenuItem key={item.label}>
-                <Link href={item.href} legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                <NavigationMenuLink asChild>
+                  <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm")}>
                     {item.label}
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
 
              <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-sm">Digital Marketing</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="text-sm">Digital Marketing <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" /></NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[450px] gap-3 p-4 md:w-[550px] md:grid-cols-2 lg:w-[650px] ">
                   {digitalMarketingItems.map((component) => (
@@ -117,15 +112,15 @@ const Header = () => {
             </NavigationMenuItem>
 
              <NavigationMenuItem>
-                <Link href="/marketing-technologies" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                <NavigationMenuLink asChild>
+                    <Link href="/marketing-technologies" className={cn(navigationMenuTriggerStyle(), "text-sm")}>
                         Marketing Technologies
-                    </NavigationMenuLink>
-                </Link>
+                    </Link>
+                </NavigationMenuLink>
              </NavigationMenuItem>
 
              <NavigationMenuItem>
-                 <NavigationMenuTrigger className="text-sm">Web Solutions</NavigationMenuTrigger>
+                 <NavigationMenuTrigger className="text-sm">Web Solutions <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" /></NavigationMenuTrigger>
                  <NavigationMenuContent>
                     <div className="grid w-[600px] gap-x-4 p-4 md:w-[700px] lg:w-[800px] grid-cols-2">
                         <div>
@@ -169,21 +164,19 @@ const Header = () => {
              </NavigationMenuItem>
 
              <NavigationMenuItem>
-                <Link href={mainNavItems[4].href} legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                <NavigationMenuLink asChild>
+                    <Link href={mainNavItems[4].href} className={cn(navigationMenuTriggerStyle(), "text-sm")}>
                         {mainNavItems[4].label}
-                    </NavigationMenuLink>
-                </Link>
+                    </Link>
+                </NavigationMenuLink>
              </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
          <div className="hidden lg:flex ml-auto shrink-0">
-             <Link href="/contact" legacyBehavior passHref>
-                  <Button size="sm" className={cn("bg-primary text-primary-foreground hover:bg-primary/90", navigationMenuTriggerStyle())}>
-                     Get Consultation
-                  </Button>
-               </Link>
+            <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="/contact">Get Consultation</Link>
+            </Button>
           </div>
 
         {/* Mobile Navigation Trigger */}
@@ -229,11 +222,13 @@ const Header = () => {
                       </div>
                    </div>
 
+                    {/* Marketing Technologies */}
                     <SheetClose asChild>
                         <Link href="/marketing-technologies" className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                             Marketing Technologies
                         </Link>
                     </SheetClose>
+                    {/* Separator */}
                      <div className="my-2 border-t border-border/40"></div>
 
                    <div className="py-1">
@@ -292,9 +287,9 @@ const Header = () => {
               </div>
                <div className="p-4 border-t border-border/40 mt-auto">
                  <SheetClose asChild>
-                   <Link href="/contact" className="w-full">
-                      <Button size="sm" className="w-full">Get Consultation</Button>
-                   </Link>
+                    <Button size="sm" className="w-full" asChild>
+                        <Link href="/contact">Get Consultation</Link>
+                    </Button>
                  </SheetClose>
                </div>
             </SheetContent>
@@ -307,13 +302,14 @@ const Header = () => {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ElementType }
->(({ className, title, children, icon: Icon, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ElementType; title: string; children: React.ReactNode; href: string }
+>(({ className, title, children, icon: Icon, href, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
+        <Link // Use next/link here
+          href={href}
+          ref={ref} // next/link can take a ref
           className={cn(
             "group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
@@ -327,7 +323,7 @@ const ListItem = React.forwardRef<
           <p className={cn("line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-accent-foreground", Icon ? "pl-6" : "")}>
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   )
@@ -335,3 +331,4 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem"
 
 export default Header;
+
