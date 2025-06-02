@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Light Theme - White BG, Dark Green Primary, Navy Blue Secondary, Yellow Accent */
+    /* Light Theme - White BG, Navy Blue Primary, Existing Navy Blue Secondary, Yellow Accent */
     --background: 0 0% 100%; /* White */
     --foreground: 210 20% 15%; /* Very Dark Blue/Almost Black for text */
 
@@ -14,10 +14,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 15%;
 
-    --primary: 145 50% 30%; /* Dark Green */
+    --primary: 211 100% 19%; /* Navy Blue */
     --primary-foreground: 0 0% 98%; /* Light color for text on primary */
 
-    --secondary: 220 35% 35%; /* Navy Blue */
+    --secondary: 220 35% 35%; /* Original Navy Blue */
     --secondary-foreground: 0 0% 98%; /* Light color for text on secondary */
 
     --muted: 210 40% 96.1%; /* Light Grayish Blue */
@@ -31,12 +31,12 @@
 
     --border: 210 20% 88%; /* Light Grayish Blue Border */
     --input: 210 20% 88%; /* Light Grayish Blue Input */
-    --ring: 145 50% 30%; /* Dark Green for focus ring */
+    --ring: 211 100% 19%; /* Navy Blue for focus ring */
 
-    --chart-1: 145 50% 30%; /* Dark Green */
+    --chart-1: 211 100% 19%; /* Navy Blue */
     --chart-2: 50 100% 50%; /* Yellow */
-    --chart-3: 220 35% 35%; /* Navy Blue */
-    --chart-4: 145 50% 45%; /* Lighter Dark Green */
+    --chart-3: 220 35% 35%; /* Original Navy Blue */
+    --chart-4: 211 100% 34%; /* Lighter Navy Blue */
     --chart-5: 50 100% 65%; /* Lighter Yellow */
 
     --radius: 0.5rem;
