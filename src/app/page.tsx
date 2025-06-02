@@ -9,20 +9,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
-import ContactForm from '@/components/shared/ContactForm'; // Assuming this is the path
-import { blogPostsData } from '@/lib/blog-data'; // Ensure this path is correct and data is available
+import ContactForm from '@/components/shared/ContactForm';
+import { blogPostsData } from '@/lib/blog-data';
+import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 const heroBanners = [
-  { src: "https://placehold.co/1920x800.png", alt: "Modern marketing solutions banner", aiHint: "marketing solutions", title: "Strategic Marketing for Growth", description: "Unlock your business potential with our tailored strategies." },
-  { src: "https://placehold.co/1920x800.png", alt: "Team collaboration on digital project", aiHint: "team collaboration", title: "Digital Transformation Experts", description: "Navigate the digital landscape with Nitya Marketing." },
-  { src: "https://placehold.co/1920x800.png", alt: "Data analytics dashboard", aiHint: "data analytics", title: "Data-Driven Results", description: "Achieve measurable success with our expert insights." },
-  { src: "https://placehold.co/1920x800.png", alt: "Customer engagement concept", aiHint: "customer engagement", title: "Connecting You With Your Audience", description: "Building meaningful B2B relationships effectively." },
+  { src: "https://placehold.co/1920x800.png", alt: "Modern marketing solutions banner", dataAiHint: "marketing solutions", title: "Strategic Marketing for Growth", description: "Unlock your business potential with our tailored strategies." },
+  { src: "https://placehold.co/1920x800.png", alt: "Team collaboration on digital project", dataAiHint: "team collaboration", title: "Digital Transformation Experts", description: "Navigate the digital landscape with Nitya Marketing." },
+  { src: "https://placehold.co/1920x800.png", alt: "Data analytics dashboard", dataAiHint: "data analytics", title: "Data-Driven Results", description: "Achieve measurable success with our expert insights." },
+  { src: "https://placehold.co/1920x800.png", alt: "Customer engagement concept", dataAiHint: "customer engagement", title: "Connecting You With Your Audience", description: "Building meaningful B2B relationships effectively." },
 ];
 
 const quickSolutionsData = [
-  { title: "Want to boost your brand/products?", ctaText: "Click here to get quick solution", ctaLink: "/services", icon: TrendingUp },
+  { title: "Want to boost your brand or products & services?", ctaText: "Click here to get quick solution", ctaLink: "/services", icon: TrendingUp },
   { title: "Do you want your updates to reach your target market?", ctaText: "Click here to get quick solution", ctaLink: "/digital-marketing/social-media-marketing", icon: Target },
-  { title: "Want to win government tenders and documentation assistance?", ctaText: "Click here to get quick solution", ctaLink: "/contact", icon: BriefcaseBusiness },
+  { title: "Want to win government tenders & documentation assistance?", ctaText: "Click here to get quick solution", ctaLink: "/contact", icon: BriefcaseBusiness },
 ];
 
 const servicesData = [
@@ -31,7 +32,7 @@ const servicesData = [
   { name: "SEO Services", link: "/digital-marketing/seo" },
   { name: "Mobile App Development", link: "/mobile-app" },
   { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing" },
-  { name: "Content Creation", link: "/digital-marketing/video-production" }, // Assuming video production covers content
+  { name: "Content Creation", link: "/digital-marketing/video-production" },
   { name: "PPC Management (Google Ads)", link: "/digital-marketing/google-ads" },
   { name: "Marketing Technology", link: "/marketing-technologies" },
 ];
@@ -45,13 +46,10 @@ const strategicMarketingPointers = [
 ];
 
 const techPointers = [
-  // Column 1
   "Advanced CRM Systems", "Marketing Automation Platforms", "Data Analytics Tools", "SEO Software Suite",
-  // Column 2
   "Cloud Hosting Solutions", "Modern Web Frameworks", "Project Management Software", "Graphic Design Tools"
 ];
 
-// Use a subset of actual blog data for the home page snippet
 const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
   id: post.id,
   title: post.title,
@@ -89,7 +87,7 @@ export default function Home() {
                     <Image
                       src={banner.src}
                       alt={banner.alt}
-                      data-ai-hint={banner.aiHint}
+                      data-ai-hint={banner.dataAiHint}
                       fill
                       priority={index === 0}
                       className="w-full h-full object-cover brightness-[0.7]"
@@ -119,7 +117,7 @@ export default function Home() {
       {/* About Us Section */}
       <section id="about-us" className="py-16 md:py-24 bg-background">
         <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
-          <div className="animate-fade-in-left">
+          <div className="animate-fade-in-left lg:order-first">
             <Image
               src="https://placehold.co/550x480.png"
               alt="Nitya Marketing team in a strategy session"
@@ -131,7 +129,7 @@ export default function Home() {
               className="rounded-lg shadow-xl object-cover w-full aspect-[11/9] hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <div className="space-y-6 animate-fade-in-right text-center lg:text-left">
+          <div className="space-y-6 animate-fade-in-right text-center lg:text-left lg:order-last">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Management</h2>
             <p className="text-lg text-muted-foreground">
               Nitya Marketing Management is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
@@ -231,7 +229,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Nitya Marketing Management (Technologies) Section */}
+      {/* Technology/Software Section */}
       <section id="about-technologies" className="py-16 md:py-24 bg-background">
         <div className="container max-w-7xl px-4 md:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Technological Edge</h2>
@@ -241,7 +239,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 max-w-4xl mx-auto text-left">
             {techPointers.map((tech, index) => (
               <div key={index} className="flex items-center p-3 bg-card rounded-md shadow-sm border border-border/60 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <Zap className="w-5 h-5 text-accent mr-3 flex-shrink-0" /> 
+                <Zap className="w-5 h-5 text-accent mr-3 flex-shrink-0" />
                 <span className="text-muted-foreground">{tech}</span>
               </div>
             ))}
@@ -254,11 +252,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Lead Form Section */}
       <section id="contact-form-home" className="py-16 md:py-24 bg-secondary/10">
         <div className="container max-w-4xl px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">Ready to grow up with Strategic Marketing Management?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">Ready to grow with Strategic Marketing Management?</h2>
             <p className="text-lg text-muted-foreground mt-2">Let's discuss how we can elevate your business.</p>
           </div>
           <ContactForm />
@@ -327,3 +325,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
