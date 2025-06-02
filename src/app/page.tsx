@@ -3,15 +3,16 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ChevronRight, CheckCircle, Lightbulb, BriefcaseBusiness, Settings, Users, HelpCircle, Zap, Target, TrendingUp, Palette, Code, GitBranch, Cpu, Server, BarChart3, CalendarDays, Tag } from 'lucide-react';
+import { ArrowRight, ChevronRight, CheckCircle, Lightbulb, BriefcaseBusiness, Settings, Users, HelpCircle, Zap, Target, TrendingUp, Palette, Code, GitBranch, Cpu, Server, BarChart3, CalendarDays, Tag, LayoutGrid, Cog, Laptop } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import ContactForm from '@/components/shared/ContactForm';
-import { blogPostsData } from '@/lib/blog-data';
+import { blogPostsData } from '@/lib/blog-data'; // Restored blog data import
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
+
 
 const heroBanners = [
   { src: "https://placehold.co/1920x800.png", alt: "Modern marketing solutions banner", dataAiHint: "marketing solutions", title: "Strategic Marketing for Growth", description: "Unlock your business potential with our tailored strategies." },
@@ -27,15 +28,16 @@ const quickSolutionsData = [
 ];
 
 const servicesData = [
-  { name: "Digital Marketing", link: "/digital-marketing/seo" },
-  { name: "Web Development", link: "/web-development" },
-  { name: "SEO Services", link: "/digital-marketing/seo" },
-  { name: "Mobile App Development", link: "/mobile-app" },
-  { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing" },
-  { name: "Content Creation", link: "/digital-marketing/video-production" },
-  { name: "PPC Management (Google Ads)", link: "/digital-marketing/google-ads" },
-  { name: "Marketing Technology", link: "/marketing-technologies" },
+    { name: "Digital Marketing Suite", link: "/digital-marketing/seo", icon: LayoutGrid },
+    { name: "Web & Mobile Solutions", link: "/web-development", icon: Laptop },
+    { name: "Technology & Support", link: "/marketing-technologies", icon: Cog },
+    { name: "SEO Services", link: "/digital-marketing/seo", icon: TrendingUp },
+    { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing", icon: Users },
+    { name: "Google Ads (PPC)", link: "/digital-marketing/google-ads", icon: Target },
+    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette },
+    { name: "Website Maintenance", link: "/website-maintenance", icon: Settings },
 ];
+
 
 const strategicMarketingPointers = [
   "Identify and reach your ideal B2B customers effectively.",
@@ -55,7 +57,7 @@ const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
   title: post.title,
   excerpt: post.excerpt,
   date: post.date,
-  link: `/blog/${post.slug}`,
+  link: `/blog/${post.slug}`, // Updated link to point to individual blog pages
   imageUrl: post.imageUrl,
   imageAiHint: post.imageAiHint,
   category: post.category,
@@ -158,7 +160,7 @@ export default function Home() {
                 </div>
                 <CardTitle className="text-lg font-semibold text-foreground mb-4 h-16 flex items-center justify-center">{solution.title}</CardTitle>
                 <CardFooter className="mt-auto pt-4">
-                  <Button asChild variant="solid" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                  <Button asChild variant="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                     <Link href={solution.ctaLink}>{solution.ctaText} <ChevronRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </CardFooter>
@@ -177,11 +179,14 @@ export default function Home() {
           </p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {servicesData.map((service, index) => (
-              <Link key={index} href={service.link} className="block p-0">
-                <Card className="group h-full flex flex-col justify-center items-center p-6 text-center rounded-lg shadow-md hover:shadow-lg hover:border-accent transition-all duration-300 transform hover:-translate-y-1">
-                  <CardTitle className="text-md font-medium text-foreground group-hover:text-accent">{service.name}</CardTitle>
+                <Card key={index} className="group h-full flex flex-col justify-center items-center p-6 text-center rounded-lg shadow-md hover:shadow-lg hover:border-accent transition-all duration-300 transform hover:-translate-y-1">
+                 <Link href={service.link} className="flex flex-col items-center justify-center h-full w-full">
+                    <div className="p-3 bg-accent/10 rounded-full text-accent mb-3 group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300">
+                        <service.icon className="w-7 h-7"/>
+                    </div>
+                    <CardTitle className="text-md font-medium text-foreground group-hover:text-accent">{service.name}</CardTitle>
+                  </Link>
                 </Card>
-              </Link>
             ))}
           </div>
            <div className="mt-12">
@@ -325,5 +330,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
