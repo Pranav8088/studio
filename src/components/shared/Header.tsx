@@ -19,23 +19,13 @@ import {
 import { cn } from "@/lib/utils";
 import React from 'react';
 
-// Service categories for the "SERVICES" dropdown
-const serviceCategories = [
-  { title: "SEO", href: "/digital-marketing/seo", description: "Boost search rankings.", icon: Search },
-  { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", description: "Engage on social media.", icon: Megaphone },
-  { title: "Google Ads", href: "/digital-marketing/google-ads", description: "Targeted PPC campaigns.", icon: BarChart },
-  { title: "Web Development", href: "/web-development", description: "Custom website solutions.", icon: Laptop },
-  { title: "Mobile App Development", href: "/mobile-app", description: "iOS & Android applications.", icon: Smartphone },
-  { title: "ORM", href: "/digital-marketing/orm", description: "Manage online reputation.", icon: ShieldCheck },
-  { title: "Marketing Technologies", href: "/marketing-technologies", description: "Optimize your MarTech stack.", icon: Cog },
-  { title: "More Services", href: "/services", description: "View all our offerings.", icon: Layers },
-];
-
-// Main Navigation Items
+// Main Navigation Items - Updated to direct links
 const mainNavItems = [
    { label: 'HOME', href: '/' },
    { label: 'ABOUT US', href: '/about' },
-   { label: 'SERVICES', href: '/services' }, // This will be a dropdown in desktop, direct link in mobile
+   { label: 'WHY CHOOSE US', href: '/why-us' },
+   { label: 'INSIGHTS', href: '/insights' },
+   { label: 'FAQs', href: '/faq' },
    { label: 'CONTACT US', href: '/contact' },
 ];
 
@@ -43,7 +33,7 @@ const socialLinks = [
   { href: "#", icon: Linkedin, label: "LinkedIn" },
   { href: "#", icon: Twitter, label: "Twitter" },
   { href: "#", icon: Facebook, label: "Facebook" },
-  { href: "#", icon: Instagram, label: "Instagram" },
+  // { href: "#", icon: Instagram, label: "Instagram" }, // Instagram removed for brevity for now
 ];
 
 
@@ -63,38 +53,18 @@ const Header = () => {
           <NavigationMenuList>
             {mainNavItems.map((item) => (
               <NavigationMenuItem key={item.label}>
-                {item.label === 'SERVICES' ? (
-                  <>
-                    <NavigationMenuTrigger className="text-sm font-medium">{item.label} <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" /></NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                        {serviceCategories.map((component) => (
-                          <ListItem
-                            key={component.title}
-                            title={component.title}
-                            href={component.href}
-                            icon={component.icon}
-                          >
-                            {component.description}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </>
-                ) : (
-                  <NavigationMenuLink asChild>
-                    <Link href={item.href!} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
-                      {item.label}
-                    </Link>
-                  </NavigationMenuLink>
-                )}
+                <NavigationMenuLink asChild>
+                  <Link href={item.href!} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                    {item.label}
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
 
          <div className="hidden lg:flex items-center gap-2 ml-auto shrink-0">
-            {socialLinks.slice(0,2).map((social) => (
+            {socialLinks.map((social) => (
                 <Button key={social.label} variant="ghost" size="icon" asChild aria-label={social.label} className="text-muted-foreground hover:text-primary">
                     <Link href={social.href} target="_blank" rel="noopener noreferrer">
                         <social.icon className="w-4 h-4" />
@@ -125,7 +95,7 @@ const Header = () => {
               </SheetHeader>
               <div className="flex-grow overflow-y-auto">
                 <nav className="p-4 grid gap-1 text-sm font-medium">
-                  {mainNavItems.map((item) => ( // In mobile, all items are direct links
+                  {mainNavItems.map((item) => (
                      <SheetClose asChild key={item.label}>
                        <Link href={item.href!} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
@@ -171,8 +141,9 @@ const Header = () => {
   );
 };
 
+// ListItem component for potential future dropdowns, not used by mainNavItems currently
 const ListItem = React.forwardRef<
-  HTMLAnchorElement, // Changed ElementRef to HTMLAnchorElement for Link child
+  HTMLAnchorElement,
   React.ComponentPropsWithoutRef<typeof Link> & { icon?: React.ElementType; title: string; children: React.ReactNode; }
 >(({ className, title, children, icon: Icon, href, ...props }, ref) => {
   return (
