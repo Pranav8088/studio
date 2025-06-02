@@ -14,26 +14,65 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
-  Menu, BriefcaseBusiness, Search, Megaphone, BarChart, Laptop, Smartphone, ShieldCheck, Cog, Layers, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram
+  Menu, BriefcaseBusiness, Search, Megaphone, BarChart, Laptop, Smartphone, ShieldCheck, Cog, Layers, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, LayoutGrid, Settings2, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Wrench, Activity, DatabaseBackup, Server, Gauge, LifeBuoy, Target, Users, TrendingUp, Lightbulb, BrainCircuit, Wand2, Filter, BadgeDollarSign, BarChartBig, MessageSquareHeart, Link2, CheckCircle, Share2, Film, Clapperboard, Sparkles, Video as VideoIcon
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
 
-// Main Navigation Items - Updated to direct links
+// Main Navigation Items
 const mainNavItems = [
    { label: 'HOME', href: '/' },
    { label: 'ABOUT US', href: '/about' },
    { label: 'WHY CHOOSE US', href: '/why-us' },
+   // SERVICES will be a dropdown
    { label: 'INSIGHTS', href: '/insights' },
    { label: 'FAQs', href: '/faq' },
    { label: 'CONTACT US', href: '/contact' },
 ];
 
+const serviceCategories = [
+  {
+    title: "Digital Marketing Suite",
+    href: "/digital-marketing/seo", // Main link for the category
+    icon: Megaphone,
+    description: "Comprehensive strategies including SEO, SMM, PPC, and more to boost your online presence.",
+    subItems: [
+      { title: "SEO Services", href: "/digital-marketing/seo", icon: Search, description: "Boost visibility & drive organic traffic." },
+      { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", icon: Users, description: "Engage audiences & build brand loyalty." },
+      { title: "Google Ads (PPC)", href: "/digital-marketing/google-ads", icon: BadgeDollarSign, description: "Targeted ads for maximum ROI." },
+      { title: "Online Reputation (ORM)", href: "/digital-marketing/orm", icon: ShieldCheck, description: "Manage & enhance your brand image." },
+      { title: "Design Thinking", href: "/digital-marketing/design-thinking", icon: BrainCircuit, description: "User-centric problem solving." },
+      { title: "Video Production", href: "/digital-marketing/video-production", icon: VideoIcon, description: "Compelling video content creation." },
+    ]
+  },
+  {
+    title: "Web & Mobile Solutions",
+    href: "/web-development", // Main link for the category
+    icon: Laptop,
+    description: "Custom web and mobile applications tailored to your business needs for optimal user experience.",
+    subItems: [
+      { title: "Web Development", href: "/web-development", icon: Code, description: "High-performing, responsive websites." },
+      { title: "Mobile App Development", href: "/mobile-app", icon: Smartphone, description: "Custom iOS & Android applications." },
+    ]
+  },
+  {
+    title: "Technology & Support",
+    href: "/marketing-technologies", // Main link for the category
+    icon: Cog,
+    description: "Leverage marketing technologies and ensure your digital assets are always performing optimally.",
+    subItems: [
+      { title: "Marketing Technologies", href: "/marketing-technologies", icon: Zap, description: "Integrate & optimize MarTech stacks." },
+      { title: "Website Maintenance", href: "/website-maintenance", icon: Wrench, description: "Keep your site secure & up-to-date." },
+      { title: "Hosting & Support", href: "/hosting-support", icon: Server, description: "Reliable hosting & technical support." },
+    ]
+  }
+];
+
+
 const socialLinks = [
   { href: "#", icon: Linkedin, label: "LinkedIn" },
   { href: "#", icon: Twitter, label: "Twitter" },
   { href: "#", icon: Facebook, label: "Facebook" },
-  // { href: "#", icon: Instagram, label: "Instagram" }, // Instagram removed for brevity for now
 ];
 
 
@@ -54,12 +93,48 @@ const Header = () => {
             {mainNavItems.map((item) => (
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink asChild>
-                  <Link href={item.href!} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                  <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
                     {item.label}
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="text-sm font-medium">SERVICES</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[700px] lg:grid-cols-3">
+                  {serviceCategories.map((category) => (
+                    <li key={category.title} className="row-span-3">
+                       <NavigationMenuLink asChild>
+                        <Link
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          href={category.href}
+                        >
+                          <category.icon className="h-6 w-6 text-primary" />
+                          <div className="mb-2 mt-4 text-lg font-medium text-foreground">
+                            {category.title}
+                          </div>
+                          <p className="text-sm leading-tight text-muted-foreground">
+                            {category.description}
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                   {/* Flatten subItems for direct linking in the dropdown */}
+                   {serviceCategories.flatMap(category => category.subItems).map((subItem) => (
+                     <ListItem
+                       key={subItem.title}
+                       title={subItem.title}
+                       href={subItem.href}
+                       icon={subItem.icon}
+                     >
+                       {subItem.description}
+                     </ListItem>
+                   ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -71,7 +146,7 @@ const Header = () => {
                     </Link>
                 </Button>
             ))}
-            <Button size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+             <Button size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/contact#contact-form-home">SCHEDULE A CALL</Link>
             </Button>
           </div>
@@ -97,11 +172,27 @@ const Header = () => {
                 <nav className="p-4 grid gap-1 text-sm font-medium">
                   {mainNavItems.map((item) => (
                      <SheetClose asChild key={item.label}>
-                       <Link href={item.href!} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
+                       <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
                        </Link>
                      </SheetClose>
                   ))}
+                  {/* Adding Services link and sub-items for mobile */}
+                  <SheetClose asChild>
+                    <Link href="/services" className="flex items-center gap-3 rounded-md px-3 py-2 font-semibold text-primary transition-all hover:bg-muted">
+                      SERVICES
+                    </Link>
+                  </SheetClose>
+                  <div className="pl-4 border-l border-border/40 ml-1">
+                    {serviceCategories.flatMap(category => category.subItems).map((subItem) => (
+                       <SheetClose asChild key={subItem.title}>
+                         <Link href={subItem.href} className="flex items-center gap-3 rounded-md px-3 py-1.5 text-muted-foreground transition-all hover:text-primary hover:bg-muted text-xs">
+                           {subItem.title}
+                         </Link>
+                       </SheetClose>
+                    ))}
+                  </div>
+
                    <div className="my-2 border-t border-border/40"></div>
                     <div className="px-3 py-2">
                         <h4 className="mb-2 text-xs font-semibold text-primary/80 uppercase tracking-wider">Social</h4>
@@ -141,10 +232,9 @@ const Header = () => {
   );
 };
 
-// ListItem component for potential future dropdowns, not used by mainNavItems currently
 const ListItem = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<typeof Link> & { icon?: React.ElementType; title: string; children: React.ReactNode; }
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<typeof Link> & { title: string; icon?: React.ElementType; children: React.ReactNode }
 >(({ className, title, children, icon: Icon, href, ...props }, ref) => {
   return (
     <li>
