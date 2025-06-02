@@ -16,23 +16,45 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Send } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+
+const servicesOptions = [
+  "Digital Marketing Suite",
+  "Web Development",
+  "Mobile App Development",
+  "SEO Services",
+  "Social Media Marketing",
+  "PPC Management (Google Ads)",
+  "Content Creation & Strategy",
+  "Marketing Technologies",
+  "ORM (Online Reputation Management)",
+  "Design Thinking Workshops",
+  "Video Production",
+  "Website Maintenance",
+  "Hosting & Support",
+  "Government Tenders & Documentation",
+  "Other/Not Sure",
+];
+
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }).max(50, { message: 'Name cannot exceed 50 characters.' }),
+  companyName: z.string().max(100, { message: 'Company name cannot exceed 100 characters.' }).optional(),
+  contactNo: z.string().min(10, { message: 'Contact number must be at least 10 digits.' }).max(15, {message: 'Contact number cannot exceed 15 digits.'}).regex(/^\+?[0-9\s-()]+$/, {message: "Please enter a valid phone number."}),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  company: z.string().max(100, { message: 'Company name cannot exceed 100 characters.' }).optional(),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000, { message: 'Message cannot exceed 1000 characters.' }),
+  servicesYouWant: z.string().min(1, { message: 'Please select a service or type your requirement.' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000, { message: 'Message cannot exceed 1000 characters.' }).optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 // Dummy server action function (replace with actual implementation)
 async function submitInquiry(data: FormData): Promise<{ success: boolean; message: string }> {
-  // Removed console.log('Submitting inquiry:', data);
   // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1500)); // Slightly longer delay
+  await new Promise(resolve => setTimeout(resolve, 1500));
 
   // Simulate success/failure
   const success = Math.random() > 0.1; // 90% success rate
@@ -50,13 +72,15 @@ export default function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      companyName: '',
+      contactNo: '',
       email: '',
-      company: '',
+      servicesYouWant: '',
       message: '',
     },
   });
 
-  const {formState: {isSubmitting}} = form; // Destructure isSubmitting
+  const {formState: {isSubmitting}} = form;
 
   async function onSubmit(values: FormData) {
      try {
@@ -65,9 +89,9 @@ export default function ContactForm() {
         toast({
           title: "Message Sent!",
           description: result.message,
-          variant: "default", // Use default variant for success
+          variant: "default",
         });
-        form.reset(); // Reset form on success
+        form.reset();
       } else {
          toast({
           title: "Submission Error",
@@ -76,7 +100,6 @@ export default function ContactForm() {
         });
       }
     } catch (error) {
-       // Removed console.error("Contact form submission error:", error); 
        toast({
           title: "Error",
           description: "An unexpected error occurred. Please try again later or contact us directly.",
@@ -86,16 +109,14 @@ export default function ContactForm() {
   }
 
   return (
-    // Use Card for structure and styling
-    <Card className="border-border/60 shadow-md">
+    <Card className="border-border/60 shadow-md w-full">
         <CardHeader>
-          <CardTitle className="text-2xl text-foreground">Send us a Message</CardTitle>
-          {/* Optional: Add description <CardDescription>Fill out the form below...</CardDescription> */}
+          <CardTitle className="text-xl md:text-2xl text-foreground">Send us Your Inquiry</CardTitle>
+          <CardDescription>Fill out the form below and we'll get back to you shortly.</CardDescription>
         </CardHeader>
         <CardContent>
             <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {/* Grid for name and email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
                 <FormField
                     control={form.control}
@@ -112,10 +133,36 @@ export default function ContactForm() {
                 />
                 <FormField
                     control={form.control}
+                    name="companyName"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Company Name</FormLabel>
+                        <FormControl>
+                        <Input placeholder="e.g., Acme Corporation" {...field} disabled={isSubmitting} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="contactNo"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Contact No. *</FormLabel>
+                        <FormControl>
+                        <Input type="tel" placeholder="e.g., +91 98765 43210" {...field} disabled={isSubmitting} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
                     name="email"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Email Address *</FormLabel>
+                        <FormLabel>Email ID *</FormLabel>
                         <FormControl>
                         <Input type="email" placeholder="e.g., john.doe@company.com" {...field} disabled={isSubmitting} />
                         </FormControl>
@@ -124,31 +171,40 @@ export default function ContactForm() {
                     )}
                 />
                 </div>
-                {/* Company Name Field */}
-                <FormField
+                 <FormField
                     control={form.control}
-                    name="company"
+                    name="servicesYouWant"
                     render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Company Name (Optional)</FormLabel>
-                        <FormControl>
-                        <Input placeholder="e.g., Acme Corporation" {...field} disabled={isSubmitting} />
-                        </FormControl>
+                        <FormItem>
+                        <FormLabel>Services You Want *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isSubmitting}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a service you're interested in" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {servicesOptions.map((option) => (
+                                <SelectItem key={option} value={option}>
+                                {option}
+                                </SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
                         <FormMessage />
-                    </FormItem>
+                        </FormItem>
                     )}
                 />
-                 {/* Message Field */}
                 <FormField
                     control={form.control}
                     name="message"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Your Message / Inquiry *</FormLabel>
+                        <FormLabel>Any Message (Optional)</FormLabel>
                         <FormControl>
                         <Textarea
-                            placeholder="Tell us how we can help your business grow..."
-                            className="min-h-[140px] resize-y" // Increased min-height
+                            placeholder="Share any specific details or questions..."
+                            className="min-h-[120px] resize-y"
                             {...field}
                             disabled={isSubmitting}
                         />
@@ -157,8 +213,7 @@ export default function ContactForm() {
                     </FormItem>
                     )}
                 />
-                {/* Submit Button */}
-                <div className="flex justify-end"> {/* Align button to the right */}
+                <div className="flex justify-end">
                     <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
                         {isSubmitting ? (
                           <>
