@@ -14,12 +14,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
-  Menu, BriefcaseBusiness, Search, Megaphone, Lightbulb, Film, ShieldCheck, BarChart, Laptop, Smartphone, Wrench, Server, Settings, Cog, Layers, TabletSmartphone, Settings2, Activity, DatabaseBackup, Gauge, ShieldAlert, LifeBuoy, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram
+  Menu, BriefcaseBusiness, Search, Megaphone, BarChart, Laptop, Smartphone, ShieldCheck, Cog, Layers, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
 
-// Service categories for the dropdown
+// Service categories for the "SERVICES" dropdown
 const serviceCategories = [
   { title: "SEO", href: "/digital-marketing/seo", description: "Boost search rankings.", icon: Search },
   { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", description: "Engage on social media.", icon: Megaphone },
@@ -31,11 +31,11 @@ const serviceCategories = [
   { title: "More Services", href: "/services", description: "View all our offerings.", icon: Layers },
 ];
 
-// Main Navigation Items as per new requirement
+// Main Navigation Items
 const mainNavItems = [
    { label: 'HOME', href: '/' },
    { label: 'ABOUT US', href: '/about' },
-   { label: 'SERVICES', href: '/services' }, // This will be a dropdown
+   { label: 'SERVICES', href: '/services' }, // This will be a dropdown in desktop, direct link in mobile
    { label: 'CONTACT US', href: '/contact' },
 ];
 
@@ -54,7 +54,6 @@ const Header = () => {
       <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mr-2 shrink-0 hover:opacity-90 transition-opacity">
           <BriefcaseBusiness className="h-7 w-7 text-accent" />
-          {/* For larger screens, consider full name if space allows */}
           <span className="hidden sm:inline">Nitya Marketing</span>
           <span className="sm:hidden">Nitya</span>
         </Link>
@@ -84,7 +83,7 @@ const Header = () => {
                   </>
                 ) : (
                   <NavigationMenuLink asChild>
-                    <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                    <Link href={item.href!} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
                       {item.label}
                     </Link>
                   </NavigationMenuLink>
@@ -95,13 +94,15 @@ const Header = () => {
         </NavigationMenu>
 
          <div className="hidden lg:flex items-center gap-2 ml-auto shrink-0">
-            {socialLinks.slice(0,2).map((social) => ( // Show 2 icons on desktop header
-                <Link key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-muted-foreground hover:text-primary p-2">
-                    <social.icon className="w-4 h-4" />
-                </Link>
+            {socialLinks.slice(0,2).map((social) => (
+                <Button key={social.label} variant="ghost" size="icon" asChild aria-label={social.label} className="text-muted-foreground hover:text-primary">
+                    <Link href={social.href} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="w-4 h-4" />
+                    </Link>
+                </Button>
             ))}
             <Button size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link href="/contact#schedule-call">SCHEDULE A CALL</Link>
+                <Link href="/contact#contact-form-home">SCHEDULE A CALL</Link>
             </Button>
           </div>
 
@@ -124,9 +125,9 @@ const Header = () => {
               </SheetHeader>
               <div className="flex-grow overflow-y-auto">
                 <nav className="p-4 grid gap-1 text-sm font-medium">
-                  {mainNavItems.map((item) => (
+                  {mainNavItems.map((item) => ( // In mobile, all items are direct links
                      <SheetClose asChild key={item.label}>
-                       <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
+                       <Link href={item.href!} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
                        </Link>
                      </SheetClose>
@@ -136,9 +137,11 @@ const Header = () => {
                         <h4 className="mb-2 text-xs font-semibold text-primary/80 uppercase tracking-wider">Social</h4>
                         <div className="flex space-x-3">
                         {socialLinks.map((social) => (
-                            <Link key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-muted-foreground hover:text-primary">
-                                <social.icon className="w-5 h-5" />
-                            </Link>
+                            <SheetClose asChild key={social.label}>
+                                <Link href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-muted-foreground hover:text-primary p-1">
+                                    <social.icon className="w-5 h-5" />
+                                </Link>
+                            </SheetClose>
                         ))}
                         </div>
                     </div>
@@ -147,13 +150,17 @@ const Header = () => {
                <div className="p-4 border-t border-border/40 mt-auto">
                  <SheetClose asChild>
                     <Button size="sm" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-                        <Link href="/contact#schedule-call">SCHEDULE A CALL</Link>
+                        <Link href="/contact#contact-form-home">SCHEDULE A CALL</Link>
                     </Button>
                  </SheetClose>
                  <div className="text-center mt-3 text-xs text-muted-foreground space-x-2">
-                    <Link href="tel:+917021038009" className="hover:text-primary inline-flex items-center gap-1"><Phone className="w-3 h-3"/> Call</Link>
+                    <SheetClose asChild>
+                        <Link href="tel:+917021038009" className="hover:text-primary inline-flex items-center gap-1"><Phone className="w-3 h-3"/> Call</Link>
+                    </SheetClose>
                     <span>|</span>
-                    <Link href="mailto:info@nityamarketing.com" className="hover:text-primary inline-flex items-center gap-1"><Mail className="w-3 h-3"/> Email</Link>
+                    <SheetClose asChild>
+                        <Link href="mailto:info@nityamarketing.com" className="hover:text-primary inline-flex items-center gap-1"><Mail className="w-3 h-3"/> Email</Link>
+                    </SheetClose>
                  </div>
                </div>
             </SheetContent>
@@ -165,8 +172,8 @@ const Header = () => {
 };
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ElementType; title: string; children: React.ReactNode; href: string }
+  HTMLAnchorElement, // Changed ElementRef to HTMLAnchorElement for Link child
+  React.ComponentPropsWithoutRef<typeof Link> & { icon?: React.ElementType; title: string; children: React.ReactNode; }
 >(({ className, title, children, icon: Icon, href, ...props }, ref) => {
   return (
     <li>
