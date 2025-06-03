@@ -2,7 +2,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    darkMode: false, // Set to false as the site uses a single light theme defined in :root
+    // darkMode: false, // Removed this line
     content: [
     // Ensure all paths are correct
     "./pages/**/*.{js,ts,jsx,tsx,mdx}", // If using pages directory
@@ -125,5 +125,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
-    
