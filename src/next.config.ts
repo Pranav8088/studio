@@ -2,15 +2,15 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'standalone', // Added from next.config.js for deployment
+  output: 'standalone', // For deployment compatibility
   typescript: {
-    ignoreBuildErrors: false, // Set to false to catch all TypeScript errors during build
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: false, // Set to false to catch all ESLint errors during build
+    ignoreDuringBuilds: false,
   },
   images: {
-    // Ensure images are optimized by default. 'unoptimized: true' is NOT set.
+    // Images are optimized by default. `unoptimized: true` is NOT set.
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,10 +34,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'storage.googleapis.com',
         port: '',
-        pathname: '/project-ai-codemod/**',
+        pathname: '/project-ai-codemod/**', // If you use Firebase Storage
       }
     ],
   },
 };
 
 export default nextConfig;
+
+    

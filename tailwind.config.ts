@@ -6,7 +6,7 @@ export default {
     // More precise paths for App Router
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/lib/**/*.{js,ts,jsx,tsx,mdx}", // Added to include blog-data.ts or other libs
+    "./src/lib/**/*.{js,ts,jsx,tsx,mdx}", // For blog-data.ts or other libs
   ],
   theme: {
     container: {
@@ -61,7 +61,7 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-  			sidebar: {
+  			sidebar: { // These might be from an older theme, can be kept or removed if not used
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
   				primary: 'hsl(var(--sidebar-primary))',
@@ -118,6 +118,8 @@ export default {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require("@tailwindcss/typography")
+    require("@tailwindcss/typography") // Ensure this plugin is included
   ],
 } satisfies Config;
+
+    

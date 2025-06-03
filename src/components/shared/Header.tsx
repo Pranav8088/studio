@@ -19,7 +19,6 @@ import {
 import { cn } from "@/lib/utils";
 import React from 'react';
 
-// Main Navigation Items
 const mainNavItems = [
    { label: 'HOME', href: '/' },
    { label: 'ABOUT US', href: '/about' },
@@ -33,7 +32,7 @@ const mainNavItems = [
 const serviceCategories = [
   {
     title: "Digital Marketing Suite",
-    href: "/digital-marketing/seo", // Main link for the category
+    href: "/digital-marketing/seo",
     icon: Megaphone,
     description: "Comprehensive strategies including SEO, SMM, PPC, and more to boost your online presence.",
     subItems: [
@@ -47,7 +46,7 @@ const serviceCategories = [
   },
   {
     title: "Web & Mobile Solutions",
-    href: "/web-development", // Main link for the category
+    href: "/web-development",
     icon: Laptop,
     description: "Custom web and mobile applications tailored to your business needs for optimal user experience.",
     subItems: [
@@ -57,7 +56,7 @@ const serviceCategories = [
   },
   {
     title: "Technology & Support",
-    href: "/marketing-technologies", // Main link for the category
+    href: "/marketing-technologies",
     icon: Cog,
     description: "Leverage marketing technologies and ensure your digital assets are always performing optimally.",
     subItems: [
@@ -67,7 +66,6 @@ const serviceCategories = [
     ]
   }
 ];
-
 
 const socialLinks = [
   { href: "#", icon: Linkedin, label: "LinkedIn" },
@@ -87,7 +85,6 @@ const Header = () => {
           <span className="sm:hidden">Nitya</span>
         </Link>
 
-        {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:flex flex-1 justify-center">
           <NavigationMenuList>
             {mainNavItems.map((item) => (
@@ -121,7 +118,6 @@ const Header = () => {
                       </NavigationMenuLink>
                     </li>
                   ))}
-                   {/* Flatten subItems for direct linking in the dropdown */}
                    {serviceCategories.flatMap(category => category.subItems).map((subItem) => (
                      <ListItem
                        key={subItem.title}
@@ -151,7 +147,6 @@ const Header = () => {
             </Button>
           </div>
 
-        {/* Mobile Navigation Trigger */}
         <div className="lg:hidden flex items-center ml-auto">
           <Sheet>
             <SheetTrigger asChild>
@@ -177,7 +172,6 @@ const Header = () => {
                        </Link>
                      </SheetClose>
                   ))}
-                  {/* Adding Services link and sub-items for mobile */}
                   <SheetClose asChild>
                     <Link href="/services" className="flex items-center gap-3 rounded-md px-3 py-2 font-semibold text-primary transition-all hover:bg-muted">
                       SERVICES
@@ -240,7 +234,7 @@ const ListItem = React.forwardRef<
     <li>
       <NavigationMenuLink asChild>
         <Link
-          href={href}
+          href={href as string}
           ref={ref}
           className={cn(
             "group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",

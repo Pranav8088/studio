@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import ContactForm from '@/components/shared/ContactForm';
-import { blogPostsData } from '@/lib/blog-data';
+import { blogPostsData } from '@/lib/blog-data'; // Assuming blog data is still used
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 
@@ -34,7 +34,7 @@ const servicesData = [
     { name: "SEO Services", link: "/digital-marketing/seo", icon: TrendingUp },
     { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing", icon: Users },
     { name: "Google Ads (PPC)", link: "/digital-marketing/google-ads", icon: Target },
-    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette },
+    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette }, // Assumed link, adjust if needed
     { name: "Website Maintenance", link: "/website-maintenance", icon: Settings },
 ];
 
@@ -52,7 +52,6 @@ const techPointers = [
   "Cloud Hosting Solutions", "Modern Web Frameworks", "Project Management Software", "Graphic Design Tools"
 ];
 
-// Updated to show only two posts for the "Two image-and-content blocks" layout
 const homePageBlogPosts = blogPostsData.slice(0, 2).map(post => ({
   id: post.id,
   title: post.title,
@@ -75,7 +74,7 @@ export default function Home() {
 
       {/* Hero Section - Rotating Banners */}
       <section id="home-banners" className="relative flex items-center justify-center text-center overflow-hidden min-h-[70vh] md:min-h-[80vh] group">
-        <div className="absolute inset-0 w-full h-full bg-secondary/20"> {/* Updated to use secondary/20 for a lighter gradient base if secondary is light gray */}
+        <div className="absolute inset-0 w-full h-full bg-secondary/20">
           <Carousel
             className="w-full h-full"
             opts={{ loop: true, align: "start" }}
@@ -279,7 +278,6 @@ export default function Home() {
                 Stay updated with B2B marketing trends, strategies, and tips.
               </p>
             </div>
-            {/* Updated grid to md:grid-cols-2 to show two blocks horizontally */}
             <div className="grid md:grid-cols-2 gap-8">
               {homePageBlogPosts.map((post, index) => (
                 <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
