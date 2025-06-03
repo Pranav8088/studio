@@ -14,7 +14,7 @@ const Footer = () => {
             <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mb-2 hover:opacity-90 transition-opacity">
               <BriefcaseBusiness className="h-6 w-6 text-accent" />
               {/* Show full name on larger screens */}
-               <span className="hidden lg:inline">Nitya Marketing Management</span>
+ <span className="hidden lg:inline">Nitya Marketing</span>
                {/* Show shorter name on smaller screens */}
                <span className="lg:hidden">Nitya Marketing</span>
             </Link>
@@ -22,7 +22,7 @@ const Footer = () => {
               Your dedicated B2B growth partner, empowering SMEs & MSMEs to achieve their marketing goals.
             </p>
              <p className="text-xs pt-4 opacity-70">
-                &copy; {currentYear} Nitya Marketing Management. All rights reserved.
+ &copy; {currentYear} Nitya Marketing. All rights reserved.
              </p>
           </div>
 

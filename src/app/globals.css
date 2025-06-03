@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light Theme - White BG, Navy Blue Primary, Existing Navy Blue Secondary, Yellow Accent */
+    /* Updated Theme: Deep Blue, Light Gray, Teal */
     --background: 0 0% 100%; /* White */
     --foreground: 210 20% 15%; /* Very Dark Blue/Almost Black for text */
 
@@ -14,35 +15,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 15%;
 
-    --primary: 211 100% 19%; /* Navy Blue */
+    --primary: 210 100% 20%; /* Deep Blue #003366 */
     --primary-foreground: 0 0% 98%; /* Light color for text on primary */
 
-    --secondary: 220 35% 35%; /* Original Navy Blue */
-    --secondary-foreground: 0 0% 98%; /* Light color for text on secondary */
+    --secondary: 0 0% 95%; /* Light Gray #f2f2f2 */
+    --secondary-foreground: 210 20% 15%; /* Dark color for text on light gray secondary */
 
-    --muted: 210 40% 96.1%; /* Light Grayish Blue */
-    --muted-foreground: 210 20% 45%; /* Mid Grayish Blue */
+    --muted: 210 20% 90%; /* Slightly darker Light Gray for muted elements */
+    --muted-foreground: 210 20% 45%; /* Mid Grayish Blue for muted text */
 
-    --accent: 50 100% 50%; /* Yellow */
-    --accent-foreground: 210 20% 10%; /* Dark color for text on accent */
+    --accent: 180 100% 25%; /* Teal #008080 */
+    --accent-foreground: 0 0% 98%; /* Light color for text on teal accent */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 210 20% 88%; /* Light Grayish Blue Border */
     --input: 210 20% 88%; /* Light Grayish Blue Input */
-    --ring: 211 100% 19%; /* Navy Blue for focus ring */
+    --ring: 210 100% 20%; /* Deep Blue #003366 for focus ring */
 
-    --chart-1: 211 100% 19%; /* Navy Blue */
-    --chart-2: 50 100% 50%; /* Yellow */
-    --chart-3: 220 35% 35%; /* Original Navy Blue */
-    --chart-4: 211 100% 34%; /* Lighter Navy Blue */
-    --chart-5: 50 100% 65%; /* Lighter Yellow */
+    --chart-1: 210 100% 20%; /* Deep Blue */
+    --chart-2: 180 100% 25%; /* Teal */
+    --chart-3: 0 0% 75%; /* Medium Gray */
+    --chart-4: 210 100% 35%; /* Lighter Deep Blue */
+    --chart-5: 180 100% 40%; /* Lighter Teal */
 
     --radius: 0.5rem;
   }
 
-  /* Removed .dark theme as the entire site should have a white background */
+  /* Removed .dark theme as the entire site should have a white background based on current settings */
 }
 
 @layer base {
@@ -53,42 +54,39 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-   /* More consistent heading sizes */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground; /* Ensure headings use foreground color */
+    @apply font-semibold tracking-tight text-foreground;
   }
   h1 { @apply text-3xl sm:text-4xl lg:text-5xl; }
   h2 { @apply text-2xl sm:text-3xl lg:text-4xl; }
   h3 { @apply text-xl sm:text-2xl lg:text-3xl; }
   h4 { @apply text-lg sm:text-xl lg:text-2xl; }
-  p { @apply leading-7 text-base md:text-lg; } /* Standardize paragraph size */
+  p { @apply leading-7 text-base md:text-lg; }
 
-   /* Improve focus visibility */
   *:focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
-/* Animation utilities remain the same */
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
-    opacity: 0; /* Start hidden */
+    opacity: 0;
   }
   .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-     transform: translateY(20px); /* Start lower */
+     opacity: 0;
+     transform: translateY(20px);
   }
   .animate-fade-in-left {
     animation: fade-in-left 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-     transform: translateX(-20px); /* Start left */
+     opacity: 0;
+     transform: translateX(-20px);
   }
   .animate-fade-in-right {
     animation: fade-in-right 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-      transform: translateX(20px); /* Start right */
+     opacity: 0;
+      transform: translateX(20px);
   }
 }
 
@@ -111,3 +109,5 @@
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
+    

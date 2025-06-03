@@ -3,14 +3,14 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ChevronRight, CheckCircle, Lightbulb, BriefcaseBusiness, Settings, Users, HelpCircle, Zap, Target, TrendingUp, Palette, Code, GitBranch, Cpu, Server, BarChart3, CalendarDays, Tag, LayoutGrid, Cog, Laptop } from 'lucide-react';
+import { ArrowRight, ChevronRight, Target, TrendingUp, BriefcaseBusiness, Users, Award, BrainCircuit, CheckCircle, Zap, Cpu, CalendarDays, Tag, LayoutGrid, Laptop, Cog, Palette, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import ContactForm from '@/components/shared/ContactForm';
-import { blogPostsData } from '@/lib/blog-data'; // Restored blog data import
+import { blogPostsData } from '@/lib/blog-data'; // Assuming blog data is still used
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 
@@ -34,7 +34,7 @@ const servicesData = [
     { name: "SEO Services", link: "/digital-marketing/seo", icon: TrendingUp },
     { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing", icon: Users },
     { name: "Google Ads (PPC)", link: "/digital-marketing/google-ads", icon: Target },
-    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette },
+    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette }, // Assumed link, adjust if needed
     { name: "Website Maintenance", link: "/website-maintenance", icon: Settings },
 ];
 
@@ -52,12 +52,12 @@ const techPointers = [
   "Cloud Hosting Solutions", "Modern Web Frameworks", "Project Management Software", "Graphic Design Tools"
 ];
 
-const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
+const homePageBlogPosts = blogPostsData.slice(0, 2).map(post => ({
   id: post.id,
   title: post.title,
   excerpt: post.excerpt,
   date: post.date,
-  link: `/blog/${post.slug}`, // Updated link to point to individual blog pages
+  link: `/blog/${post.slug}`,
   imageUrl: post.imageUrl,
   imageAiHint: post.imageAiHint,
   category: post.category,
@@ -132,9 +132,9 @@ export default function Home() {
             />
           </div>
           <div className="space-y-6 animate-fade-in-right text-center lg:text-left lg:order-last">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Management</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing</h2>
             <p className="text-lg text-muted-foreground">
-              Nitya Marketing Management is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
+              Nitya Marketing is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
             </p>
             <p className="text-muted-foreground">
               Our team of experts combines industry knowledge with cutting-edge techniques to deliver marketing solutions that truly make an impact.
@@ -268,7 +268,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog/Updates Section */}
+      {/* Blog/News Updates Section */}
       {homePageBlogPosts.length > 0 && (
         <section id="blog-snippet" className="py-16 md:py-24 bg-background">
           <div className="container max-w-7xl px-4 md:px-6">
@@ -278,7 +278,7 @@ export default function Home() {
                 Stay updated with B2B marketing trends, strategies, and tips.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8">
               {homePageBlogPosts.map((post, index) => (
                 <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
                   <Link href={post.link} className="block aspect-video w-full overflow-hidden relative">
@@ -289,7 +289,7 @@ export default function Home() {
                       width={400}
                       height={225}
                       loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
@@ -330,3 +330,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
