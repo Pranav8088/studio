@@ -133,9 +133,9 @@ export default function Home() {
             />
           </div>
           <div className="space-y-6 animate-fade-in-right text-center lg:text-left lg:order-last">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Management</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing</h2>
             <p className="text-lg text-muted-foreground">
-              Nitya Marketing Management is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
+              Nitya Marketing is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
             </p>
             <p className="text-muted-foreground">
               Our team of experts combines industry knowledge with cutting-edge techniques to deliver marketing solutions that truly make an impact.

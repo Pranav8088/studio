@@ -2,27 +2,21 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    // darkMode: false, // Removed this line
     content: [
-    // Ensure all paths are correct
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}", // If using pages directory
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}", // If using src/pages
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    // More precise paths for App Router
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/lib/**/*.{js,ts,jsx,tsx,mdx}", // Added to include blog-data.ts or other libs
   ],
   theme: {
-    // Ensure container settings are appropriate, center by default
     container: {
       center: true,
-      // Default padding can be set here if needed
-      // padding: '1rem',
-      // Default breakpoints from Tailwind
       screens: {
         sm: '640px',
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px', // Optional: added 2xl breakpoint
+        '2xl': '1536px',
       },
     },
   	extend: {
@@ -118,10 +112,12 @@ export default {
         'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
   		},
       fontFamily: {
-        // Use CSS variable defined in layout.tsx
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
       },
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography")
+  ],
 } satisfies Config;
