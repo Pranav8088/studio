@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light Theme - White BG, Navy Blue Primary, Existing Navy Blue Secondary, Yellow Accent */
+    /* Updated Theme based on prompt: Deep Blue, Light Gray, Teal */
     --background: 0 0% 100%; /* White */
     --foreground: 210 20% 15%; /* Very Dark Blue/Almost Black for text */
 
@@ -14,35 +15,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 15%;
 
-    --primary: 211 100% 19%; /* Navy Blue */
+    --primary: 210 100% 20%; /* Deep Blue #003366 */
     --primary-foreground: 0 0% 98%; /* Light color for text on primary */
 
-    --secondary: 220 35% 35%; /* Original Navy Blue */
-    --secondary-foreground: 0 0% 98%; /* Light color for text on secondary */
+    --secondary: 0 0% 95%; /* Light Gray #f2f2f2 */
+    --secondary-foreground: 210 20% 15%; /* Dark color for text on light gray secondary */
 
-    --muted: 210 40% 96.1%; /* Light Grayish Blue */
-    --muted-foreground: 210 20% 45%; /* Mid Grayish Blue */
+    --muted: 210 20% 90%; /* Slightly darker Light Gray for muted elements */
+    --muted-foreground: 210 20% 45%; /* Mid Grayish Blue for muted text */
 
-    --accent: 50 100% 50%; /* Yellow */
-    --accent-foreground: 210 20% 10%; /* Dark color for text on accent */
+    --accent: 180 100% 25%; /* Teal #008080 */
+    --accent-foreground: 0 0% 98%; /* Light color for text on teal accent */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 210 20% 88%; /* Light Grayish Blue Border */
     --input: 210 20% 88%; /* Light Grayish Blue Input */
-    --ring: 211 100% 19%; /* Navy Blue for focus ring */
+    --ring: 210 100% 20%; /* Deep Blue #003366 for focus ring */
 
-    --chart-1: 211 100% 19%; /* Navy Blue */
-    --chart-2: 50 100% 50%; /* Yellow */
-    --chart-3: 220 35% 35%; /* Original Navy Blue */
-    --chart-4: 211 100% 34%; /* Lighter Navy Blue */
-    --chart-5: 50 100% 65%; /* Lighter Yellow */
+    --chart-1: 210 100% 20%; /* Deep Blue */
+    --chart-2: 180 100% 25%; /* Teal */
+    --chart-3: 0 0% 75%; /* Medium Gray (as secondary #f2f2f2 is too light for a distinct chart color) */
+    --chart-4: 210 100% 35%; /* Lighter Deep Blue */
+    --chart-5: 180 100% 40%; /* Lighter Teal */
 
     --radius: 0.5rem;
   }
 
-  /* Removed .dark theme as the entire site should have a white background */
+  /* Removed .dark theme as the entire site should have a white background based on current settings */
 }
 
 @layer base {

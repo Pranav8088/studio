@@ -3,14 +3,14 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ChevronRight, CheckCircle, Lightbulb, BriefcaseBusiness, Settings, Users, HelpCircle, Zap, Target, TrendingUp, Palette, Code, GitBranch, Cpu, Server, BarChart3, CalendarDays, Tag, LayoutGrid, Cog, Laptop } from 'lucide-react';
+import { ArrowRight, ChevronRight, Target, TrendingUp, BriefcaseBusiness, Users, Award, BrainCircuit, CheckCircle, Zap, Cpu, CalendarDays, Tag, LayoutGrid, Laptop, Cog, Palette, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import ContactForm from '@/components/shared/ContactForm';
-import { blogPostsData } from '@/lib/blog-data'; // Restored blog data import
+import { blogPostsData } from '@/lib/blog-data';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 
@@ -52,12 +52,13 @@ const techPointers = [
   "Cloud Hosting Solutions", "Modern Web Frameworks", "Project Management Software", "Graphic Design Tools"
 ];
 
-const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
+// Updated to show only two posts for the "Two image-and-content blocks" layout
+const homePageBlogPosts = blogPostsData.slice(0, 2).map(post => ({
   id: post.id,
   title: post.title,
   excerpt: post.excerpt,
   date: post.date,
-  link: `/blog/${post.slug}`, // Updated link to point to individual blog pages
+  link: `/blog/${post.slug}`,
   imageUrl: post.imageUrl,
   imageAiHint: post.imageAiHint,
   category: post.category,
@@ -74,7 +75,7 @@ export default function Home() {
 
       {/* Hero Section - Rotating Banners */}
       <section id="home-banners" className="relative flex items-center justify-center text-center overflow-hidden min-h-[70vh] md:min-h-[80vh] group">
-        <div className="absolute inset-0 w-full h-full bg-secondary/20">
+        <div className="absolute inset-0 w-full h-full bg-secondary/20"> {/* Updated to use secondary/20 for a lighter gradient base if secondary is light gray */}
           <Carousel
             className="w-full h-full"
             opts={{ loop: true, align: "start" }}
@@ -268,7 +269,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog/Updates Section */}
+      {/* Blog/News Updates Section */}
       {homePageBlogPosts.length > 0 && (
         <section id="blog-snippet" className="py-16 md:py-24 bg-background">
           <div className="container max-w-7xl px-4 md:px-6">
@@ -278,7 +279,8 @@ export default function Home() {
                 Stay updated with B2B marketing trends, strategies, and tips.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Updated grid to md:grid-cols-2 to show two blocks horizontally */}
+            <div className="grid md:grid-cols-2 gap-8">
               {homePageBlogPosts.map((post, index) => (
                 <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
                   <Link href={post.link} className="block aspect-video w-full overflow-hidden relative">
@@ -289,7 +291,7 @@ export default function Home() {
                       width={400}
                       height={225}
                       loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
