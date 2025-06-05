@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import ContactForm from '@/components/shared/ContactForm';
-import { blogPostsData } from '@/lib/blog-data'; // Restored blog data import
+import { blogPostsData } from '@/lib/blog-data';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 
@@ -52,12 +52,12 @@ const techPointers = [
   "Cloud Hosting Solutions", "Modern Web Frameworks", "Project Management Software", "Graphic Design Tools"
 ];
 
-const homePageBlogPosts = blogPostsData.slice(0, 3).map(post => ({
+const homePageBlogPosts = blogPostsData.slice(0, 2).map(post => ({ // Show 2 posts
   id: post.id,
   title: post.title,
   excerpt: post.excerpt,
   date: post.date,
-  link: `/blog/${post.slug}`, // Updated link to point to individual blog pages
+  link: `/blog/${post.slug}`,
   imageUrl: post.imageUrl,
   imageAiHint: post.imageAiHint,
   category: post.category,
@@ -132,9 +132,9 @@ export default function Home() {
             />
           </div>
           <div className="space-y-6 animate-fade-in-right text-center lg:text-left lg:order-last">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing Management</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">About Nitya Marketing</h2>
             <p className="text-lg text-muted-foreground">
-              Nitya Marketing Management is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
+              Nitya Marketing is your dedicated partner in navigating the complexities of the B2B market. We specialize in empowering SMEs and MSMEs with innovative and results-driven marketing strategies designed to build brand value, generate quality leads, and achieve sustainable growth.
             </p>
             <p className="text-muted-foreground">
               Our team of experts combines industry knowledge with cutting-edge techniques to deliver marketing solutions that truly make an impact.
@@ -278,7 +278,7 @@ export default function Home() {
                 Stay updated with B2B marketing trends, strategies, and tips.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 gap-8">
               {homePageBlogPosts.map((post, index) => (
                 <Card key={post.id} className="flex flex-col overflow-hidden group animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-accent transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
                   <Link href={post.link} className="block aspect-video w-full overflow-hidden relative">
@@ -319,14 +319,18 @@ export default function Home() {
                 </Card>
               ))}
             </div>
-            <div className="text-center mt-16">
-              <Button asChild size="lg">
-                <Link href="/blog">View All Articles <ArrowRight className="ml-2 h-5 w-5" /></Link>
-              </Button>
-            </div>
+             {blogPostsData.length > 2 && (
+                <div className="text-center mt-16">
+                <Button asChild size="lg">
+                    <Link href="/blog">View All Articles <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                </Button>
+                </div>
+            )}
           </div>
         </section>
       )}
     </div>
   );
 }
+
+    

@@ -33,7 +33,7 @@ const mainNavItems = [
 const serviceCategories = [
   {
     title: "Digital Marketing Suite",
-    href: "/digital-marketing/seo", // Main link for the category
+    href: "/digital-marketing/seo", 
     icon: Megaphone,
     description: "Comprehensive strategies including SEO, SMM, PPC, and more to boost your online presence.",
     subItems: [
@@ -47,7 +47,7 @@ const serviceCategories = [
   },
   {
     title: "Web & Mobile Solutions",
-    href: "/web-development", // Main link for the category
+    href: "/web-development", 
     icon: Laptop,
     description: "Custom web and mobile applications tailored to your business needs for optimal user experience.",
     subItems: [
@@ -57,7 +57,7 @@ const serviceCategories = [
   },
   {
     title: "Technology & Support",
-    href: "/marketing-technologies", // Main link for the category
+    href: "/marketing-technologies", 
     icon: Cog,
     description: "Leverage marketing technologies and ensure your digital assets are always performing optimally.",
     subItems: [
@@ -90,7 +90,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:flex flex-1 justify-center">
           <NavigationMenuList>
-            {mainNavItems.map((item) => (
+            {mainNavItems.slice(0,3).map((item) => ( // Items before SERVICES
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink asChild>
                   <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
@@ -121,7 +121,6 @@ const Header = () => {
                       </NavigationMenuLink>
                     </li>
                   ))}
-                   {/* Flatten subItems for direct linking in the dropdown */}
                    {serviceCategories.flatMap(category => category.subItems).map((subItem) => (
                      <ListItem
                        key={subItem.title}
@@ -135,6 +134,15 @@ const Header = () => {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            {mainNavItems.slice(3).map((item) => ( // Items after SERVICES
+              <NavigationMenuItem key={item.label}>
+                <NavigationMenuLink asChild>
+                  <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                    {item.label}
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -170,13 +178,14 @@ const Header = () => {
               </SheetHeader>
               <div className="flex-grow overflow-y-auto">
                 <nav className="p-4 grid gap-1 text-sm font-medium">
-                  {mainNavItems.map((item) => (
-                     <SheetClose asChild key={item.label}>
+                  {mainNavItems.slice(0,3).map((item) => ( // Before Services
+                     <SheetClose asChild key={item.label + "-mobile-pre"}>
                        <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
                        </Link>
                      </SheetClose>
                   ))}
+                  
                   {/* Adding Services link and sub-items for mobile */}
                   <SheetClose asChild>
                     <Link href="/services" className="flex items-center gap-3 rounded-md px-3 py-2 font-semibold text-primary transition-all hover:bg-muted">
@@ -185,20 +194,28 @@ const Header = () => {
                   </SheetClose>
                   <div className="pl-4 border-l border-border/40 ml-1">
                     {serviceCategories.flatMap(category => category.subItems).map((subItem) => (
-                       <SheetClose asChild key={subItem.title}>
+                       <SheetClose asChild key={subItem.title + "-mobile"}>
                          <Link href={subItem.href} className="flex items-center gap-3 rounded-md px-3 py-1.5 text-muted-foreground transition-all hover:text-primary hover:bg-muted text-xs">
                            {subItem.title}
                          </Link>
                        </SheetClose>
                     ))}
                   </div>
+                  
+                   {mainNavItems.slice(3).map((item) => ( // After Services
+                     <SheetClose asChild key={item.label + "-mobile-post"}>
+                       <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
+                         {item.label}
+                       </Link>
+                     </SheetClose>
+                  ))}
 
                    <div className="my-2 border-t border-border/40"></div>
                     <div className="px-3 py-2">
                         <h4 className="mb-2 text-xs font-semibold text-primary/80 uppercase tracking-wider">Social</h4>
                         <div className="flex space-x-3">
                         {socialLinks.map((social) => (
-                            <SheetClose asChild key={social.label}>
+                            <SheetClose asChild key={social.label + "-mobile-social"}>
                                 <Link href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-muted-foreground hover:text-primary p-1">
                                     <social.icon className="w-5 h-5" />
                                 </Link>
@@ -240,7 +257,7 @@ const ListItem = React.forwardRef<
     <li>
       <NavigationMenuLink asChild>
         <Link
-          href={href}
+          href={href ?? '#'} // Ensure href has a default value
           ref={ref}
           className={cn(
             "group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -263,3 +280,5 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem"
 
 export default Header;
+
+    
