@@ -70,7 +70,7 @@ export default function Home() {
     <div className="flex flex-col">
 
       {/* Hero Section - Rotating Banners */}
-      <section id="home-banners" className="relative flex items-center justify-center text-center overflow-hidden min-h-[70vh] md:min-h-[80vh] group">
+      <section id="home-banners" className="relative flex items-center justify-center text-center overflow-hidden min-h-[750px] group">
         <div className="absolute inset-0 w-full h-full bg-secondary/20">
           <Carousel
             className="w-full h-full"
@@ -82,7 +82,7 @@ export default function Home() {
             <CarouselContent>
               {heroBanners.map((banner, index) => (
                 <CarouselItem key={index} className="h-full relative">
-                  <div className="relative w-full h-[800px] overflow-hidden">
+                  <div className="relative w-full h-[750px] overflow-hidden">
                     <Image
                       src={banner.src}
                       alt={banner.alt}
