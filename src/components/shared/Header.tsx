@@ -3,6 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -82,9 +83,14 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-16">
       <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mr-2 shrink-0 hover:opacity-90 transition-opacity">
-          <BriefcaseBusiness className="h-7 w-7 text-accent" />
-          <span className="hidden sm:inline">Nitya Marketing</span>
-          <span className="sm:hidden">Nitya</span>
+          <Image 
+            src="/images/Nitya Marketing Logo.png" 
+            alt="Nitya Marketing Logo" 
+            width={200}
+            height={60}
+            className="h-16 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -170,9 +176,15 @@ const Header = () => {
             <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm p-0 flex flex-col">
                <SheetHeader className="p-4 pb-2 border-b">
                  <SheetTitle>
-                   <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary">
-                      <BriefcaseBusiness className="h-5 w-5 text-accent" />
-                      <span>Nitya Marketing</span>
+                   <Link href="/" className="flex items-center justify-center">
+                      <Image 
+                        src="/images/Nitya Marketing Logo.png" 
+                        alt="Nitya Marketing Logo" 
+                        width={180}
+                        height={54}
+                        className="h-14 w-auto"
+                        priority
+                      />
                     </Link>
                  </SheetTitle>
               </SheetHeader>

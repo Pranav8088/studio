@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { BriefcaseBusiness, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react'; // Added icons
 
 const Footer = () => {
@@ -11,12 +12,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
           {/* Column 1: About Company */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mb-2 hover:opacity-90 transition-opacity">
-              <BriefcaseBusiness className="h-6 w-6 text-accent" />
-              {/* Show full name on larger screens */}
-               <span className="hidden lg:inline">Nitya Marketing Management</span>
-               {/* Show shorter name on smaller screens */}
-               <span className="lg:hidden">Nitya Marketing</span>
+            <Link href="/" className="flex items-center mb-2">
+              <Image 
+                src="/images/Nitya Marketing Logo.png" 
+                alt="Nitya Marketing Logo" 
+                width={220}
+                height={66}
+                className="h-16 w-auto"
+                priority
+              />
             </Link>
             <p className="text-sm leading-relaxed">
               Your dedicated B2B growth partner, empowering SMEs & MSMEs to achieve their marketing goals.

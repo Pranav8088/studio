@@ -15,29 +15,27 @@ import AnimatedCounter from '@/components/shared/AnimatedCounter';
 
 
 const heroBanners = [
-  { src: "https://placehold.co/1920x800.png", alt: "Modern marketing solutions banner", dataAiHint: "marketing solutions", title: "Strategic Marketing for Growth", description: "Unlock your business potential with our tailored strategies." },
-  { src: "https://placehold.co/1920x800.png", alt: "Team collaboration on digital project", dataAiHint: "team collaboration", title: "Digital Transformation Experts", description: "Navigate the digital landscape with Nitya Marketing." },
-  { src: "https://placehold.co/1920x800.png", alt: "Data analytics dashboard", dataAiHint: "data analytics", title: "Data-Driven Results", description: "Achieve measurable success with our expert insights." },
-  { src: "https://placehold.co/1920x800.png", alt: "Customer engagement concept", dataAiHint: "customer engagement", title: "Connecting You With Your Audience", description: "Building meaningful B2B relationships effectively." },
+  { src: "/images/home-page-banner/home-page-banner-1.jpg", alt: "Modern marketing solutions banner", dataAiHint: "marketing solutions", title: "Strategic Marketing for Growth", description: "Unlock your business potential with our tailored strategies." },
+  { src: "/images/home-page-banner/home-page-banner-2.jpg", alt: "Team collaboration on digital project", dataAiHint: "team collaboration", title: "Digital Transformation Experts", description: "Navigate the digital landscape with Nitya Marketing." },
+  { src: "/images/home-page-banner/home-page-banner-3.jpg", alt: "Data analytics dashboard", dataAiHint: "data analytics", title: "Data-Driven Results", description: "Achieve measurable success with our expert insights." },
 ];
 
 const quickSolutionsData = [
-  { title: "Want to boost your brand or products & services?", ctaText: "Click here to get quick solution", ctaLink: "/services", icon: TrendingUp },
-  { title: "Do you want your updates to reach your target market?", ctaText: "Click here to get quick solution", ctaLink: "/digital-marketing/social-media-marketing", icon: Target },
-  { title: "Want to win government tenders & documentation assistance?", ctaText: "Click here to get quick solution", ctaLink: "/contact", icon: BriefcaseBusiness },
+  { title: "Want to boost your brand or products & services?", ctaText: "Click here to get quick solution", ctaLink: "/services", icon: () => <Image src="/images/Boost Icon.png" alt="Boost" width={48} height={48} className="w-12 h-12" /> },
+  { title: "Do you want your updates to reach your target market?", ctaText: "Click here to get quick solution", ctaLink: "/digital-marketing/social-media-marketing", icon: () => <Image src="/images/Target Icon.png" alt="Target" width={48} height={48} className="w-12 h-12" /> },
+  { title: "Want to win government tenders & documentation assistance?", ctaText: "Click here to get quick solution", ctaLink: "/contact", icon: () => <Image src="/images/Documentation Assistance Icon.png" alt="Documentation" width={48} height={48} className="w-12 h-12" /> },
 ];
 
 const servicesData = [
-    { name: "Digital Marketing Suite", link: "/digital-marketing/seo", icon: LayoutGrid },
-    { name: "Web & Mobile Solutions", link: "/web-development", icon: Laptop },
-    { name: "Technology & Support", link: "/marketing-technologies", icon: Cog },
-    { name: "SEO Services", link: "/digital-marketing/seo", icon: TrendingUp },
-    { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing", icon: Users },
-    { name: "Google Ads (PPC)", link: "/digital-marketing/google-ads", icon: Target },
-    { name: "Content Creation", link: "/digital-marketing/video-production", icon: Palette },
-    { name: "Website Maintenance", link: "/website-maintenance", icon: Settings },
+    { name: "Digital Marketing Suite", link: "/digital-marketing/seo", icon: () => <Image src="/images/Digital Marketing Suite Thumbnail.jpg" alt="Digital Marketing Suite" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Web & Mobile Solutions", link: "/web-development", icon: () => <Image src="/images/Web & Mobile Solutions Thumbnail.jpg" alt="Web & Mobile Solutions" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Technology & Support", link: "/marketing-technologies", icon: () => <Image src="/images/Technology & Support Thumbnail.jpg" alt="Technology & Support" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "SEO Services", link: "/digital-marketing/seo", icon: () => <Image src="/images/SEO Services Thumbnail.jpg" alt="SEO Services" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Social Media Marketing", link: "/digital-marketing/social-media-marketing", icon: () => <Image src="/images/social media marketing Thumbnail.jpg" alt="Social Media Marketing" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Google Ads (PPC)", link: "/digital-marketing/google-ads", icon: () => <Image src="/images/Google Ads (PRC) Thumbnail.jpg" alt="Google Ads" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Content Creation", link: "/digital-marketing/video-production", icon: () => <Image src="/images/Content Creation Thumbnail.jpg" alt="Content Creation" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
+    { name: "Website Maintenance", link: "/website-maintenance", icon: () => <Image src="/images/Website Maintenance Thumbnail.jpg" alt="Website Maintenance" width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> },
 ];
-
 
 const strategicMarketingPointers = [
   "Identify and reach your ideal B2B customers effectively.",
@@ -63,7 +61,6 @@ const homePageBlogPosts = blogPostsData.slice(0, 2).map(post => ({ // Show 2 pos
   category: post.category,
 }));
 
-
 export default function Home() {
   const autoplayPlugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
@@ -85,7 +82,7 @@ export default function Home() {
             <CarouselContent>
               {heroBanners.map((banner, index) => (
                 <CarouselItem key={index} className="h-full relative">
-                  <div className="relative w-full h-[70vh] md:h-[80vh]">
+                  <div className="relative w-full h-[800px] overflow-hidden">
                     <Image
                       src={banner.src}
                       alt={banner.alt}
@@ -121,7 +118,7 @@ export default function Home() {
         <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
           <div className="animate-fade-in-left lg:order-first">
             <Image
-              src="https://placehold.co/550x480.png"
+              src="/images/home-page-about-us/about-us.jpg"
               alt="Nitya Marketing team in a strategy session"
               data-ai-hint="team meeting strategy"
               width={550}
@@ -155,8 +152,8 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {quickSolutionsData.map((solution, index) => (
               <Card key={index} className="flex flex-col items-center p-6 text-center animate-fade-in-up shadow-lg hover:shadow-xl border-border/70 hover:border-primary transition-all duration-300 transform hover:-translate-y-1" style={{ animationDelay: `${index * 150}ms` }}>
-                <div className="p-3 bg-primary/10 rounded-full text-primary mb-4">
-                  <solution.icon className="w-8 h-8" />
+                <div className="p-4 bg-primary/10 rounded-full text-primary mb-4">
+                  {solution.icon()}
                 </div>
                 <CardTitle className="text-lg font-semibold text-foreground mb-4 h-16 flex items-center justify-center">{solution.title}</CardTitle>
                 <CardFooter className="mt-auto pt-4">
@@ -182,7 +179,7 @@ export default function Home() {
                 <Card key={index} className="group h-full flex flex-col justify-center items-center p-6 text-center rounded-lg shadow-md hover:shadow-lg hover:border-accent transition-all duration-300 transform hover:-translate-y-1">
                  <Link href={service.link} className="flex flex-col items-center justify-center h-full w-full">
                     <div className="p-3 bg-accent/10 rounded-full text-accent mb-3 group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300">
-                        <service.icon className="w-7 h-7"/>
+                        {service.icon()}
                     </div>
                     <CardTitle className="text-md font-medium text-foreground group-hover:text-accent">{service.name}</CardTitle>
                   </Link>
@@ -202,7 +199,7 @@ export default function Home() {
         <div className="container max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16 items-center px-4 md:px-6">
           <div className="animate-fade-in-left">
             <Image
-              src="https://placehold.co/550x450.png"
+              src="/images/Why SME Requires.jpg"
               alt="Business people analyzing marketing data on a graph"
               data-ai-hint="marketing analytics graph"
               width={550}
@@ -235,25 +232,48 @@ export default function Home() {
       </section>
 
       {/* Technology/Software Section */}
-      <section id="about-technologies" className="py-16 md:py-24 bg-background">
-        <div className="container max-w-7xl px-4 md:px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Technological Edge</h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto">
+      <section id="about-technologies" className="py-16 md:py-24 relative">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/Why Choose Us.jpg"
+            alt="Technology Background"
+            fill
+            className="object-cover"
+            quality={100}
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+        <div className="container max-w-7xl px-4 md:px-6 text-center relative">
+          <div className="mb-10">
+            <div className="bg-white p-4 rounded-lg inline-block shadow-xl">
+              <Image 
+                src="/images/Nitya Marketing Logo.png" 
+                alt="Nitya Marketing Logo" 
+                width={300}
+                height={100}
+                className="h-24 w-auto"
+                priority
+              />
+            </div>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Technological Edge</h2>
+          <p className="text-lg text-white/90 mb-12 max-w-3xl mx-auto">
             We leverage a robust suite of modern technologies, languages, and software to deliver cutting-edge marketing solutions and ensure optimal performance for your campaigns.
           </p>
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 max-w-4xl mx-auto text-left">
             {techPointers.map((tech, index) => (
-              <div key={index} className="flex items-center p-3 bg-card rounded-md shadow-sm border border-border/60 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+              <div key={index} className="flex items-center p-4 bg-white/10 backdrop-blur-sm rounded-lg shadow-lg border border-white/20 animate-fade-in-up hover:bg-white/20 transition-colors duration-300" style={{ animationDelay: `${index * 100}ms` }}>
                 <Zap className="w-5 h-5 text-accent mr-3 flex-shrink-0" />
-                <span className="text-muted-foreground">{tech}</span>
+                <span className="text-white/90">{tech}</span>
               </div>
             ))}
           </div>
           <div className="mt-12">
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
                 <Link href="/marketing-technologies">Explore Our Tech Stack <Cpu className="ml-2 h-5 w-5" /></Link>
               </Button>
-            </div>
+          </div>
         </div>
       </section>
 
