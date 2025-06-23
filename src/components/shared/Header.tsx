@@ -15,7 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
-  Menu, BriefcaseBusiness, Search, Megaphone, BarChart, Laptop, Smartphone, ShieldCheck, Cog, Layers, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, LayoutGrid, Settings2, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Wrench, Activity, DatabaseBackup, Server, Gauge, LifeBuoy, Target, Users, TrendingUp, Lightbulb, BrainCircuit, Wand2, Filter, BadgeDollarSign, BarChartBig, MessageSquareHeart, Link2, CheckCircle, Share2, Film, Clapperboard, Sparkles, Video as VideoIcon
+  Menu, BriefcaseBusiness, Search, Megaphone, BarChart, Laptop, Smartphone, ShieldCheck, Cog, Layers, ChevronDown, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, LayoutGrid, Settings2, Zap, AreaChart, DatabaseZap, Code, Palette, ShoppingCart, Wrench, Activity, DatabaseBackup, Server, Gauge, LifeBuoy, Target, Users, TrendingUp, Lightbulb, BrainCircuit, Wand2, Filter, BadgeDollarSign, BarChartBig, MessageSquareHeart, Link2, CheckCircle, Share2, Film, Clapperboard, Sparkles, Store, Video as VideoIcon, Gavel, UserCog, ShoppingCart as ShoppingCartIcon
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
@@ -26,6 +26,7 @@ const mainNavItems = [
    { label: 'ABOUT US', href: '/about' },
    { label: 'WHY CHOOSE US', href: '/why-us' },
    // SERVICES will be a dropdown
+   { label: 'SERVICES', href: '/services' },
    { label: 'INSIGHTS', href: '/insights' },
    { label: 'FAQs', href: '/faq' },
    { label: 'CONTACT US', href: '/contact' },
@@ -33,38 +34,55 @@ const mainNavItems = [
 
 const serviceCategories = [
   {
-    title: "Digital Marketing Suite",
-    href: "/digital-marketing/seo", 
+    title: "Digital Marketing",
+    href: "/digital-marketing", 
     icon: Megaphone,
-    description: "Comprehensive strategies including SEO, SMM, PPC, and more to boost your online presence.",
+    description: "End-to-end digital marketing solutions to boost your online presence.",
     subItems: [
-      { title: "SEO Services", href: "/digital-marketing/seo", icon: Search, description: "Boost visibility & drive organic traffic." },
-      { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", icon: Users, description: "Engage audiences & build brand loyalty." },
-      { title: "Google Ads (PPC)", href: "/digital-marketing/google-ads", icon: BadgeDollarSign, description: "Targeted ads for maximum ROI." },
-      { title: "Online Reputation (ORM)", href: "/digital-marketing/orm", icon: ShieldCheck, description: "Manage & enhance your brand image." },
-      { title: "Design Thinking", href: "/digital-marketing/design-thinking", icon: BrainCircuit, description: "User-centric problem solving." },
-      { title: "Video Production", href: "/digital-marketing/video-production", icon: VideoIcon, description: "Compelling video content creation." },
+      { title: "Digital Marketing Overview", href: "/digital-marketing", icon: Megaphone, description: "Comprehensive digital marketing solutions" },
+      { title: "SEO Services", href: "/digital-marketing/seo", icon: Search, description: "Search engine optimization" },
+      { title: "Social Media Marketing", href: "/digital-marketing/social-media-marketing", icon: Users, description: "Social media strategy & management" },
+      { title: "Google Ads", href: "/digital-marketing/google-ads", icon: BadgeDollarSign, description: "PPC advertising solutions" },
     ]
   },
   {
-    title: "Web & Mobile Solutions",
+    title: "Web Development",
     href: "/web-development", 
-    icon: Laptop,
-    description: "Custom web and mobile applications tailored to your business needs for optimal user experience.",
+    icon: Code,
+    description: "Custom web solutions for your business needs.",
     subItems: [
-      { title: "Web Development", href: "/web-development", icon: Code, description: "High-performing, responsive websites." },
-      { title: "Mobile App Development", href: "/mobile-app", icon: Smartphone, description: "Custom iOS & Android applications." },
+      { title: "Web Development", href: "/web-development", icon: Code, description: "Custom website development" },
+      { title: "Mobile App Development", href: "/mobile-app", icon: Smartphone, description: "iOS & Android apps" },
     ]
   },
   {
-    title: "Technology & Support",
-    href: "/marketing-technologies", 
-    icon: Cog,
-    description: "Leverage marketing technologies and ensure your digital assets are always performing optimally.",
+    title: "GEM Services",
+    href: "/gem", 
+    icon: BriefcaseBusiness,
+    description: "Government e-Marketplace solutions.",
     subItems: [
-      { title: "Marketing Technologies", href: "/marketing-technologies", icon: Zap, description: "Integrate & optimize MarTech stacks." },
-      { title: "Website Maintenance", href: "/website-maintenance", icon: Wrench, description: "Keep your site secure & up-to-date." },
-      { title: "Hosting & Support", href: "/hosting-support", icon: Server, description: "Reliable hosting & technical support." },
+      { title: "GEM Registration", href: "/gem/registration", icon: CheckCircle, description: "Vendor registration" },
+      { title: "GEM Bidding", href: "/gem/bidding", icon: Gavel, description: "Bid management" },
+    ]
+  },
+  {
+    title: "B2B Marketplace",
+    href: "/services/b2b-marketplace", 
+    icon: Store,
+    description: "End-to-end B2B solutions.",
+    subItems: [
+      { title: "Vendor Portal", href: "/b2b/vendor", icon: UserCog, description: "Vendor management" },
+      { title: "Buyer Portal", href: "/b2b/buyer", icon: ShoppingCart, description: "Procurement solutions" },
+    ]
+  },
+  {
+    title: "Marketing Technologies",
+    href: "/marketing-technologies", 
+    icon: Zap,
+    description: "Technology solutions for marketing.",
+    subItems: [
+      { title: "Marketing Automation", href: "/marketing/automation", icon: Zap, description: "Automate marketing workflows" },
+      { title: "Analytics", href: "/marketing/analytics", icon: BarChart, description: "Data-driven insights" },
     ]
   }
 ];
