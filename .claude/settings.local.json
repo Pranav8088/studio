@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\('Next.js:', pkg.dependencies.next, 'React:', pkg.dependencies.react\\)\")",
+      "Bash(npx tsc:*)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('Next.js', p.dependencies.next, '| React', p.dependencies.react\\)\")",
+      "Bash(npm show:*)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('Installed:', p.dependencies.next\\)\")"
+    ]
+  }
+}

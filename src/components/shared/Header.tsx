@@ -19,16 +19,14 @@ import {
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import React from 'react';
+import { usePathname } from 'next/navigation';
 
 // Main Navigation Items
 const mainNavItems = [
    { label: 'HOME', href: '/' },
    { label: 'ABOUT US', href: '/about' },
-   { label: 'WHY CHOOSE US', href: '/why-us' },
    // SERVICES will be a dropdown
-   { label: 'SERVICES', href: '/services' },
-   { label: 'INSIGHTS', href: '/insights' },
-   { label: 'FAQs', href: '/faq' },
+   { label: 'GeM SERVICES', href: '/gem' },
    { label: 'CONTACT US', href: '/contact' },
 ];
 
@@ -96,19 +94,23 @@ const socialLinks = [
 
 
 const Header = () => {
+  const [scrolled, setScrolled] = React.useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-16 bg-background border-b border-border/40 shadow-sm">
       <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg text-primary mr-2 shrink-0 hover:opacity-90 transition-opacity">
-          <Image 
-            src="/images/Nitya Marketing Logo.png" 
-            alt="Nitya Marketing Logo" 
-            width={200}
-            height={60}
-            className="h-16 w-auto"
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg mr-2 shrink-0 hover:opacity-90 transition-all duration-300 text-primary">
+          <BriefcaseBusiness className="h-7 w-7 text-accent" />
+          <span className="hidden sm:inline">Nitya Marketing</span>
+          <span className="sm:hidden">Nitya</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -117,14 +119,17 @@ const Header = () => {
             {mainNavItems.slice(0,3).map((item) => ( // Items before SERVICES
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink asChild>
-                  <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                  <Link 
+                    href={item.href} 
+                    className={cn(navigationMenuTriggerStyle(), "text-sm font-medium text-foreground hover:text-primary transition-colors")}
+                  >
                     {item.label}
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-sm font-medium">SERVICES</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-primary transition-colors">SERVICES</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[700px] lg:grid-cols-3">
                   {serviceCategories.map((category) => (
@@ -158,10 +163,17 @@ const Header = () => {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            {mainNavItems.slice(3).map((item) => ( // Items after SERVICES
+            {mainNavItems.slice(3).map((item) => (
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink asChild>
-                  <Link href={item.href} className={cn(navigationMenuTriggerStyle(), "text-sm font-medium")}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "text-sm font-medium text-foreground hover:text-primary transition-colors",
+                      item.label === 'GeM SERVICES' && "text-accent font-bold hover:text-accent"
+                    )}
+                  >
                     {item.label}
                   </Link>
                 </NavigationMenuLink>
@@ -172,13 +184,13 @@ const Header = () => {
 
          <div className="hidden lg:flex items-center gap-2 ml-auto shrink-0">
             {socialLinks.map((social) => (
-                <Button key={social.label} variant="ghost" size="icon" asChild aria-label={social.label} className="text-muted-foreground hover:text-primary">
+                <Button key={social.label} variant="ghost" size="icon" asChild aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
                     <Link href={social.href} target="_blank" rel="noopener noreferrer">
                         <social.icon className="w-4 h-4" />
                     </Link>
                 </Button>
             ))}
-             <Button size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+             <Button size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-sm hover:shadow-md transition-all">
                 <Link href="/contact#contact-form-home">SCHEDULE A CALL</Link>
             </Button>
           </div>
@@ -187,7 +199,12 @@ const Header = () => {
         <div className="lg:hidden flex items-center ml-auto">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Toggle Navigation Menu">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                aria-label="Toggle Navigation Menu"
+                className="h-10 w-10 text-primary hover:bg-muted transition-colors"
+              >
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -208,7 +225,7 @@ const Header = () => {
               </SheetHeader>
               <div className="flex-grow overflow-y-auto">
                 <nav className="p-4 grid gap-1 text-sm font-medium">
-                  {mainNavItems.slice(0,3).map((item) => ( // Before Services
+                  {mainNavItems.slice(0,2).map((item) => ( // Before Services
                      <SheetClose asChild key={item.label + "-mobile-pre"}>
                        <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
@@ -232,7 +249,14 @@ const Header = () => {
                     ))}
                   </div>
                   
-                   {mainNavItems.slice(3).map((item) => ( // After Services
+                  {/* GeM Services highlight */}
+                  <SheetClose asChild>
+                    <Link href="/gem" className="flex items-center gap-3 rounded-md px-3 py-2 font-semibold text-accent bg-accent/10 transition-all hover:bg-accent/20 mt-1">
+                      GeM SERVICES
+                    </Link>
+                  </SheetClose>
+
+                   {mainNavItems.slice(3).map((item) => ( // After GeM (index 3 onwards = CONTACT)
                      <SheetClose asChild key={item.label + "-mobile-post"}>
                        <Link href={item.href} className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted">
                          {item.label}
