@@ -4,45 +4,43 @@
 
 @layer base {
   :root {
-    /* Light Theme - White BG, Navy Blue Primary, Existing Navy Blue Secondary, Yellow Accent */
-    --background: 0 0% 100%; /* White */
-    --foreground: 210 20% 15%; /* Very Dark Blue/Almost Black for text */
+    /* Light Theme — White BG, Navy Blue Primary, Yellow Accent */
+    --background: 0 0% 100%;
+    --foreground: 210 25% 12%;
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 210 20% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 15%;
+    --popover-foreground: 210 25% 12%;
 
-    --primary: 211 100% 19%; /* Navy Blue */
-    --primary-foreground: 0 0% 98%; /* Light color for text on primary */
+    --primary: 211 100% 19%;         /* Navy Blue #00325F */
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 220 35% 35%; /* Original Navy Blue */
-    --secondary-foreground: 0 0% 98%; /* Light color for text on secondary */
+    --secondary: 220 35% 30%;        /* Deeper Navy */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%; /* Light Grayish Blue */
-    --muted-foreground: 210 20% 45%; /* Mid Grayish Blue */
+    --muted: 210 30% 96%;
+    --muted-foreground: 210 15% 48%;
 
-    --accent: 50 100% 50%; /* Yellow */
-    --accent-foreground: 210 20% 10%; /* Dark color for text on accent */
+    --accent: 45 100% 51%;           /* Gold/Amber #FFBE00 */
+    --accent-foreground: 210 25% 10%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 210 20% 88%; /* Light Grayish Blue Border */
-    --input: 210 20% 88%; /* Light Grayish Blue Input */
-    --ring: 211 100% 19%; /* Navy Blue for focus ring */
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 211 100% 19%;
 
-    --chart-1: 211 100% 19%; /* Navy Blue */
-    --chart-2: 50 100% 50%; /* Yellow */
-    --chart-3: 220 35% 35%; /* Original Navy Blue */
-    --chart-4: 211 100% 34%; /* Lighter Navy Blue */
-    --chart-5: 50 100% 65%; /* Lighter Yellow */
+    --chart-1: 211 100% 19%;
+    --chart-2: 45 100% 51%;
+    --chart-3: 220 35% 30%;
+    --chart-4: 211 100% 35%;
+    --chart-5: 45 100% 68%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
   }
-
-  /* Removed .dark theme as the entire site should have a white background */
 }
 
 @layer base {
@@ -53,42 +51,70 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-   /* More consistent heading sizes */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground; /* Ensure headings use foreground color */
+    @apply font-bold tracking-tight text-foreground;
   }
-  h1 { @apply text-3xl sm:text-4xl lg:text-5xl; }
-  h2 { @apply text-2xl sm:text-3xl lg:text-4xl; }
-  h3 { @apply text-xl sm:text-2xl lg:text-3xl; }
-  h4 { @apply text-lg sm:text-xl lg:text-2xl; }
-  p { @apply leading-7 text-base md:text-lg; } /* Standardize paragraph size */
+  h1 { @apply text-4xl sm:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl sm:text-4xl lg:text-5xl; }
+  h3 { @apply text-2xl sm:text-3xl; }
+  h4 { @apply text-xl sm:text-2xl; }
+  p  { @apply leading-7 text-base; }
 
-   /* Improve focus visibility */
   *:focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+
+  /* Smooth scrolling */
+  html { scroll-behavior: smooth; }
+
+  /* Hero dot grid pattern */
+  .hero-grid {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 }
 
-/* Animation utilities remain the same */
 @layer utilities {
   .animate-fade-in {
-    animation: fade-in 0.6s ease-out forwards;
-    opacity: 0; /* Start hidden */
+    animation: fade-in 0.7s ease-out forwards;
+    opacity: 0;
   }
   .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-     transform: translateY(20px); /* Start lower */
+    animation: fade-in-up 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateY(24px);
   }
   .animate-fade-in-left {
-    animation: fade-in-left 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-     transform: translateX(-20px); /* Start left */
+    animation: fade-in-left 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-24px);
   }
   .animate-fade-in-right {
-    animation: fade-in-right 0.6s ease-out forwards;
-     opacity: 0; /* Start hidden */
-      transform: translateX(20px); /* Start right */
+    animation: fade-in-right 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Section divider wave */
+  .wave-divider {
+    line-height: 0;
+    overflow: hidden;
   }
 }
 

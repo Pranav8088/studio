@@ -5,13 +5,28 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
+import FloatingCTA from '@/components/shared/FloatingCTA';
 import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
-  title: 'Nitya Marketing Management - Your B2B Growth Partner',
-  description: 'Empowering SMEs & MSMEs with expert B2B marketing strategies for brand building, sales driving, and market presence establishment.',
+  title: {
+    default: 'Nitya Marketing Management — B2B Growth Partner for SMEs & MSMEs',
+    template: '%s | Nitya Marketing Management',
+  },
+  description: 'Nitya Marketing Management empowers SMEs and MSMEs with expert B2B marketing strategies, GeM portal services, web development, and digital transformation solutions across India.',
+  keywords: ['B2B marketing', 'SME marketing', 'MSME marketing', 'GeM services', 'digital marketing Mumbai', 'SEO India', 'government tender services'],
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    siteName: 'Nitya Marketing Management',
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +45,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FloatingCTA />
         <Toaster />
       </body>
     </html>
