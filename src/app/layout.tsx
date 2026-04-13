@@ -1,4 +1,3 @@
-
 import type {Metadata} from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -17,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nitya Marketing Management — B2B Growth Partner for SMEs & MSMEs',
+    default: 'Nitya Marketing Management â€” B2B Growth Partner for SMEs & MSMEs',
     template: '%s | Nitya Marketing Management',
   },
   description: 'Nitya Marketing Management empowers SMEs and MSMEs with expert B2B marketing strategies, GeM portal services, web development, and digital transformation solutions across India.',

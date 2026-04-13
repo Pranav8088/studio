@@ -114,9 +114,9 @@ const Footer = () => {
                   </a>
                 </li>
               </ul>
-              {/* Technology partner callout */}
+              {/* Tender division callout */}
               <div className="mt-4 pt-4 border-t border-white/10">
-                <p className="text-xs text-white/50 mb-1.5">Web & Software Development Partner</p>
+                <p className="text-xs text-white/50 mb-1.5">Our E-Tendering Division</p>
                 <a
                   href="https://tendershade.com"
                   target="_blank"
