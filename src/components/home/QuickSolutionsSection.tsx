@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import ScrollReveal from '@/components/shared/ScrollReveal';
 
@@ -9,19 +8,16 @@ const solutions = [
     number: '01',
     image: '/images/Boost Icon.png',
     title: 'Want to boost your brand or products & services?',
-    ctaLink: '/digital-marketing/seo',
   },
   {
     number: '02',
     image: '/images/Target Icon.png',
     title: 'Do you want your updates to reach your target market?',
-    ctaLink: '/digital-marketing/social-media-marketing',
   },
   {
     number: '03',
     image: '/images/Documentation Assistance Icon.png',
     title: 'Want to win government tenders & documentation assistance?',
-    ctaLink: '/gem',
   },
 ];
 
@@ -78,19 +74,9 @@ export default function QuickSolutionsSection() {
                   </div>
                 </div>
 
-                {/* Title */}
                 <h3 className="text-[20px] font-bold text-[#1F2937] leading-[1.4] mb-8 max-w-[280px] mx-auto min-h-[56px] flex items-center justify-center">
                   {item.title}
                 </h3>
-
-                {/* Button */}
-                <Link
-                  href={item.ctaLink}
-                  className="bg-accent text-[#111827] font-bold text-[15px] px-8 py-4 rounded-md shadow-[0_6px_0_#d49900] transition-all duration-300 ease-in-out hover:bg-[#4d4d4d] hover:text-white hover:shadow-[0_6px_0_#333333] hover:-translate-y-1 active:translate-y-[4px] active:shadow-[0_0_0_transparent]"
-                >
-                  Click here to get quick Solution
-                </Link>
-
               </div>
             </ScrollReveal>
           ))}
