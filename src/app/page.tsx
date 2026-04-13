@@ -85,7 +85,7 @@ export default function Home() {
               'Bid response and tender support',
               'Documentation and compliance readiness',
             ].map((line, index) => (
-              <ScrollReveal key={line} direction="up" delay={index * 70}>
+              <ScrollReveal key={line} direction="up" distance={40} delay={index * 120}>
                 <div className="home-process-card h-full rounded-[1.7rem] border border-primary/10 p-6">
                   <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-sm font-semibold text-white">
                     0{index + 1}
@@ -101,7 +101,7 @@ export default function Home() {
       {/* ⑦ Contact Form */}
       <section className="bg-primary py-24 md:py-32">
         <div className="container max-w-5xl px-4 md:px-6">
-          <ScrollReveal direction="up" className="mb-12 text-center">
+          <ScrollReveal direction="up" distance={30} className="mb-12 text-center">
             <h2 className="mt-5 font-heading text-4xl font-semibold text-white md:text-5xl">
               Ready to grow your business?
             </h2>
@@ -109,9 +109,11 @@ export default function Home() {
               Share your requirements and our marketing strategists will get back to you within 24 hours.
             </p>
           </ScrollReveal>
-          <div className="rounded-[2rem] bg-white p-6 shadow-[0_30px_90px_rgba(0,0,0,0.18)] md:p-10">
-            <ContactForm />
-          </div>
+          <ScrollReveal direction="up" distance={50} delay={200}>
+            <div className="rounded-[2rem] bg-white p-6 shadow-[0_30px_90px_rgba(0,0,0,0.18)] md:p-10">
+              <ContactForm />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -120,22 +122,24 @@ export default function Home() {
         <section className="bg-background py-24 md:py-32">
           <div className="container max-w-7xl px-4 md:px-6">
             <div className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <ScrollReveal direction="right" className="max-w-3xl">
+              <ScrollReveal direction="right" distance={30} className="max-w-3xl">
                 <h2 className="mt-5 font-heading text-4xl font-semibold leading-tight text-primary md:text-5xl">
                   Marketing intelligence &amp; articles
                 </h2>
               </ScrollReveal>
-              <Button asChild variant="outline" className="rounded-full border-primary/20 bg-white text-primary hover:bg-primary/5">
-                <Link href="/blog">
-                  View All Articles
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <ScrollReveal direction="left" distance={30} delay={100}>
+                <Button asChild variant="outline" className="rounded-full border-primary/20 bg-white text-primary hover:bg-primary/5">
+                  <Link href="/blog">
+                    View All Articles
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </ScrollReveal>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2">
               {homePageBlogPosts.map((post, index) => (
-                <ScrollReveal key={post.id} direction="up" delay={index * 80}>
+                <ScrollReveal key={post.id} direction="up" distance={50} delay={index * 150}>
                   <Link
                     href={post.link}
                     className="group block overflow-hidden rounded-[2rem] border border-primary/10 bg-white shadow-[0_22px_60px_rgba(7,44,84,0.07)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(7,44,84,0.13)]"
@@ -156,7 +160,7 @@ export default function Home() {
                     </div>
                     <div className="p-7">
                       <p className="text-sm font-medium text-slate-500">{post.date}</p>
-                      <h3 className="mt-3 font-heading text-2xl font-semibold leading-tight text-primary transition-colors group-hover:text-accent-foreground">
+                      <h3 className="mt-3 font-heading text-2xl font-semibold leading-tight text-primary transition-colors group-hover:text-accent">
                         {post.title}
                       </h3>
                       <p className="mt-4 text-base leading-7 text-slate-600">{post.excerpt}</p>

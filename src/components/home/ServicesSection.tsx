@@ -69,43 +69,45 @@ export default function ServicesSection() {
         </ScrollReveal>
       </div>
 
-      {/* Full Bleed Continuous CSS Marquee */}
-      <div className="relative z-10 w-full pb-12 pt-4 group">
-        <div 
-          className="flex w-max animate-services-marquee"
-          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-        >
-          {doubledServices.map((service, index) => (
-            <div key={index} className="flex-none px-3 w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[320px] xl:w-[380px]">
-                <Link
-                  href={service.href}
-                  className="group/card relative block h-[350px] lg:h-[450px] w-full overflow-hidden bg-[#0A1F44] border-2 border-b-0 border-transparent transition-colors duration-300 hover:border-t-accent hover:border-x-accent"
-                >
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 450px"
-                />
-                
-                {/* Top gradient for text legibility */}
-                <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-[#0A1F44]/90 via-[#0A1F44]/40 to-transparent pointer-events-none" />
-
-                {/* Bottom gradient fade to completely merge into background */}
-                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#0A1F44] via-[#0A1F44]/80 to-transparent pointer-events-none" />
-
-                {/* Text placed at the TOP LEFT as per the screenshot */}
-                <div className="absolute top-0 left-0 p-6 md:p-8 max-w-[85%]">
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white drop-shadow-md">
-                    {service.title}
-                  </h3>
-                </div>
-              </Link>
-            </div>
-          ))}
+      {/* Full Bleed Continuous CSS Marquee — Wrapped in ScrollReveal for dynamic entrance */}
+      <ScrollReveal direction="up" distance={40} delay={100}>
+        <div className="relative z-10 w-full pb-12 pt-4 group">
+          <div 
+            className="flex w-max animate-services-marquee"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          >
+            {doubledServices.map((service, index) => (
+              <div key={index} className="flex-none px-3 w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[320px] xl:w-[380px]">
+                  <Link
+                    href={service.href}
+                    className="group/card relative block h-[350px] lg:h-[450px] w-full overflow-hidden bg-[#0A1F44] border-2 border-b-0 border-transparent transition-colors duration-300 hover:border-t-accent hover:border-x-accent rounded-2xl md:rounded-[2rem]"
+                  >
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 450px"
+                  />
+                  
+                  {/* Top gradient for text legibility */}
+                  <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-[#0A1F44]/90 via-[#0A1F44]/40 to-transparent pointer-events-none" />
+  
+                  {/* Bottom gradient fade to completely merge into background */}
+                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#0A1F44] via-[#0A1F44]/80 to-transparent pointer-events-none" />
+  
+                  {/* Text placed at the TOP LEFT */}
+                  <div className="absolute top-0 left-0 p-6 md:p-8 max-w-[85%]">
+                    <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white drop-shadow-md">
+                      {service.title}
+                    </h3>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       <style>{`
         @keyframes services-marquee {
