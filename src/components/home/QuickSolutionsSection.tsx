@@ -6,17 +6,17 @@ import ScrollReveal from '@/components/shared/ScrollReveal';
 const solutions = [
   {
     number: '01',
-    image: '/images/Boost Icon.png',
+    image: '/images/Boost Black.png',
     title: 'Want to boost your brand or products & services?',
   },
   {
     number: '02',
-    image: '/images/Target Icon.png',
+    image: '/images/Target Black.png',
     title: 'Do you want your updates to reach your target market?',
   },
   {
     number: '03',
-    image: '/images/Documentation Assistance Icon.png',
+    image: '/images/Documentation Assistance Black.png',
     title: 'Want to win government tenders & documentation assistance?',
   },
 ];
