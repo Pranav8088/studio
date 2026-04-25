@@ -128,13 +128,14 @@ export default function Header() {
         <div className="container flex h-full max-w-7xl items-center justify-between px-4 md:px-6">
 
           {/* ── LEFT: Logo ── */}
-          <Link href="/" className="shrink-0 flex items-center transition-all duration-300" aria-label="Nitya Marketing home">
+            <Link href="/" className="shrink-0 flex items-center transition-all duration-300" aria-label="Nitya Marketing home">
             <Image
               src="/images/Nitya Marketing Logo.png"
               alt="Nitya Marketing"
               width={140}
               height={42}
               className="h-10 w-auto"
+              style={{ width: 'auto' }}
               priority
             />
           </Link>
@@ -295,6 +296,7 @@ export default function Header() {
               width={130}
               height={38}
               className="h-9 w-auto"
+              style={{ width: 'auto' }}
             />
           </Link>
           <button
